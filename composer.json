@@ -1,0 +1,16 @@
+{
+    "name": "bilal/php-ecommerce",
+    "autoload": {
+        "psr-4": {
+            "Bilal\\PhpEcommerce\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BILALMRN"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "5.3.2"
+    }
+}
