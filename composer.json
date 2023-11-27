@@ -5,6 +5,11 @@
             "Bilal\\PhpEcommerce\\": "src/"
         }
     },
+    "scripts": {
+        "bootstrap": [
+            "cp -R vendor/twbs/bootstrap/dist src/bootstrap"
+        ]
+    },
     "authors": [
         {
             "name": "BILALMRN"
