@@ -31,6 +31,15 @@
               <span class="ps-3">Contact Us</span>
             </a>
           </li>
+          <li class="nav-item">
+              <form class="d-flex">
+                  <span class="badge rounded-pill bg-dark" type="submit">
+                      <i class="bi-cart-fill me-1"></i>
+                      Cart
+                      <span class="badge bg-secondary text-white ms-1 rounded-pill">0</span>
+                  </span>
+              </form>
+          </li>
         </ul>
         
       </div>
