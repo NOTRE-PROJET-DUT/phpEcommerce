@@ -68,38 +68,52 @@ class user
 
     public function getUser($id)
     {
-        $sql = "SELECT * FROM users WHERE id = '$id'";
+        $sql = "SELECT * FROM users WHERE user_id = '$id'";
         $query = $this->db->query($sql);
         if ($query->num_rows > 0) {
             return $query->fetch_all(MYSQLI_ASSOC);
         }
     }
     public function getUserbyemail($email)
-    {
-        $sql = "SELECT id FROM users WHERE email = '$email'";
-        $query = $this->db->query($sql);
-        if ($query->num_rows > 0) {
-            return $query->fetch_all(MYSQLI_ASSOC);
-        }
+{
+    $sql = "SELECT user_id FROM users WHERE email = '$email'";
+    $query = $this->db->query($sql);
+    if ($query->num_rows > 0) {
+        return $query->fetch_all(MYSQLI_ASSOC);
     }
+}
+
+    
     public function updatedUser($id, $email, $password)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET email = '$email', password = '$hashedPassword' WHERE id = '$id'";
+        $sql = "UPDATE users SET email = '$email', password = '$hashedPassword' WHERE user_id = '$id'";
         $query = $this->db->query($sql);
         return $query;
     }
 
     public function updatedUserPassword($email, $newpassword)
-    {
-        $id = $this->getUserbyemail($email);
+{
+    $userData = $this->getUserbyemail($email);
+
+    if (!empty($userData)) {
+        // Assuming 'id' is the key for the user ID in the result array
+        $id = $userData[0]['user_id'];
+
         $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
-        $sql = "UPDATE users SET  password = '$hashedPassword' WHERE id = '$id'";
+        $sql = "UPDATE users SET password = '$hashedPassword' WHERE user_id = '$id'";
         $query = $this->db->query($sql);
+        return $query;
+    } else {
+        // Handle the case where no user with the specified email is found
+        return false;
     }
+}
+
+    
     public function deleteUser($id)
     {
-        $sql = "DELETE FROM users WHERE id = '$id'";
+        $sql = "DELETE FROM users WHERE user_id = '$id'";
         $query = $this->db->query($sql);
         return $query;
     }
