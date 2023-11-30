@@ -34,7 +34,14 @@ class user {
             return $query->fetch_all(MYSQLI_ASSOC);
         }
     }
-
+    public function getUserbyemail($email)
+    {
+        $sql = "SELECT id FROM user WHERE email = '$email'";
+        $query = $this->db->query($sql);
+        if ($query->num_rows > 0) {
+            return $query->fetch_all(MYSQLI_ASSOC);
+        }
+    }
     public function updatedUser($id, $email, $password)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -43,6 +50,14 @@ class user {
         return $query;
     }
 
+    public function updatedUserPassword($email,$newpassword){
+        $id = getUserbyemail($email);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE user SET  password = '$hashedPassword' WHERE id = '$id'";
+        $query = $this->db->query($sql);
+
+
+    }
     public function deleteUser($id)
     {
         $sql = "DELETE FROM user WHERE id = '$id'";
