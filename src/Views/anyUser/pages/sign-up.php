@@ -1,15 +1,45 @@
-<!--
-=========================================================
-* Soft UI Design System - v1.0.9
-=========================================================
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "projet";
 
-* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
+$conn = new mysqli($servername, $username, $password, $dbname);
 
- =========================================================
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve values from the form
+    $email = $_POST["email"];
+    $pass = $_POST["pass"];
+    $cpass = $_POST["cpass"];
+
+    // Compare passwords
+    if ($pass == $cpass) {
+        // Hash the password before saving it in the database
+        $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
+
+        // SQL query to insert data into the database
+        $sql = "INSERT INTO connecter (email, pass) VALUES ('$email', '$hashedPassword')";
+
+        if ($conn->query($sql) === TRUE) {
+          echo "<script> alert('Record created successfully')</script>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        echo "Passwords do not match";
+    }
+}
+
+// Close the database connection
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
@@ -18,7 +48,7 @@
 <?php  include '../component/head.php'; ?>
   
   <title>
-    Soft UI Design System by Creative Tim
+  Nabil-Bilal
   </title>
   
 </head>
@@ -28,7 +58,7 @@
    <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
     <div class="container-fluid px-1">
       <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/indexPage.php">
-        Corporate UI
+      Nabil-Bilal
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -74,23 +104,27 @@
           <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
             <div class="card card-plain">
               <div class="card-header pb-0 text-left">
-                <h4 class="font-weight-bolder">Sign In</h4>
-                <p class="mb-0">Enter your email and password to sign in</p>
+                <h4 class="font-weight-bolder">Sign Up</h4>
+                <p class="mb-0">Enter your email and password to sign up</p>
               </div>
               <div class="card-body">
-                <form role="form">
+              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                   </div>
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                     <input type="password" name="pass" class="form-control form-control-lg placeholder="Password" aria-label="Password" aria-describedby="password-addon">
                   </div>
+                  <div class="mb-3">
+                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirmer Password" aria-label="Email" aria-describedby="email-addon">
+                  </div>
+
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                      <input class="form-check-input" type="checkbox" id="rememberMe">
+                     <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                   </div>
                 </form>
               </div>

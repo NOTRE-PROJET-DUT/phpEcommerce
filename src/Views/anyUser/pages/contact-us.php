@@ -1,15 +1,31 @@
-<!--
-=========================================================
-* Soft UI Design System - v1.0.9
-=========================================================
+<?php
 
-* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
+$serveur = "localhost";
+$utilisateur = "root";
+$motDePasse = "";
+$baseDeDonnees = "projet";
 
- =========================================================
+$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees);
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+if ($connexion->connect_error) {
+    die("Échec de la connexion : " . $connexion->connect_error);
+}
+
+$nom = isset($_POST['nom']) ? $_POST['nom'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
+$message = isset($_POST['message']) ? $_POST['message'] : '';
+
+$sql = "INSERT INTO coment (nom, email, message) VALUES ('$nom', '$email', '$message')";
+
+if ($connexion->query($sql) === TRUE) {
+    echo "valid";
+} else {
+    echo "Erreur lors de l'enregistrement : " . $connexion->error;
+}
+
+$connexion->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
@@ -18,7 +34,7 @@
 <?php  include '../component/head.php'; ?>
   
   <title>
-    Soft UI Design System by Creative Tim
+  Nabil-Bilal
   </title>
   
 </head>
@@ -28,7 +44,7 @@
   <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
     <div class="container-fluid px-1">
       <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/indexPage.php">
-        Corporate UI
+      Nabil-Bilal
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -84,19 +100,19 @@
                   or contact using our contact form.
                 </p>
               </div>
-              <form id="contact-form" method="post" autocomplete="off">
+              <form id="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
                 <div class="card-body pb-2">
                   <div class="row">
                     <div class="col-md-6">
                       <label>Full Name</label>
                       <div class="input-group mb-4">
-                        <input class="form-control" placeholder="Full Name" aria-label="Full Name" type="text">
+                        <input class="form-control" placeholder="Full Name"  type="text" name="nom">
                       </div>
                     </div>
                     <div class="col-md-6 ps-md-2">
                       <label>Email</label>
                       <div class="input-group">
-                        <input type="email" class="form-control" placeholder="hello@creative-tim.com">
+                        <input type="email" name="email" class="form-control" placeholder="exemple@gmail.com">
                       </div>
                     </div>
                   </div>

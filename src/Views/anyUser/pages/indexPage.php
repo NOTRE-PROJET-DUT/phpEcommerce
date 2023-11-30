@@ -6,7 +6,7 @@
     <?php  include '../component/head.php'; ?>
   
     <title>
-    Soft UI Design System by Creative Tim
+    Nabil-Bilal
     </title>
     
         <!-- Core theme CSS (includes Bootstrap)-->
