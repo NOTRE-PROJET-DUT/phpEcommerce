@@ -1,4 +1,26 @@
+<?php
 
+include '../../../Models/user.php';
+$user = new user();
+
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve values from the form
+    $email = $_POST["email"];
+    $checkpass = $_POST["checkpass"];
+   
+  
+
+        if ($user->forgotpassword($email,$checkpass) === TRUE) {
+          header('Location: /php/phpEcommerce/src/Views/anyUser/pages/homePage.php');
+        } else {
+          echo "no exist";
+        }
+   
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
