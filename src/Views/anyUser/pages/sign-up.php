@@ -1,15 +1,29 @@
-<!--
-=========================================================
-* Soft UI Design System - v1.0.9
-=========================================================
+<?php
 
-* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
+include '../../../Models/user.php';
+$user = new user();
 
- =========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve values from the form
+    $email = $_POST["email"];
+    $pass = $_POST["pass"];
+    $cpass = $_POST["cpass"];
+    // Compare passwords
+    if ($pass == $cpass) {
+      
+
+        if ($user->createAccountUser($email,$pass) === TRUE) {
+          header('Location: /homePage');
+        } else {
+          echo "no exist";
+        }
+    } else {
+        echo "non valid password";
+    }
+    
+}?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 

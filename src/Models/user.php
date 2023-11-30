@@ -1,25 +1,31 @@
 <?php
 
-use db_connect;
+include 'db.php';
 
-class user {
+class user
+{
 
     private $db;
 
-    public function __construct() {
-        $this->db = db_connect::getConnection("","","","");
+    public function __construct()
+    {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "shop";
+        $this->db = db_connect::getConnection($servername, $username, $password, $dbname);
     }
 
-    public function login($username, $password) {
+    public function login($email, $password)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "SELECT * FROM user WHERE username = '$username' AND password = '$hashedPassword'";
-        $query = $this->db->query($sql);
-        if ($query->num_rows > 0) {
-            return $query->fetch_all(MYSQLI_ASSOC);
-        }
+        $sql = "SELECT * FROM user WHERE email = '$email' AND password = '$hashedPassword'";
+       return $this->db->query($sql);
+       
     }
 
-    public function createAccountUser($email, $password){
+    public function createAccountUser($email, $password)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO user (email, password) VALUES ('$email', '$hashedPassword')";
         $query = $this->db->query($sql);
@@ -50,13 +56,12 @@ class user {
         return $query;
     }
 
-    public function updatedUserPassword($email,$newpassword){
-        $id = getUserbyemail($email);
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    public function updatedUserPassword($email, $newpassword)
+    {
+        $id = $this->getUserbyemail($email);
+        $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
         $sql = "UPDATE user SET  password = '$hashedPassword' WHERE id = '$id'";
         $query = $this->db->query($sql);
-
-
     }
     public function deleteUser($id)
     {

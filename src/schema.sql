@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS blog;
+DROP DATABASE IF EXISTS shop;
 
 CREATE DATABASE shop;
 
@@ -18,7 +18,7 @@ CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     
 );
 
@@ -48,8 +48,8 @@ CREATE TABLE orders (
 CREATE TABLE order_items (
     order_item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
-    product_id INT, --change
-    status VARCHAR(12) NOT NULL check in ( 'pending', 'shipped', 'delivered'),
+    product_id INT, 
+status VARCHAR(12) NOT NULL CHECK (status IN ('pending', 'shipped', 'delivered')),
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
@@ -61,4 +61,3 @@ CREATE TABLE order_items (
 
 
 
-// get order item [ admin / product / order_items ]
