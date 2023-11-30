@@ -32,12 +32,12 @@
             </a>
           </li>
           <li class="nav-item">
-              <form class="d-flex">
-                  <span class="badge rounded-pill bg-dark" type="submit">
+              <form class="d-flex ">
+                  <span class="rounded-pill bg-dark" type="submit">
                       <i class="bi-cart-fill me-1"></i>
-                      Cart
+                      <span class="text-white"> Cart</span>
                       <span class="badge bg-secondary text-white ms-1 rounded-pill">0</span>
-                  </span>
+                    </span>
               </form>
           </li>
         </ul>

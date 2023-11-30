@@ -3,7 +3,7 @@
     <head>
         
         <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-    <?php  include '../component/head.php'; ?>
+    <?php include '../component/head.php';?>
   
     <title>
     Soft UI Design System by Creative Tim
