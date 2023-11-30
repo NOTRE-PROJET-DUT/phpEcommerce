@@ -15,10 +15,10 @@ CREATE TABLE admins (
 
 -- Table to store information about users
 CREATE TABLE users (
-    checkpass VARCHAR(100) ,
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
+    checkpass VARCHAR(100) ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     
 );
@@ -56,9 +56,4 @@ status VARCHAR(12) NOT NULL CHECK (status IN ('pending', 'shipped', 'delivered')
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
-
-
-
-
-
 
