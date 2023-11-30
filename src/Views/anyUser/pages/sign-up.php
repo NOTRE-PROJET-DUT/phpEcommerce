@@ -10,12 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $pass = $_POST["pass"];
     $cpass = $_POST["cpass"];
+    $checkpass = $_POST["checkpass"];
     // Compare passwords
     if ($pass == $cpass) {
       
 
-        if ($user->createAccountUser($email,$pass) === TRUE) {
-          header('Location: /homePage');
+        if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
+          header('Location: /php/phpEcommerce/src/Views/anyUser/pages/homePage.php');
         } else {
           echo "no exist";
         }
@@ -32,52 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php  include '../component/head.php'; ?>
   
   <title>
-    Soft UI Design System by Creative Tim
+  Nabil-Bilal
   </title>
   
 </head>
 
 <body class="sign-in-illustration">
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-    <div class="container-fluid px-1">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/homePage.php">
-        Corporate UI
-      </a>
-      <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon mt-2">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav ms-xl-auto">
-          
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/sign-in.php">
-              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class=" text-dark  me-1">
-                <path fill-rule="evenodd" d="M15.75 1.5a6.75 6.75 0 00-6.651 7.906c.067.39-.032.717-.221.906l-6.5 6.499a3 3 0 00-.878 2.121v2.818c0 .414.336.75.75.75H6a.75.75 0 00.75-.75v-1.5h1.5A.75.75 0 009 19.5V18h1.5a.75.75 0 00.53-.22l2.658-2.658c.19-.189.517-.288.906-.22A6.75 6.75 0 1015.75 1.5zm0 3a.75.75 0 000 1.5A2.25 2.25 0 0118 8.25a.75.75 0 001.5 0 3.75 3.75 0 00-3.75-3.75z" clip-rule="evenodd" />
-              </svg>
-              Sign In
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/about-us.php" >
-              <span class="ps-3">About Us</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/contact-us.php" >
-              <span class="ps-3">Contact Us</span>
-            </a>
-          </li>
-        </ul>
-        
-      </div>
-    </div>
-  </nav>
-  <!-- End Navbar -->
+
       </div>
     </div>
   </div>
@@ -88,23 +50,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
             <div class="card card-plain">
               <div class="card-header pb-0 text-left">
-                <h4 class="font-weight-bolder">Sign In</h4>
-                <p class="mb-0">Enter your email and password to sign in</p>
+                <h4 class="font-weight-bolder">Sign Up</h4>
+                <p class="mb-0">Enter your email and password to sign up</p>
               </div>
               <div class="card-body">
-                <form role="form">
+              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                   </div>
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                     <input type="password" name="pass" class="form-control form-control-lg "placeholder="Password " aria-label="Password" aria-describedby="password-addon">
+                  </div>
+                  <div class="mb-3">
+                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirmer Password" aria-label="Email" aria-describedby="email-addon">
+                  </div>
+                  <div class="mb-3">
+                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label="" >
                   </div>
                   <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                      <input class="form-check-input" type="checkbox" id="rememberMe">
+                     <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                   </div>
                 </form>
               </div>

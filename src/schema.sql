@@ -15,6 +15,7 @@ CREATE TABLE admins (
 
 -- Table to store information about users
 CREATE TABLE users (
+    checkpass VARCHAR(100) ,
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,

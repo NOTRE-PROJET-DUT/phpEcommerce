@@ -32,6 +32,9 @@
                   <div class="mb-3">
                     <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                   </div>
+                  <div class="mb-3">
+                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label="" >
+                  </div>
                   <div class="text-center">
                       <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Send</button>
                   </div>
