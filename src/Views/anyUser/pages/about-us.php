@@ -1,15 +1,4 @@
-<!--
-=========================================================
-* Soft UI Design System - v1.0.9
-=========================================================
 
-* Product Page:  https://www.creative-tim.com/product/soft-ui-design-system 
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-* Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +7,7 @@
   <?php  include '../component/head.php'; ?>
   
   <title>
-    Soft UI Design System by Creative Tim
+  Nabil-Bilal
   </title>
   
 </head>
@@ -27,8 +16,8 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
     <div class="container-fluid px-1">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/homePage.php">
-        Corporate UI
+      <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/indexPage.php">
+      Nabil-Bilal
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -256,15 +245,16 @@
               <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
                 <a href="javascript:;">
                   <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="../assets/img/kal-visuals-square.jpg" alt="image">
+                    <img class="w-100 border-radius-md" src="../assets/img/p1.png" alt="image">
                   </div>
                 </a>
               </div>
+<!-- //nabil////////////////////   -->  
               <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
                 <div class="card-body">
-                  <h5 class="mb-0">Emma Roberts</h5>
-                  <h6 class="text-info">UI Designer</h6>
-                  <p class="mb-0">Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
+                  <h5 class="mb-0">Nabil Boussalham</h5>
+                  <h6 class="text-info">Programmer</h6>
+                  <p class="mb-0">Etudiant en ESTSB 2eme ane en DUT.</p>
                 </div>
               </div>
             </div>
@@ -276,64 +266,23 @@
               <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
                 <a href="javascript:;">
                   <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="../assets/img/bruce-mars.jpg" alt="image">
+                    <img class="w-100 border-radius-md" src="../assets/img/p2.jpg" alt="image">
                   </div>
                 </a>
               </div>
               <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
                 <div class="card-body">
-                  <h5 class="mb-0">William Pearce</h5>
-                  <h6 class="text-info">Boss</h6>
-                  <p>Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
+<!-- //bilal////////////////////   -->               
+                  <h5 class="mb-0">Bilal Maein</h5>
+                  <h6 class="text-info">Programmer</h6>
+                  <p>Etudiant en ESTSB 2eme ane en DUT.</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-lg-6 col-12">
-          <div class="card card-profile overflow-hidden z-index-2">
-            <div class="row">
-              <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
-                <a href="javascript:;">
-                  <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="../assets/img/team-4.jpg" alt="image">
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
-                <div class="card-body">
-                  <h5 class="mb-0">Ivana Flow</h5>
-                  <h6 class="text-info">Athlete</h6>
-                  <p>Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 col-12">
-          <div class="card card-profile mt-lg-0 mt-5 overflow-hidden z-index-2">
-            <div class="row">
-              <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
-                <a href="javascript:;">
-                  <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="../assets/img/ivana-square.jpg" alt="image">
-                  </div>
-                </a>
-              </div>
-              <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
-                <div class="card-body">
-                  <h5 class="mb-0">Sophia Garcia</h5>
-                  <h6 class="text-info">JS Developer</h6>
-                  <p>Artist is a term applied to a person who engages in an activity deemed to be an art.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+ 
     <div class="position-absolute w-100 bottom-0 mn-n1">
       <svg width="100%" viewBox="0 -1 1920 166" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <title>wave-up</title>
