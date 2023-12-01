@@ -35,7 +35,21 @@ class Product {
     public function getProducts()
     {
         // Retrieve products from the database
-        $query = "SELECT * FROM products";
+        $query = "SELECT * FROM products LIMIT 20 OFFSET 0";
+        $result = $this->db->query($query);
+
+        if ($result) {
+            // Fetch data as an associative array
+            return $result->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return "Error fetching products: " . $this->db->error;
+        }
+    }
+
+    public function getProductsByCategory($category)
+    {
+        // Retrieve products from the database
+        $query = "SELECT * FROM products where category LIKE '$category' LIMIT 20 OFFSET 0";
         $result = $this->db->query($query);
 
         if ($result) {
