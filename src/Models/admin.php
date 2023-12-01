@@ -1,34 +1,32 @@
 <?php
 
-use db_connect;
+include 'db.php';
 
-class admin {
+class Admin {
 
     private $db;
 
     public function __construct() {
-        $this->db = db_connect::getConnection("","","","");
+        $this->db = db_connect::getConnection();
     }
 
-    public function login($username, $password) {
+    public function login($userName, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "SELECT * FROM admin WHERE username = '$username' AND password = '$hashedPassword'";
-        $query = $this->db->query($sql);
-        if ($query->num_rows > 0) {
-            return $query->fetch_all(MYSQLI_ASSOC);
-        }
+        $sql = "SELECT * FROM admins WHERE username = '$userName' AND password = '$hashedPassword'";
+        return $this->db->query($sql);
+        
     }
 
-    public function createAccountAdmin($username, $password){
+    public function createAccountAdmin($username,$email , $password,$secretCode){
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO admin (username, password) VALUES ('$username', '$hashedPassword')";
+        $sql = "INSERT INTO admins (username,email , password,secretCode ) VALUES ('$username','$email', '$hashedPassword','$secretCode')";
         $query = $this->db->query($sql);
         return $query;
     }
 
     public function getAdmin($username)
     {
-        $sql = "SELECT * FROM admin WHERE username = '$username'";
+        $sql = "SELECT * FROM admins WHERE username = '$username'";
         $query = $this->db->query($sql);
         if ($query->num_rows > 0) {
             return $query->fetch_all(MYSQLI_ASSOC);
@@ -37,7 +35,7 @@ class admin {
 
     public function updateAdmin($username,$password,$email,$phone,$address ){
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE admin SET password = '$hashedPassword', email = '$email', phone = '$phone', address = '$address' WHERE username = '$username'";
+        $sql = "UPDATE admins SET password = '$hashedPassword', email = '$email', phone = '$phone', address = '$address' WHERE username = '$username'";
         $query = $this->db->query($sql);
         return $query;
     }
@@ -45,7 +43,7 @@ class admin {
 
     public function deleteAdmin($username)
     {
-        $sql = "DELETE FROM admin WHERE username = '$username'";
+        $sql = "DELETE FROM admins WHERE username = '$username'";
         $query = $this->db->query($sql);
         return $query;
     }

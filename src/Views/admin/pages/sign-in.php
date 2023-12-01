@@ -1,17 +1,25 @@
-<!--
-=========================================================
-* Corporate UI - v1.0.0
-=========================================================
+<?php
 
-* Product Page: https://www.creative-tim.com/product/corporate-ui
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+include '../../../Models/admin.php';
+$admin = new Admin();
 
-=========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve values from the form
+    $userName = $_POST["userName"];
+    $password = $_POST["password"];
+
+        if ($admin->login($userName,$password) == TRUE) {
+          header('Location: ./dashboard.php');
+        } else {
+          echo "no exist";
+        }
+   
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +29,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
   <title>
-    Corporate UI by Creative Tim
+    shop
   </title>
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
@@ -48,18 +56,18 @@
                   <p class="mb-0">Welcome back! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <label>userName</label>
                     <div class="mb-3">
-                      <input type="text" class="form-control" placeholder="Enter your userName" aria-label="userName" aria-describedby="name-addon">
+                      <input type="text" name="userName"  class="form-control" placeholder="Enter your userName" aria-label="userName" aria-describedby="name-addon" required>
                     </div>
                     <label>Email Address</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon">
+                      <input type="email" name="Email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon" required>
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
+                      <input type="password" name="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon" required>
                     </div>
                     <div class="d-flex align-items-center">
                       <div class="form-check form-check-info text-left mb-0">
@@ -71,7 +79,7 @@
                       <a href="javascript:;" class="text-xs font-weight-bold ms-auto">Forgot password</a>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
+                      <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
                       <!-- <button type="button" class="btn btn-white btn-icon w-100 mb-3">
                         <span class="btn-inner--icon me-1">
                           <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo" />
@@ -124,3 +132,18 @@
 </body>
 
 </html>
+
+<!--
+=========================================================
+* Corporate UI - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/corporate-ui
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->

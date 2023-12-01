@@ -54,10 +54,10 @@ class User
         $stmt->close();
     }
     
-    public function createAccountUser($email, $password,$checkpass)
+    public function createAccountUser($email, $password,$secretCode)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (checkpass,email, password) VALUES ('$checkpass','$email', '$hashedPassword')";
+        $sql = "INSERT INTO users (secretCode,email, password) VALUES ('$secretCode','$email', '$hashedPassword')";
         $query = $this->db->query($sql);
         return $query;
     }
