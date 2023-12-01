@@ -6,7 +6,7 @@
     <?php  include '../component/head.php'; ?>
   
     <title>
-    Soft UI Design System by Creative Tim
+    Nabil-Bilal
     </title>
     
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -397,7 +397,7 @@
 
         <!-- Footer-->
         <footer class="py-2 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p></div>
         </footer>
 
     </body>
