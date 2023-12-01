@@ -31,8 +31,9 @@ CREATE TABLE products (
     image_url TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock_quantity INT NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    category VARCHAR(12) NOT NULL CHECK (category IN ('Electronics', 'Clothing', 'Books','Home and Garden','Toys and Games')),
     admin_id INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (admin_id) REFERENCES admins(admin_id) 
 );
 
@@ -50,7 +51,7 @@ CREATE TABLE order_items (
     order_item_id INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     product_id INT, 
-status VARCHAR(12) NOT NULL CHECK (status IN ('pending', 'shipped', 'delivered')),
+    status VARCHAR(12) NOT NULL CHECK (status IN ('pending', 'shipped', 'delivered')),
     quantity INT NOT NULL,
     price DECIMAL(10, 2) NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
