@@ -1,25 +1,19 @@
 <?php
 
 class db_connect {
-
-    private $servername;
-    private $username;
-    private $password;
-    private $dbname;
     
     private static $instance;
     private $conn;
 
     // Private constructor to prevent instantiation
-    private function __construct($servername, $username, $password, $dbname)
+    private function __construct()
     {
-        $this->servername = $servername;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
-
+        $servername = "127.0.0.1";//localhost" not work in ubuntu same time  
+        $username = "root";
+        $password = "";
+        $dbname = "shop";
         // Create connection
-        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+        $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         // Check connection
         if ($this->conn->connect_error) {
@@ -28,10 +22,10 @@ class db_connect {
     }
 
     // Public method to get a connection instance
-    public static function getConnection($servername, $username, $password, $dbname)
+    public static function getConnection()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new self($servername, $username, $password, $dbname);
+            self::$instance = new self();
         }
         return self::$instance->conn;
     }

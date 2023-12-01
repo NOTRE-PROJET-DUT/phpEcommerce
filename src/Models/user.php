@@ -9,11 +9,7 @@ class user
 
     public function __construct()
     {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "shop";
-        $this->db = db_connect::getConnection($servername, $username, $password, $dbname);
+        $this->db = db_connect::getConnection();
     }
 
     public function login($email, $password)

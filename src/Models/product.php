@@ -1,8 +1,7 @@
 <?php
 
-use db_connect;
-
-class user {
+include 'db.php';
+class Product {
 
     private $db;
 
