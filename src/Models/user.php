@@ -2,7 +2,7 @@
 
 include 'db.php';
 
-class user
+class User
 {
 
     private $db;

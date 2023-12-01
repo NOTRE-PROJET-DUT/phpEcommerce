@@ -1,7 +1,7 @@
 <?php
 
 include '../../../Models/user.php';
-$user = new user();
+$user = new User();
 
 
 // Check if the form is submitted
