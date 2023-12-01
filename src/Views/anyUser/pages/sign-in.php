@@ -1,19 +1,17 @@
 <?php
 
 include '../../../Models/user.php';
-$user = new user();
+$user = new User();
 
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Retrieve values from the form
-    $email = $_POST["email"];
-    $pass = $_POST["pass"];
-   
-  
+    $email = $_POST["Email"];
+    $pass = $_POST["Password"];
 
-        if ($user->login($email,$pass) === TRUE) {
-          header('Location: /login');
+        if ($user->login($email,$pass) == TRUE) {
+          header('Location: ./homePage.php');
         } else {
           echo "no exist";
         }
@@ -35,49 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="sign-in-illustration">
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
-    <div class="container-fluid px-1">
-      <a class="navbar-brand font-weight-bolder ms-lg-0 " href="../pages/indexPage.php">
-      Nabil-Bilal
-      </a>
-      <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon mt-2">
-          <span class="navbar-toggler-bar bar1"></span>
-          <span class="navbar-toggler-bar bar2"></span>
-          <span class="navbar-toggler-bar bar3"></span>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navigation">
-        <ul class="navbar-nav ms-xl-auto">
-          
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/sign-up.php">
-              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="opacity-6 me-1">
-                <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clip-rule="evenodd" />
-              </svg>
-              Sign Up
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/about-us.php" >
-              <span class="ps-3">About Us</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="../pages/contact-us.php" >
-              <span class="ps-3">Contact Us</span>
-            </a>
-          </li>
-        </ul>
-        
-      </div>
-    </div>
-  </nav>
-  <!-- End Navbar -->
-      </div>
-    </div>
-  </div>
+  
   <section>
     <div class="page-header min-vh-100">
       <div class="container">
@@ -89,19 +45,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter your email and password to sign in</p>
               </div>
               <div class="card-body">
-                <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" name="Email" required>
                   </div>
                   <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon">
+                    <input type="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="password-addon" name="Password" required>
                   </div>
                   <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="rememberMe">
                     <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                    <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                   </div>
                 </form>
               </div>

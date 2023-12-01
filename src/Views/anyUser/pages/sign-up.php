@@ -1,7 +1,7 @@
 <?php
 
 include '../../../Models/user.php';
-$user = new user();
+$user = new User();
 
 
 // Check if the form is submitted
@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
         if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
-          header('Location: /php/phpEcommerce/src/Views/anyUser/pages/homePage.php');
+          header('Location: ./sign-in.php');
         } else {
           echo "no exist";
         }
@@ -54,25 +54,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter your email and password to sign up</p>
               </div>
               <div class="card-body">
-              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+              <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                     <input type="password" name="pass" class="form-control form-control-lg "placeholder="Password " aria-label="Password" aria-describedby="password-addon">
+                     <input type="password" name="pass" class="form-control form-control-lg "placeholder="Password " aria-label="Password" aria-describedby="password-addon" required>
                   </div>
                   <div class="mb-3">
-                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirmer Password" aria-label="Email" aria-describedby="email-addon">
+                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirm Password" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label="" >
+                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label=""  required>
                   </div>
-                  <div class="form-check form-switch">
+                  <!-- <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe">
                      <label class="form-check-label" for="rememberMe">Remember me</label>
-                  </div>
+                  </div> -->
                   <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up</button>
                   </div>
                 </form>
               </div>

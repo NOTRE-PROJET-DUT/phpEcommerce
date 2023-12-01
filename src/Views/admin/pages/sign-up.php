@@ -1,17 +1,32 @@
-<!--
-=========================================================
-* Corporate UI - v1.0.0
-=========================================================
+<?php
 
-* Product Page: https://www.creative-tim.com/product/corporate-ui
-* Copyright 2022 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://www.creative-tim.com/license)
-* Coded by Creative Tim
+include '../../../Models/admin.php';
+$admin = new Admin();
 
-=========================================================
 
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
--->
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve values from the form
+    $userName = $_POST["userName"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirmPassword"];
+    $secretCode = $_POST["secretCode"];
+    // Compare passwords
+    if ($password === $confirmPassword) {
+      
+
+        if ($admin->createAccountAdmin($userName,$email,$pass,$secretCode) == TRUE) {
+          header('Location: ./sign-in.php');
+        } else {
+          echo "no exist";
+        }
+    } else {
+        echo "non valid password";
+    }
+    
+}?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,34 +94,34 @@
                   <p class="mb-0">Nice to meet you! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <label>Email Address</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon">
+                      <input type="email" name="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon" required>
                     </div>
                     <label>UserName</label>
                     <div class="mb-3">
-                      <input type="text" class="form-control" placeholder="Enter your userName" aria-label="userName" aria-describedby="name-addon">
+                      <input type="text" name="userName" class="form-control" placeholder="Enter your userName" aria-label="userName" aria-describedby="name-addon" required>
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="text" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon">
+                      <input type="text" name="password" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon" required> 
                     </div>
                     <div class="mb-3">
-                      <input type="text" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="password-addon">
+                      <input type="text" name="confirmPassword" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="password-addon" required>
                     </div>
-                    <label>secret Code</label>
+                    <label>Secret Code</label>
                     <div class="mb-3">
-                      <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth 'dd-mm-yyyy' " aria-label="" >
+                      <input type="text" name="secretCode" class="form-control form-control-lg"placeholder="Date of your Birth 'dd-mm-yyyy' " aria-label="" required>
                     </div>
                     <div class="form-check form-check-info text-left mb-0">
-                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                      <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>
                       <label class="font-weight-normal text-dark mb-0" for="flexCheckDefault">
                         I agree the <a href="javascript:;" class="text-dark font-weight-bold">Terms and Conditions</a>.
                       </label>
                     </div>
                     <div class="text-center">
-                      <button type="button" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
+                      <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
                       <!-- <button type="button" class="btn btn-white btn-icon w-100 mb-3">
                         <span class="btn-inner--icon me-1">
                           <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo" />
@@ -150,3 +165,18 @@
 </body>
 
 </html>
+
+<!--
+=========================================================
+* Corporate UI - v1.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/corporate-ui
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+* Licensed under MIT (https://www.creative-tim.com/license)
+* Coded by Creative Tim
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+-->
