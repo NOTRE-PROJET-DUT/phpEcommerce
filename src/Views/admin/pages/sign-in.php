@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           Remember for 14 days
                         </label>
                       </div>
-                      <a href="javascript:;" class="text-xs font-weight-bold ms-auto">Forgot password</a>
+                      <a href="./forgotPassword.php" class="text-xs font-weight-bold ms-auto">Forgot password</a>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-xs mx-auto">
                     Don't have an account?
-                    <a href="javascript:;" class="text-dark font-weight-bold">Sign up</a>
+                    <a href="./sign-up.php" class="text-dark font-weight-bold">Sign up</a>
                   </p>
                 </div>
               </div>

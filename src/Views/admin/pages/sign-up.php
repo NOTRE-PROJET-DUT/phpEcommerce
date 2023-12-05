@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-xs mx-auto">
                     Already have an account?
-                    <a href="javascript:;" class="text-dark font-weight-bold">Sign in</a>
+                    <a href="./sign-in.php" class="text-dark font-weight-bold">Sign in</a>
                   </p>
                 </div>
               </div>
