@@ -39,7 +39,10 @@
                   </div>
                 </div>
 
-                <div class="card mb-3">
+
+
+                <div id="cartContainer"></div>
+                <!-- <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
@@ -64,9 +67,9 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
-                <div class="card mb-3">
+                <!-- <div class="card mb-3">
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <div class="d-flex flex-row align-items-center">
@@ -145,7 +148,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
 
               </div>
               <div class="col-lg-5">
@@ -237,11 +240,105 @@
   </div>
 </section>
 
+<script>
+  // Function to generate the card HTML for each item
+  function generateCard(item) {
+        var card = document.createElement('div');
+        card.className = 'card mb-3';
+
+        var cardBody = document.createElement('div');
+        cardBody.className = 'card-body';
+
+        var dFlexContainer = document.createElement('div');
+        dFlexContainer.className = 'd-flex justify-content-between';
+
+        // Left side of the card
+        var leftContainer = document.createElement('div');
+        leftContainer.className = 'd-flex flex-row align-items-center';
+
+        var imageDiv = document.createElement('div');
+        var image = document.createElement('img');
+        image.src = item.srcUrl;
+        image.className = 'img-fluid rounded-3';
+        image.alt = 'Shopping item';
+        image.style.width = '65px';
+
+        var textDiv = document.createElement('div');
+        textDiv.className = 'ms-3';
+
+        var itemName = document.createElement('h5');
+        itemName.textContent = item.name;
+
+        var itemDetails = document.createElement('p');
+        itemDetails.className = 'small mb-0';
+        itemDetails.textContent = item.details;
+
+        // Right side of the card
+        var rightContainer = document.createElement('div');
+        rightContainer.className = 'd-flex flex-row align-items-center';
+
+        var quantityDiv = document.createElement('div');
+        quantityDiv.style.width = '50px';
+
+        var quantityHeading = document.createElement('h5');
+        quantityHeading.className = 'fw-normal mb-0';
+        quantityHeading.textContent = item.quantity;
+
+        var priceDiv = document.createElement('div');
+        priceDiv.style.width = '80px';
+
+        var priceHeading = document.createElement('h5');
+        priceHeading.className = 'mb-0';
+        priceHeading.textContent = '$' + item.price;
+
+        var trashIcon = document.createElement('a');
+        trashIcon.href = '#!';
+        trashIcon.style.color = '#cecece';
+        trashIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
+
+        // Appending elements to the respective containers
+        imageDiv.appendChild(image);
+        textDiv.appendChild(itemName);
+        textDiv.appendChild(itemDetails);
+
+        leftContainer.appendChild(imageDiv);
+        leftContainer.appendChild(textDiv);
+
+        quantityDiv.appendChild(quantityHeading);
+        priceDiv.appendChild(priceHeading);
+
+        rightContainer.appendChild(quantityDiv);
+        rightContainer.appendChild(priceDiv);
+        rightContainer.appendChild(trashIcon);
+
+        dFlexContainer.appendChild(leftContainer);
+        dFlexContainer.appendChild(rightContainer);
+
+        cardBody.appendChild(dFlexContainer);
+        card.appendChild(cardBody);
+
+        return card;
+    }
+
+    // Function to display the cards in the cart container
+    function displayCart() {
+        var cartContainer = document.getElementById('cartContainer');
+
+        // Loop through each item in the cart and generate the corresponding card
+        var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItems.forEach(function(item) {
+            var card = generateCard(item);
+            cartContainer.appendChild(card);
+        });
+    }
+
+    // Call the function to display the cards
+    displayCart();
+</script>
 
  <!-- Footer-->
  <footer class="py-2 bg-dark">
     <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p></div>
 </footer>
-
 </body>
 </html>
