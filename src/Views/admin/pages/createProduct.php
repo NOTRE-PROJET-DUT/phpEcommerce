@@ -1,6 +1,39 @@
+<?php
+    include '../../../Models/product.php';
+    $product = new Product();
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Retrieve values from the form
+        $name = $_POST["name"];
+        $price = $_POST["price"];
+        $stock_quantity = $_POST["stock_quantity"];
+        $description = $_POST["description"];
+        $category = $_POST["category"];
+        $imageProduct = $_POST["imageProduct"];
 
-
-
+        if (isset($_FILES["image"])) {
+            $uploadDir = '../../../../storage/';
+            $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+    
+            // Move the uploaded file to the specified directory and if not work echo 
+            // an error message.
+            if (!move_uploaded_file($_FILES['image']['tmp_name'], $uploadFile)) {
+                echo "Upload failed.";
+            }
+        } else {
+            echo "No file selected.";
+        }
+        if ($product->createProduct($admin=1,$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {
+          // Start the session
+          session_start();
+          $_SESSION["userName"] = $userName;
+          $_SESSION["role"] = "admin";
+          
+          header('Location: ./createProduct.php');
+        } else {
+          echo "no exist";
+        }
+      }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,13 +56,13 @@
                                 <h4 class="font-weight-bolder">Create New Product </h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                                     <div class="container px-4 px-lg-5 my-5">
                                         <div class="row gx-4 gx-lg-5 align-items-center">
                                             <div class="col-md-6">
                                                 <div style="position: relative;">
-                                                    <input type="file" style="position: absolute;width:100%; height:100%;opacity: 0; cursor: pointer;" onchange="displayImage(this);" required>
-                                                    <img id="previewImage" class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
+                                                    <input type="file" name="image" id="imageInput" style="position: absolute;width:100%; height:100%;opacity: 0; cursor: pointer;" onchange="displayImage(this);" accept="image/*" required>
+                                                    <img id="previewImage"  class="card-img-top mb-5 mb-md-0" src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." />
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
