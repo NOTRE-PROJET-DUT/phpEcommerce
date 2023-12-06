@@ -1,12 +1,12 @@
 <?php
 
-require_once __DIR__ .'db.php';
+require_once 'db.php';
 class Product {
 
     private $db;
 
     public function __construct() {
-        $this->db = db_connect::getConnection("","","","");
+        $this->db = db_connect::getConnection();
     }
 
 
