@@ -69,13 +69,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
-                      <form>
+                      <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                       <div class="modal-body">
                           <div class="mb-3">
                             <label for="email" class="col-form-label">New Email:</label>
-                            <input type="text" class="form-control" id="email">
+                            <input type="email" name="email" class="form-control" id="email" required>
                             <label for="password" class="col-form-label">New Password:</label>
-                            <input type="text" class="form-control" id="password">
+                            <input type="text" name="password" class="form-control" id="password" required>
                           </div>
                         </div>
                         <div class="modal-footer">
