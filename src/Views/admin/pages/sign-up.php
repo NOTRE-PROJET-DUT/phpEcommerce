@@ -6,52 +6,40 @@ $admin = new Admin();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
-    $userName = $_POST["userName"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-    $confirmPassword = $_POST["confirmPassword"];
-    $secretCode = $_POST["secretCode"];
-    // Compare passwords
-    if ($password === $confirmPassword) {
-      
+  // Retrieve values from the form
+  $userName = $_POST["userName"];
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+  $confirmPassword = $_POST["confirmPassword"];
+  $secretCode = $_POST["secretCode"];
+  // Compare passwords
+  if ($password === $confirmPassword) {
 
-        if ($admin->createAccountAdmin($userName,$email,$pass,$secretCode) == TRUE) {
-          header('Location: ./sign-in.php');
-        } else {
-          echo "no exist";
-        }
+
+    if ($admin->createAccountAdmin($userName, $email, $pass, $secretCode) == TRUE) {
+      header('Location: ./sign-in.php');
     } else {
-        echo "non valid password";
+      echo "no exist";
     }
-    
-}?>
+  } else {
+    echo "non valid password";
+  }
+} ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <?php include '../component/head.php'; ?>
+
+
   <title>
-    Corporate UI by Creative Tim
+    SHOP
   </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
-  <!-- Nucleo Icons -->
-  <link href="../assets/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
-  <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link id="pagestyle" href="../assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
 </head>
 
 <body class="">
-  
+
   <main class="main-content  mt-0">
     <section>
       <div class="page-header min-vh-100">
@@ -95,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="card-body">
                   <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                  <label>Email Address</label>
+                    <label>Email Address</label>
                     <div class="mb-3">
                       <input type="email" name="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon" required>
                     </div>
@@ -105,14 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="text" name="password" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon" required> 
+                      <input type="text" name="password" class="form-control" placeholder="Create a password" aria-label="Password" aria-describedby="password-addon" required>
                     </div>
                     <div class="mb-3">
                       <input type="text" name="confirmPassword" class="form-control" placeholder="Confirm Password" aria-label="Password" aria-describedby="password-addon" required>
                     </div>
                     <label>Secret Code</label>
                     <div class="mb-3">
-                      <input type="text" name="secretCode" class="form-control form-control-lg"placeholder="Date of your Birth 'dd-mm-yyyy' " aria-label="" required>
+                      <input type="text" name="secretCode" class="form-control form-control-lg" placeholder="Date of your Birth 'dd-mm-yyyy' " aria-label="" required>
                     </div>
                     <div class="form-check form-check-info text-left mb-0">
                       <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" required>

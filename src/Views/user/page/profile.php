@@ -1,3 +1,24 @@
+<?php
+
+include '../../../Models/user.php';
+$user = new User();
+
+$userData =  $admin->getAdmin("test");
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve values from the form
+  $email = $_POST["email"];
+  $password = $_POST["password"];
+
+  if ($user->updatedUser($id=1 , $email,$password) == TRUE) {
+    header('Location: ./profile.php');
+  } else {
+    echo "no exist";
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,20 +69,20 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">New message</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
+                      <form>
                       <div class="modal-body">
-                        <form>
                           <div class="mb-3">
                             <label for="email" class="col-form-label">New Email:</label>
                             <input type="text" class="form-control" id="email">
                             <label for="password" class="col-form-label">New Password:</label>
                             <input type="text" class="form-control" id="password">
                           </div>
-                        </form>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Update</button>
-                      </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="submit" class="btn btn-primary">Update</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -75,7 +96,7 @@
             <ul class="list-group">
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm"><span class="text-secondary">First Name:</span> &nbsp; Noah</li>
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Last Name:</span> &nbsp; Mclaren</li>
-              <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Mobile:</span> &nbsp; +(44) 123 1234 123</li>
+              <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Email:</span> &nbsp; +(44) 123 1234 123</li>
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Function:</span> &nbsp; Manager - Organization</li>
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Location:</span> &nbsp; USA</li>
               <!-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
@@ -329,49 +350,49 @@
           </button>
         </div>
       </div>
-      <hr>
-      <div class="col-md-4">
-        <h6 class="text-sm font-weight-semibold mb-1">Card details</h6>
-        <p class="text-sm">We’ll credit your account if you need to <br> downgrade during the billing cycle.</p>
-      </div>
-      <div class="col-md-8 mb-4">
-        <div class="card border shadow-xs">
-          <div class="card-body">
-            <div class="row">
-              
-              <div class="col-lg-5">
-                <div class="card card-background card-background-after-none align-items-start mb-2">
-                  <div class="full-background" style="background: white;"></div>
-                  <div class="card-body text-start p-2 w-100">
-                    <div class="row">
-                      <div class="col-12">
-                        <div class="blur d-flex align-items-center w-100 border-radius-md border border-white mb-4 p-2">
-                          <p class="text-dark text-sm w-50 mb-0 font-weight-bold">web shop</p>
-                          <div class="text-end text-dark ms-auto w-100 pe-2">
-                            <img src="../assets/img/logos/wifi-white.png" class="w-10 ms-auto" alt="Cart" />
-                          </div>
+    <hr>
+    <!-- <div class="col-md-4">
+      <h6 class="text-sm font-weight-semibold mb-1">Card details</h6>
+      <p class="text-sm">We’ll credit your account if you need to <br> downgrade during the billing cycle.</p>
+    </div> -->
+    <div class="col-md-12 mb-4">
+      <div class="card border shadow-xs">
+        <div class="card-body">
+          <div class="row">
+
+            <div class="col-lg-5">
+              <div class="card card-background card-background-after-none align-items-start mb-2">
+                <div class="full-background" style="background: white;"></div>
+                <div class="card-body text-start p-2 w-100">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="blur d-flex align-items-center w-100 border-radius-md border border-white mb-4 p-2">
+                        <p class="text-dark text-sm w-50 mb-0 font-weight-bold">web shop</p>
+                        <div class="text-end text-dark ms-auto w-100 pe-2">
+                          <img src="../assets/img/logos/wifi-white.png" class="w-10 ms-auto" alt="Cart" />
                         </div>
                       </div>
-                      <div class="progress-wrapper w-100">
-                        <div class="d-flex align-items-center mb-2">
-                          <span class="text-sm text-dark font-weight-semibold ">This month</span>
-                          <p class="text-dark font-weight-bold ms-auto mb-0">$16,748.05</p>
-                        </div>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-lg bg-gradient-dark w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+                    </div>
+                    <div class="progress-wrapper w-100">
+                      <div class="d-flex align-items-center mb-2">
+                        <span class="text-sm text-dark font-weight-semibold ">This month</span>
+                        <p class="text-dark font-weight-bold ms-auto mb-0">$16,748.05</p>
                       </div>
-                      <div class="col-4 py-2 text-end mt-auto">
-                        <img src="../assets/img/logos/visa-white.png" class="w-50 ms-auto me-3 text-dark" alt="Account" />
+                      <div class="progress">
+                        <div class="progress-bar progress-bar-lg bg-gradient-dark w-40" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
+                    </div>
+                    <div class="col-4 py-2 text-end mt-auto">
+                      <img src="../assets/img/logos/visa-white.png" class="w-50 ms-auto me-3 text-dark" alt="Account" />
                     </div>
                   </div>
                 </div>
-
               </div>
+
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>

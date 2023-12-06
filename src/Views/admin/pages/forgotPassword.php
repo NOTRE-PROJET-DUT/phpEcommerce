@@ -6,18 +6,17 @@ $user = new user();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
-    $email = $_POST["email"];
-    $checkpass = $_POST["checkpass"];
-   
-  
+  // Retrieve values from the form
+  $email = $_POST["email"];
+  $checkpass = $_POST["checkpass"];
 
-        if ($user->forgotpassword($email,$checkpass) === TRUE) {
-          header('Location: ./changepassword.php');
-        } else {
-          echo "no exist";
-        }
-   
+
+
+  if ($user->forgotpassword($email, $checkpass) === TRUE) {
+    header('Location: ./changepassword.php');
+  } else {
+    echo "no exist";
+  }
 }
 
 ?>
@@ -25,19 +24,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-  
-<?php  include '../component/head.php'; ?>
-  
+  <?php include '../component/head.php'; ?>
+
+
   <title>
-    Nabil-Bilal
+    SHOP
   </title>
-  
+
 </head>
 
 <body class="sign-in-illustration">
 
-      </div>
-    </div>
+  </div>
+  </div>
   </div>
   <section>
     <div class="page-header min-vh-100">
@@ -50,15 +49,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter your email to get your passwoed</p>
               </div>
               <div class="card-body">
-              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label="" required>
+                    <input type="text" name="checkpass" class="form-control form-control-lg" placeholder="Date of your Birth" aria-label="" required>
                   </div>
                   <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Send</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Send</button>
                   </div>
                 </form>
               </div>

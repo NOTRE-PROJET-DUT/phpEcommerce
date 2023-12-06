@@ -1,320 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        
-        <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-    <?php  include '../component/head.php'; ?>
-  
-    <title>
+
+<head>
+
+  <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
+  <?php include '../component/head.php'; ?>
+
+  <title>
     Nabil-Bilal
-    </title>
-    
-        <!-- Core theme CSS (includes Bootstrap)-->
-    </head>
-    <body>
+  </title>
 
-<section class="h-100 h-custom" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        <div class="card ">
-          <div class="card-body p-4">
+  <!-- Core theme CSS (includes Bootstrap)-->
+</head>
 
-            <div class="row">
+<body>
 
-              <div class="col-lg-7">
-                <h5 class="mb-3"><a href="#!" class="text-body"><i
-                      class="fas fa-long-arrow-alt-left me-2"></i>Continue shopping</a></h5>
-                <hr>
+  <section class="h-100" style="background-color: #eee;">
+    <div class="container h-100 py-5">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-10">
 
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                  <div>
-                    <p class="mb-1">Shopping cart</p>
-                    <p class="mb-0">You have 4 items in your cart</p>
-                  </div>
-                  <div>
-                    <p class="mb-0"><span class="text-muted">Sort by:</span> <a href="#!"
-                        class="text-body">price <i class="fas fa-angle-down mt-1"></i></a></p>
-                  </div>
-                </div>
-
-
-
-                <div id="cartContainer"></div>
-                <!-- <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Iphone 11 pro</h5>
-                          <p class="small mb-0">256GB, Navy Blue</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">2</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$900</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-
-                <!-- <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img2.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Samsung galaxy Note 10 </h5>
-                          <p class="small mb-0">256GB, Navy Blue</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">2</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$900</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card mb-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img3.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>Canon EOS M50</h5>
-                          <p class="small mb-0">Onyx Black</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$1199</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="card mb-3 mb-lg-0">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between">
-                      <div class="d-flex flex-row align-items-center">
-                        <div>
-                          <img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img4.webp"
-                            class="img-fluid rounded-3" alt="Shopping item" style="width: 65px;">
-                        </div>
-                        <div class="ms-3">
-                          <h5>MacBook Pro</h5>
-                          <p class="small mb-0">1TB, Graphite</p>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row align-items-center">
-                        <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">1</h5>
-                        </div>
-                        <div style="width: 80px;">
-                          <h5 class="mb-0">$1799</h5>
-                        </div>
-                        <a href="#!" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
-
-              </div>
-              <div class="col-lg-5">
-
-                <div class="card bg-secondary text-white rounded-3">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                      <h5 class="mb-0">Card details</h5>
-                      <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                        class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
-                    </div>
-
-                    <p class="small mb-2">Card type</p>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-mastercard fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-visa fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i
-                        class="fab fa-cc-amex fa-2x me-2"></i></a>
-                    <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
-
-                    <form class="mt-4">
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                          placeholder="Cardholder's Name" />
-                        <label class="form-label" for="typeName">Cardholder's Name</label>
-                      </div>
-
-                      <div class="form-outline form-white mb-4">
-                        <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                          placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
-                        <label class="form-label" for="typeText">Card Number</label>
-                      </div>
-
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" id="typeExp" class="form-control form-control-lg"
-                              placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
-                            <label class="form-label" for="typeExp">Expiration</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="password" id="typeText" class="form-control form-control-lg"
-                              placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                            <label class="form-label" for="typeText">Cvv</label>
-                          </div>
-                        </div>
-                      </div>
-
-                    </form>
-
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Subtotal</p>
-                      <p class="mb-2">$4798.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between">
-                      <p class="mb-2">Shipping</p>
-                      <p class="mb-2">$20.00</p>
-                    </div>
-
-                    <div class="d-flex justify-content-between mb-4">
-                      <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$4818.00</p>
-                    </div>
-
-                    <button type="button" class="btn btn-info btn-block btn-lg">
-                      <div class="d-flex justify-content-between">
-                        <span>$4818.00</span>
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
-                      </div>
-                    </button>
-
-                  </div>
-                </div>
-
-              </div>
-
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
+            <div>
+              <p class="mb-0"><a href="../../anyUser/pages/homePage.php" class="text-body">Go Back<i class="fas fa-angle-left mt-1"></i></a></p>
             </div>
-
           </div>
+
+          <div id="cartContainer"></div>
+
+          
+          <!-- <div class="card mb-4">
+            <div class="card-body p-4 d-flex flex-row">
+              <div class="form-outline flex-fill">
+                <input type="text" id="form1" class="form-control form-control-lg" />
+                <label class="form-label" for="form1">Discound code</label>
+              </div>
+              <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
+            </div>
+          </div> -->
+
+          <div class="card">
+            <div class="card-body">
+              <button type="button" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+  
 
-<script>
-  // Function to generate the card HTML for each item
-  function generateCard(item) {
+  <script>
+    // Function to generate the card HTML for each item
+    // Function to generate the card HTML for each item
+    function generateCard(item) {
         var card = document.createElement('div');
-        card.className = 'card mb-3';
+        card.className = 'card rounded-3 mb-4';
 
         var cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
+        cardBody.className = 'card-body p-4';
 
-        var dFlexContainer = document.createElement('div');
-        dFlexContainer.className = 'd-flex justify-content-between';
+        var rowContainer = document.createElement('div');
+        rowContainer.className = 'row d-flex justify-content-between align-items-center';
 
-        // Left side of the card
-        var leftContainer = document.createElement('div');
-        leftContainer.className = 'd-flex flex-row align-items-center';
+        // Column 1: Image
+        var col1 = document.createElement('div');
+        col1.className = 'col-md-2 col-lg-2 col-xl-2';
 
-        var imageDiv = document.createElement('div');
         var image = document.createElement('img');
         image.src = item.srcUrl;
         image.className = 'img-fluid rounded-3';
-        image.alt = 'Shopping item';
-        image.style.width = '65px';
+        image.alt = 'Cotton T-shirt';
 
-        var textDiv = document.createElement('div');
-        textDiv.className = 'ms-3';
+        col1.appendChild(image);
 
-        var itemName = document.createElement('h5');
-        itemName.textContent = item.name;
+        // Column 2: Product Details
+        var col2 = document.createElement('div');
+        col2.className = 'col-md-3 col-lg-3 col-xl-3';
 
-        var itemDetails = document.createElement('p');
-        itemDetails.className = 'small mb-0';
-        itemDetails.textContent = item.details;
+        var productLead = document.createElement('p');
+        productLead.className = 'lead fw-normal mb-2';
+        productLead.textContent = item.name;
 
-        // Right side of the card
-        var rightContainer = document.createElement('div');
-        rightContainer.className = 'd-flex flex-row align-items-center';
+        var productDetails = document.createElement('p');
+        productDetails.innerHTML = '<span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey';
 
-        var quantityDiv = document.createElement('div');
-        quantityDiv.style.width = '50px';
+        col2.appendChild(productLead);
+        col2.appendChild(productDetails);
 
-        var quantityHeading = document.createElement('h5');
-        quantityHeading.className = 'fw-normal mb-0';
-        quantityHeading.textContent = item.quantity;
+        // Column 3: Quantity Input
+        var col3 = document.createElement('div');
+        col3.className = 'col-md-3 col-lg-3 col-xl-2 d-flex';
 
-        var priceDiv = document.createElement('div');
-        priceDiv.style.width = '80px';
+        var minusButton = document.createElement('button');
+        minusButton.className = 'btn btn-link px-2';
+        minusButton.onclick = function () {
+            var quantityInput = this.parentNode.querySelector('input[type=number]');
+            quantityInput.stepDown();
+        };
+        minusButton.innerHTML = '<i class="fas fa-minus"></i>';
+
+        var quantityInput = document.createElement('input');
+        quantityInput.id = 'form1';
+        quantityInput.min = '0';
+        quantityInput.name = 'quantity';
+        quantityInput.value = item.quantity;
+        quantityInput.type = 'number';
+        quantityInput.className = 'form-control form-control-sm';
+
+        var plusButton = document.createElement('button');
+        plusButton.className = 'btn btn-link px-2';
+        plusButton.onclick = function () {
+            var quantityInput = this.parentNode.querySelector('input[type=number]');
+            quantityInput.stepUp();
+        };
+        plusButton.innerHTML = '<i class="fas fa-plus"></i>';
+
+        col3.appendChild(minusButton);
+        col3.appendChild(quantityInput);
+        col3.appendChild(plusButton);
+
+        // Column 4: Price
+        var col4 = document.createElement('div');
+        col4.className = 'col-md-3 col-lg-2 col-xl-2 offset-lg-1';
 
         var priceHeading = document.createElement('h5');
         priceHeading.className = 'mb-0';
-        priceHeading.textContent = '$' + item.price;
+        priceHeading.textContent = '$' + item.price.toFixed(2);
 
-        var trashIcon = document.createElement('a');
-        trashIcon.href = '#!';
-        trashIcon.style.color = '#cecece';
-        trashIcon.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        col4.appendChild(priceHeading);
 
-        // Appending elements to the respective containers
-        imageDiv.appendChild(image);
-        textDiv.appendChild(itemName);
-        textDiv.appendChild(itemDetails);
+        // Column 5: Delete Button
+        var col5 = document.createElement('div');
+        col5.className = 'col-md-1 col-lg-1 col-xl-1 text-end';
 
-        leftContainer.appendChild(imageDiv);
-        leftContainer.appendChild(textDiv);
+        var deleteLink = document.createElement('a');
+        deleteLink.href = '#!';
+        deleteLink.className = 'text-danger';
+        deleteLink.innerHTML = '<i class="fas fa-trash fa-lg"></i>';
 
-        quantityDiv.appendChild(quantityHeading);
-        priceDiv.appendChild(priceHeading);
+        col5.appendChild(deleteLink);
 
-        rightContainer.appendChild(quantityDiv);
-        rightContainer.appendChild(priceDiv);
-        rightContainer.appendChild(trashIcon);
+        // Appending columns to the row
+        rowContainer.appendChild(col1);
+        rowContainer.appendChild(col2);
+        rowContainer.appendChild(col3);
+        rowContainer.appendChild(col4);
+        rowContainer.appendChild(col5);
 
-        dFlexContainer.appendChild(leftContainer);
-        dFlexContainer.appendChild(rightContainer);
+        // Appending the row to the card body
+        cardBody.appendChild(rowContainer);
 
-        cardBody.appendChild(dFlexContainer);
+        // Appending the card body to the card
         card.appendChild(cardBody);
 
         return card;
@@ -322,23 +161,26 @@
 
     // Function to display the cards in the cart container
     function displayCart() {
-        var cartContainer = document.getElementById('cartContainer');
+      var cartContainer = document.getElementById('cartContainer');
 
-        // Loop through each item in the cart and generate the corresponding card
-        var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        cartItems.forEach(function(item) {
-            var card = generateCard(item);
-            cartContainer.appendChild(card);
-        });
+      // Loop through each item in the cart and generate the corresponding card
+      var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+      cartItems.forEach(function(item) {
+        var card = generateCard(item);
+        cartContainer.appendChild(card);
+      });
     }
 
     // Call the function to display the cards
     displayCart();
-</script>
+  </script>
 
- <!-- Footer-->
- <footer class="py-2 bg-dark">
-    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p></div>
-</footer>
+  <!-- Footer-->
+  <footer class="py-2 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p>
+    </div>
+  </footer>
 </body>
+
 </html>

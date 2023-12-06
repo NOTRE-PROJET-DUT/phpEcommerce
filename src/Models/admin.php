@@ -1,6 +1,6 @@
 <?php
 
-include 'db.php';
+require_once 'db.php';
 
 class Admin {
 
@@ -26,16 +26,23 @@ class Admin {
 
     public function getAdmin($username)
     {
-        $sql = "SELECT * FROM admins WHERE username = '$username'";
-        $query = $this->db->query($sql);
-        if ($query->num_rows > 0) {
-            return $query->fetch_all(MYSQLI_ASSOC);
-        }
+        $query = "SELECT * FROM admins WHERE username like ?";
+        $stmt = $this->db->prepare($query);
+
+        // Bind parameters
+        $stmt->bind_param("s", $username);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Fetch data as an associative array
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     public function updateAdmin($username,$password,$email,$phone,$address ){
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE admins SET password = '$hashedPassword', email = '$email', phone = '$phone', address = '$address' WHERE username = '$username'";
+        $sql = "UPDATE admins SET password = '$hashedPassword', email = '$email' WHERE username = '$username'";
         $query = $this->db->query($sql);
         return $query;
     }

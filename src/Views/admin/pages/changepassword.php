@@ -6,42 +6,41 @@ $user = new user();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
-    $email = $_POST["email"];
-    $npass = $_POST["npass"];
-    $cpass = $_POST["cpass"];
-    
-    // Compare passwords
-    if ($npass == $cpass) {
-      
+  // Retrieve values from the form
+  $email = $_POST["email"];
+  $npass = $_POST["npass"];
+  $cpass = $_POST["cpass"];
 
-        if ($user-> updatedUserPassword($email, $npass)=== TRUE) {
-          header('Location: /php/phpEcommerce/src/Views/anyUser/pages/dashboard.php');
-        } else {
-          echo "no exist";
-        }
+  // Compare passwords
+  if ($npass == $cpass) {
+
+
+    if ($user->updatedUserPassword($email, $npass) === TRUE) {
+      header('Location: /php/phpEcommerce/src/Views/anyUser/pages/dashboard.php');
     } else {
-        echo "non valid password";
+      echo "no exist";
     }
-    
-}?>
+  } else {
+    echo "non valid password";
+  }
+} ?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-  
-<?php  include '../component/head.php'; ?>
-  
+
+  <?php include '../component/head.php'; ?>
+
   <title>
-  Nabil-Bilal
+    SHOP
   </title>
-  
+
 </head>
 
 <body class="sign-in-illustration">
 
-      </div>
-    </div>
+  </div>
+  </div>
   </div>
   <section>
     <div class="page-header min-vh-100">
@@ -54,23 +53,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter New password </p>
               </div>
               <div class="card-body">
-              <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                     <input type="password" name="npass" class="form-control form-control-lg "placeholder="New Password " aria-label="Password" aria-describedby="password-addon" required>
+                    <input type="password" name="npass" class="form-control form-control-lg " placeholder="New Password " aria-label="Password" aria-describedby="password-addon" required>
                   </div>
                   <div class="mb-3">
                     <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirmer Password" required>
                   </div>
-                  
+
                   <div class="form-check form-switch">
-                      <input class="form-check-input" type="checkbox" id="rememberMe">
-                     <label class="form-check-label" for="rememberMe">Remember me</label>
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div>
                   <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
                   </div>
                 </form>
               </div>

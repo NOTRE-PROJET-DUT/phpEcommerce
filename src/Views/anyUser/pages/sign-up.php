@@ -40,9 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body class="sign-in-illustration">
 
-      </div>
-    </div>
-  </div>
   <section>
     <div class="page-header min-vh-100">
       <div class="container">

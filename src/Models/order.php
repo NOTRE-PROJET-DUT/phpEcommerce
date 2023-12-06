@@ -1,6 +1,6 @@
 <?php
 
-use db_connect;
+require_once 'db.php';
 
 class order
 {
