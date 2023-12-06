@@ -10,25 +10,25 @@ class Product {
     }
 
 
-    public function createProduct(string $productName,float $price,string $description,string $category,int $stockQuantity)
+    public function createProduct( $admin,$productName,$price, $description,$imagePath, $category, $stockQuantity)
     {
         // Validate input (you may want to add more robust validation)
         if (empty($productName) || empty($price) || empty($description) || empty($category) || empty($stockQuantity)){
-            return "Please fill in all the fields.";
+            return false;
         }
 
         // Insert product into the database
-        $query = "INSERT INTO products (product_name, price, description, category, stock_quantity) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO products (product_name, price, description,image_url, category, admin_id ,stock_quantity) VALUES (?, ?, ?, ?, ?,?,?)";
         $stmt = $this->db->prepare($query);
 
         // Bind parameters
-        $stmt->bind_param("sdssi", $productName, $price, $description, $category, $stockQuantity);
+        $stmt->bind_param("sdsssii", $productName, $price, $description,$imagePath, $category,$admin, $stockQuantity);
 
         // Execute the query
         if ($stmt->execute()) {
-            return "Product created successfully.";
+            return true;
         } else {
-            return "Error creating product: " . $stmt->error;
+            return false;
         }
     }
 
