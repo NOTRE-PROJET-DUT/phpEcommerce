@@ -12,46 +12,59 @@ class Admin {
 
     public function login($userName, $password) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "SELECT * FROM admins WHERE username = '$userName' AND password = '$hashedPassword'";
-        return $this->db->query($sql);
-        
-    }
-
-    public function createAccountAdmin($username,$email , $password,$secretCode){
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO admins (username,email , password,secretCode ) VALUES ('$username','$email', '$hashedPassword','$secretCode')";
-        $query = $this->db->query($sql);
-        return $query;
-    }
-
-    public function getAdmin($username)
-    {
-        $query = "SELECT * FROM admins WHERE username like ?";
-        $stmt = $this->db->prepare($query);
-
-        // Bind parameters
-        $stmt->bind_param("s", $username);
-
-        // Execute the query
+        $sql = "SELECT * FROM admins WHERE username = ? AND password = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ss", $userName, $hashedPassword);
         $stmt->execute();
-
-        // Fetch data as an associative array
         $result = $stmt->get_result();
-        return $result->fetch_assoc();
+        $stmt->close();
+        return $result;
     }
+    
+    
 
-    public function updateAdmin($username,$password,$email,$phone,$address ){
+    public function createAccountAdmin($username, $email, $password, $secretCode) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE admins SET password = '$hashedPassword', email = '$email' WHERE username = '$username'";
-        $query = $this->db->query($sql);
+        $sql = "INSERT INTO admins (username, email, password, secretCode) VALUES (?, ?, ?, ?)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ssss", $username, $email, $hashedPassword, $secretCode);
+        $query = $stmt->execute();
+        $stmt->close();
         return $query;
     }
+    
 
+    public function getAdmin($username) {
+        $query = "SELECT * FROM admins WHERE username LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $adminData = $result->fetch_assoc();
+        $stmt->close();
+        return $adminData;
+    }
+    
 
-    public function deleteAdmin($username)
-    {
-        $sql = "DELETE FROM admins WHERE username = '$username'";
-        $query = $this->db->query($sql);
+    public function updateAdmin($username, $password, $email, $phone, $address) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE admins SET password = ?, email = ? WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("sss", $hashedPassword, $email, $username);
+        $query = $stmt->execute();
+        $stmt->close();
         return $query;
     }
+    
+
+
+    public function deleteAdmin($username) {
+        $sql = "DELETE FROM admins WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $query = $stmt->execute();
+        $stmt->close();
+        return $query;
+    }
+    
 }

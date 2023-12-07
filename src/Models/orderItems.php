@@ -12,11 +12,15 @@ class OrderItems
         $this->db = db_connect::getConnection();
     }
 
-    public function updateOrderStatus($order_item_id, $status)
-    {
-        $sql = "UPDATE order_items SET status = '$status' WHERE order_item_id = '$order_item_id'";
-        return $this->db->query($sql);
+    public function updateOrderStatus($order_item_id, $status) {
+        $sql = "UPDATE order_items SET status = ? WHERE order_item_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ss", $status, $order_item_id);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
+    
 
 
     public function getOrderItemsAdmin($admin_id)
