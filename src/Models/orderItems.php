@@ -2,20 +2,20 @@
 
 require_once 'db.php';
 
-class orderItems
+class OrderItems
 {
 
     private $db;
 
     public function __construct()
     {
-        $this->db = db_connect::getConnection("", "", "", "");
+        $this->db = db_connect::getConnection();
     }
 
-    public function updateOrderStatus($order_id, $status)
+    public function updateOrderStatus($order_item_id, $status)
     {
-        $sql = "UPDATE orders SET status = '$status' WHERE order_id = '$order_id'";
-        $this->db->query($sql);
+        $sql = "UPDATE order_items SET status = '$status' WHERE order_item_id = '$order_item_id'";
+        return $this->db->query($sql);
     }
 
 
@@ -28,9 +28,8 @@ class orderItems
         order_items.status,
         order_items.price,
         products.product_name,
-        products.description,
         products.image_url,
-        admins.username AS admin_username
+        products.category
         FROM
             order_items
         JOIN
@@ -38,12 +37,46 @@ class orderItems
         JOIN
             admins ON admins.admin_id = products.admin_id
         WHERE
-            admins.admin_id = ";
+            admins.admin_id = ?";
+
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $admin_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $items = $result->fetch_all(MYSQLI_ASSOC);
+        return $items;
+    }
+
+    public function getOrderItemsDeliveredAdmin($admin_id)
+    {
+        $sql = "SELECT
+                    CONCAT(users.first_name, ' ', users.last_name) AS full_name,
+                    users.email AS user_email,
+                    products.product_name,
+                    order_items.price,
+                    order_items.status 
+                FROM
+                    admins
+                JOIN
+                    products ON admins.admin_id = products.admin_id
+                JOIN
+                    order_items ON products.product_id = order_items.product_id
+                JOIN
+                    orders ON order_items.order_id = orders.order_id
+                JOIN
+                    users ON orders.user_id = users.user_id
+                WHERE
+                    admins.admin_id = ?
+                    AND order_items.status = 'delivered'
+                LIMIT 10;
+                ";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $admin_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $items = $result->fetch_all(MYSQLI_ASSOC);
+
         return $items;
     }
 
@@ -59,7 +92,9 @@ class orderItems
         JOIN
             products ON order_items.product_id = products.product_id
         WHERE
-            order_items.order_id = ?";
+            order_items.order_id = ?
+            LIMIT 10;
+            ";
 
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $order_id);
@@ -70,5 +105,4 @@ class orderItems
 
         return $items;
     }
-
-}   
+}

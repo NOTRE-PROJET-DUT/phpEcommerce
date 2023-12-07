@@ -9,7 +9,7 @@ class order
 
     public function __construct()
     {
-        $this->db = db_connect::getConnection("", "", "", "");
+        $this->db = db_connect::getConnection();
     }
 
     public function getOrderByUser($user_id)

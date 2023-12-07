@@ -19,10 +19,10 @@
         <div class="col-md-12">
           <div class="d-md-flex align-items-center mb-3 mx-2">
             <div class="mb-md-0 mb-3">
-              <h3 class="font-weight-bold mb-0">Hello, Noah</h3>
+              <h3 class="font-weight-bold mb-0">Hello</h3>
               <p class="mb-0">Apps you might like!</p>
             </div>
-            <button type="button" class="btn btn-sm btn-white btn-icon d-flex align-items-center mb-0 ms-md-auto mb-sm-0 mb-2 me-2">
+            <!-- <button type="button" class="btn btn-sm btn-white btn-icon d-flex align-items-center mb-0 ms-md-auto mb-sm-0 mb-2 me-2">
               <span class="btn-inner--icon">
                 <span class="p-1 bg-success rounded-circle d-flex ms-auto me-2">
                   <span class="visually-hidden">New</span>
@@ -37,7 +37,7 @@
                 </svg>
               </span>
               <span class="btn-inner--text">Sync</span>
-            </button>
+            </button> -->
           </div>
         </div>
       </div>
@@ -55,11 +55,11 @@
                         <div class="col-sm-3 mt-auto">
                           <h4 class="text-dark font-weight-bolder">#1</h4>
                           <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                          <h5 class="text-dark font-weight-bolder">Secured</h5>
+                          <h5 class="text-dark font-weight-bolder">Electronics</h5>
                         </div>
                         <div class="col-sm-3 ms-auto mt-auto">
                           <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                          <h5 class="text-dark font-weight-bolder">Banking</h5>
+                          <h5 class="text-dark font-weight-bolder">E</h5>
                         </div>
                       </div>
                     </div>
@@ -74,11 +74,11 @@
                       <div class="col-sm-3 mt-auto">
                         <h4 class="text-dark font-weight-bolder">#2</h4>
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                        <h5 class="text-dark font-weight-bolder">Cyber</h5>
+                        <h5 class="text-dark font-weight-bolder">Clothing</h5>
                       </div>
                       <div class="col-sm-3 ms-auto mt-auto">
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                        <h5 class="text-dark font-weight-bolder">Security</h5>
+                        <h5 class="text-dark font-weight-bolder">C</h5>
                       </div>
                     </div>
                   </div>
@@ -92,11 +92,11 @@
                       <div class="col-sm-3 mt-auto">
                         <h4 class="text-dark font-weight-bolder">#3</h4>
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                        <h5 class="text-dark font-weight-bolder">Alpha</h5>
+                        <h5 class="text-dark font-weight-bolder">Books</h5>
                       </div>
                       <div class="col-sm-3 ms-auto mt-auto">
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                        <h5 class="text-dark font-weight-bolder">Blockchain</h5>
+                        <h5 class="text-dark font-weight-bolder">B</h5>
                       </div>
                     </div>
                   </div>
@@ -110,11 +110,11 @@
                       <div class="col-sm-3 mt-auto">
                         <h4 class="text-dark font-weight-bolder">#4</h4>
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                        <h5 class="text-dark font-weight-bolder">Beta</h5>
+                        <h5 class="text-dark font-weight-bolder">Home and Garden</h5>
                       </div>
                       <div class="col-sm-3 ms-auto mt-auto">
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                        <h5 class="text-dark font-weight-bolder">Web3</h5>
+                        <h5 class="text-dark font-weight-bolder">H&G</h5>
                       </div>
                     </div>
                   </div>
@@ -128,11 +128,11 @@
                       <div class="col-sm-3 mt-auto">
                         <h4 class="text-dark font-weight-bolder">#5</h4>
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                        <h5 class="text-dark font-weight-bolder">Gama</h5>
+                        <h5 class="text-dark font-weight-bolder">Toys and Games</h5>
                       </div>
                       <div class="col-sm-3 ms-auto mt-auto">
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                        <h5 class="text-dark font-weight-bolder">Design</h5>
+                        <h5 class="text-dark font-weight-bolder">T&G</h5>
                       </div>
                     </div>
                   </div>
@@ -146,11 +146,11 @@
                       <div class="col-sm-3 mt-auto">
                         <h4 class="text-dark font-weight-bolder">#6</h4>
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Name</p>
-                        <h5 class="text-dark font-weight-bolder">Rompro</h5>
+                        <h5 class="text-dark font-weight-bolder">...</h5>
                       </div>
                       <div class="col-sm-3 ms-auto mt-auto">
                         <p class="text-dark opacity-6 text-xs font-weight-bolder mb-0">Category</p>
-                        <h5 class="text-dark font-weight-bolder">Security</h5>
+                        <h5 class="text-dark font-weight-bolder">?</h5>
                       </div>
                     </div>
                   </div>
@@ -162,7 +162,7 @@
           <div class="swiper-button-next"></div>
         </div>
       </div>
-      <div class="row my-4">
+      <!-- <div class="row my-4">
         <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
           <div class="card shadow-xs border h-100">
             <div class="card-header pb-0">
@@ -389,8 +389,8 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0">
           <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
@@ -526,7 +526,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <?php include '../component/footer.php'; ?>
     </div>
   </main>
@@ -536,7 +536,7 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script> 
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script> -->
   <!-- <script src="../assets/js/core/bootstrap.min.js"></script> -->
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!-- <script src="../assets/js/plugins/chartjs.min.js"></script> -->
   <script src="../assets/js/plugins/swiper-bundle.min.js" type="text/javascript"></script>
   <script>
     if (document.getElementsByClassName('mySwiper')) {
@@ -551,7 +551,8 @@
       });
     };
 
-
+    </script> 
+    <!-- <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
     new Chart(ctx, {
@@ -783,8 +784,8 @@
         },
       },
     });
-  </script>
-  <script>
+  </script> -->
+  <!-- <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
       var options = {
@@ -792,7 +793,7 @@
       }
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
-  </script>
+  </script>  -->
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
