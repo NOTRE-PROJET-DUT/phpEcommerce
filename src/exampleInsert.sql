@@ -1,23 +1,29 @@
-USE shop;
+-- Inserting data into the admins table
+INSERT INTO admins (username, email, password, description, first_name, last_name, image_url, address, city, state, postal_code, country, phone_number, secret_code)
+VALUES
+('admin1', 'admin1@example.com', 'hashed_password', 'Admin 1 Description', 'Admin', 'One', 'admin1_image.jpg', 'Admin Address', 'Admin City', 'Admin State', '12345', 'Admin Country', '123-456-7890', 'admin_secret_code'),
+('admin2', 'admin2@example.com', 'hashed_password', 'Admin 2 Description', 'Admin', 'Two', 'admin2_image.jpg', 'Admin Address', 'Admin City', 'Admin State', '12345', 'Admin Country', '123-456-7890', 'admin_secret_code');
 
--- Inserting data into admins table
-INSERT INTO admins (username, email, password, description, first_name, last_name, address, city, state, postal_code, country, phone_number, secret_code)
-VALUES ('admin1', 'admin1@example.com', 'hashed_password', 'Admin description', 'Admin', 'One', 'Admin Street', 'Admin City', 'Admin State', '12345', 'Admin Country', '123-456-7890', 'secret123');
-
--- Inserting data into users table
+-- Inserting data into the users table
 INSERT INTO users (email, password, first_name, last_name, address, city, state, postal_code, country, phone_number, secret_code)
-VALUES ('user1@example.com', 'hashed_password', 'John', 'Doe', '123 Main St', 'Cityville', 'CA', '12345', 'USA', '123-456-7890', 'secret456');
+VALUES
+('user1@example.com', 'hashed_password', 'User', 'One', 'User Address', 'User City', 'User State', '54321', 'User Country', '987-654-3210', 'user_secret_code'),
+('user2@example.com', 'hashed_password', 'User', 'Two', 'User Address', 'User City', 'User State', '54321', 'User Country', '987-654-3210', 'user_secret_code');
 
--- Inserting data into products table
+-- Inserting data into the products table
 INSERT INTO products (product_name, description, image_url, price, stock_quantity, category, admin_id)
-VALUES ('Product1', 'Description of Product1', 'url_to_image1.jpg', 29.99, 50, 'Electronics', 1);
+VALUES
+('Product 1', 'Description for Product 1', 'product1_image.jpg', 29.99, 50, 'Electronics', 1),
+('Product 2', 'Description for Product 2', 'product2_image.jpg', 19.99, 30, 'Clothing', 2);
 
--- Inserting data into orders table
+-- Inserting data into the orders table
 INSERT INTO orders (user_id, total_amount)
-VALUES (2, 29.99);  -- Assuming user_id 2 is the ID of the user created in the previous insert statement
+VALUES
+(1, 29.99),
+(2, 19.99);
 
--- Inserting data into order_items table
+-- Inserting data into the order_items table
 INSERT INTO order_items (order_id, product_id, status, quantity, price)
-VALUES (1, 1, 'pending', 1, 29.99);  -- Assuming order_id 1 and product_id 1 correspond to the previous inserts
-
-
+VALUES
+(1, 1, 'shipped', 2, 59.98),
+(2, 2, 'pending', 1, 19.99);
