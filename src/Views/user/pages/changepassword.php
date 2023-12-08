@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/user.php';
+Model('user');
 $user = new user();
 
 
@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($npass == $cpass) {
       
 
-        if ($user-> updatedUserPassword($email, $npass)=== TRUE) {
+        if ($user->updateUserPassword($email, $npass)=== TRUE) {
           header('Location: /php/phpEcommerce/src/Views/anyUser/pages/homePage.php');
         } else {
           echo "no exist";
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   
-<?php  include 'component/head.php'; ?>
+<?php  include_once  'component/head.php'; ?>
   
   <title>
   Nabil-Bilal

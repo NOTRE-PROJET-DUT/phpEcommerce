@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/admin.php';
+Model('admin');
 $admin = new Admin();
 
 
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
 
 
   <title>

@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/admin.php';
+Model('admin');
 $admin = new Admin();
 
 $adminData =  $admin->getAdmin("admin1");
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="g-sidenav-show bg-gray-100">
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
     <!-- Navigation-->
-    <?php include 'component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
 
     <div class="pt-7 pb-6 bg-cover" style="background-image: url('assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
     <div class="container">
@@ -153,7 +153,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card-body p-3">
             <div class="row">
                 <?php
-                include '../../../Models/product.php';
+                Model('product');
                 $listProduct = new Product();
                 $products = $listProduct->getAdminProducts($adminData["admin_id"]);
                 foreach ($products as $product) : ?>
@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
       </div>
-      <?php include 'component/footer.php'; ?>
+      <?php include_once  'component/footer.php'; ?>
     </div>
   </div>
 

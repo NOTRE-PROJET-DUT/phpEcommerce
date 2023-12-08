@@ -1,5 +1,5 @@
 <?php
-    include '../../../Models/product.php';
+    Model('product');
     $product = new Product();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Retrieve values from the form
@@ -33,7 +33,7 @@
 <html lang="en">
 
 <head>
-    <?php include 'component/head.php'; ?>
+    <?php include_once  'component/head.php'; ?>
     <title>
         SHOP
     </title>

@@ -3,7 +3,7 @@
 
 <head>
 
-<?php  include 'component/head.php'; ?>
+<?php  include_once  'component/head.php'; ?>
   
   <title>
     Soft UI Design System by Creative Tim
@@ -107,7 +107,7 @@
   </header>
   <!-- -------- END HEADER 8 w/ card over right bg image ------- -->
 
-  <?php  include 'component/footer.php'; ?>
+  <?php  include_once  'component/footer.php'; ?>
 
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>

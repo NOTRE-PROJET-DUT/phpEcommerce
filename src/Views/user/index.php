@@ -1,6 +1,7 @@
 <?php
 
-require_once '../route.php';
+include_once '../route.php';
+include_once '../globalViewFunction.php';
 
 
 class App
@@ -28,6 +29,21 @@ class App
 
 
             require __DIR__ . '/pages/homePage.php';
+        });
+        $this->server->addRoute('GET', '/about-us', function () {
+
+
+            require __DIR__ . '/pages/about-us.php';
+        });
+        $this->server->addRoute('GET', '/sign-in', function () {
+
+
+            require __DIR__ . '/pages/sign-in.php';
+        });
+        $this->server->addRoute('GET', '/sign-up', function () {
+
+
+            require __DIR__ . '/pages/sign-up.php';
         });
     }
 }

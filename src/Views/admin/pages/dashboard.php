@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -13,7 +13,7 @@
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navigation-->
-    <?php include 'component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
     <div class="container-fluid py-4 px-5">
       <div class="row">
         <div class="col-md-12">
@@ -527,7 +527,7 @@
           </div>
         </div>
       </div> -->
-      <?php include 'component/footer.php'; ?>
+      <?php include_once  'component/footer.php'; ?>
     </div>
   </main>
 

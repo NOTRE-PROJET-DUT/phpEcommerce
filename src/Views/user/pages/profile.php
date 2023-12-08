@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/user.php';
+Model('user');
 $user = new User();
 
 $userData =  $user->getUser(1);
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 
   <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-  <?php include 'component/head.php'; ?>
+  <?php include_once  '/component/head.php'; ?>
 
   <title>
     Nabil-Bilal
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <!-- Navigation-->
-  <?php include 'component/nav.php'; ?>
+  <?php include_once  '/component/nav.php'; ?>
   <!-- Header-->
 
 
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
   <!-- Section-->
-  <div class="pt-7 pb-6 bg-cover" style="background-image: url('assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
+  <div class="pt-7 pb-6 bg-cover" style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
   <div class="container my-3 py-3">
     <div class="row">
       <div class="col-12 col-xl-4 mb-4">
@@ -404,7 +404,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p>
     </div>
   </footer>
-  <script src="assets/js/core/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/core/bootstrap.bundle.min.js"></script>
 
   <!-- <script>
 

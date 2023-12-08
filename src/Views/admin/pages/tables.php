@@ -1,6 +1,6 @@
 <?php
 
-require_once '../../../Models/orderItems.php';
+Model('orderItems');
 $orderItems = new OrderItems();
 
 // Check if the form is submitted
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navigation-->
-    <?php include 'component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
     <div class="container-fluid py-4 px-5">
       <div class="row">
         <div class="col-12">
@@ -267,7 +267,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
       </div>
-      <?php include 'component/footer.php'; ?>
+      <?php include_once  'component/footer.php'; ?>
     </div>
   </main>
 

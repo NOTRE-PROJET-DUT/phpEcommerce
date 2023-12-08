@@ -9,7 +9,7 @@ if (isset($_GET['idProduct'])) {
 <html lang="en">
 
 <head>
-    <?php include 'component/head.php'; ?>
+    <?php include_once  'component/head.php'; ?>
 
     <title>
         product
@@ -23,7 +23,7 @@ if (isset($_GET['idProduct'])) {
     <section class="py-5">
         <div class="container px-4 px-lg-5 my-5">
             <?php
-            include '../../../Models/product.php';
+            Model('product');
             $listProduct = new Product();
             $product = $listProduct->getProduct($idProduct);
             ?>
@@ -54,7 +54,7 @@ if (isset($_GET['idProduct'])) {
             <h2 class="fw-bolder mb-4">Related products</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php
-                // include '../../../Models/product.php';
+                // include_once  '../../../Models/product.php';
                 // $listProduct = new Product();
                 $products = $listProduct->getProductsByCategory($product['category']);
                 foreach ($products as $product) : ?>

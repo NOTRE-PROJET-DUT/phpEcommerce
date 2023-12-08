@@ -4,7 +4,7 @@
 <head>
 
   <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
 
   <title>
     Nabil-Bilal

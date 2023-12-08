@@ -4,7 +4,7 @@
 <head>
 
     <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-    <?php include 'component/head.php'; ?>
+    <?php include_once  'component/head.php'; ?>
 
     <title>
         Soft UI Design System by Creative Tim
@@ -15,7 +15,7 @@
 
 <body>
     <!-- Navigation-->
-    <?php include 'component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
     <!-- Header-->
     <header class="bg-dark py-5">
         <div class="container px-4 px-lg-5 my-5">
@@ -30,7 +30,7 @@
         <div class="container px-4 px-lg-5 mt-5">
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php
-                include '../../../Models/product.php';
+                Model("product");
                 $listProduct = new Product();
                 $products = $listProduct->getProducts();
                 foreach ($products as $product) : ?>
@@ -69,7 +69,7 @@
     </section>
     <!-- Footer-->
 
-    <?php include 'component/footer.php'; ?>
+    <?php include_once  'component/footer.php'; ?>
 
     <!-- Bootstrap core JS
         <script src="./../../bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->

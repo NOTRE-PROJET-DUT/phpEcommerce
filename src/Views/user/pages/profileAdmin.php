@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/admin.php';
+Model('admin');
 $admin = new Admin();
 
 $adminData =  $admin->getAdmin("admin1");
@@ -11,7 +11,7 @@ $adminData =  $admin->getAdmin("admin1");
 <html lang="en">
 
 <head>
-  <?php include 'component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -20,7 +20,7 @@ $adminData =  $admin->getAdmin("admin1");
 <body class="g-sidenav-show bg-gray-100">
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
     <!-- Navigation-->
-    <?php include 'component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
 
     <div class="pt-7 pb-6 bg-cover" style="background-image: url('assets/img/header-blue-purple.jpg'); background-position: bottom;"></div>
     <div class="container">
@@ -91,7 +91,7 @@ $adminData =  $admin->getAdmin("admin1");
               <div class="card-body p-3">
                 <div class="row">
                   <?php
-                  include '../../../Models/product.php';
+                  Model('product');
                   $listProduct = new Product();
                   $products = $listProduct->getAdminProducts($adminData["admin_id"]);
                   foreach ($products as $product) : ?>
@@ -119,7 +119,7 @@ $adminData =  $admin->getAdmin("admin1");
             </div>
           </div>
         </div>
-        <?php include 'component/footer.php'; ?>
+        <?php include_once  'component/footer.php'; ?>
       </div>
     </div>
 

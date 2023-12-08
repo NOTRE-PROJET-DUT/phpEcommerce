@@ -1,6 +1,7 @@
 <?php
 
 require_once '../route.php';
+include_once '../globalViewFunction.php';
 
 
 class App
@@ -27,7 +28,7 @@ class App
         $this->server->addRoute('GET', '/', function () {
 
 
-            require __DIR__ . '/pages/dashboard.php';
+            require __DIR__ . '/pages/profile.php';
         });
     }
 }

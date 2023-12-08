@@ -1,6 +1,6 @@
 <?php
 
-include '../../../Models/user.php';
+Model('user');
 $user = new user();
 
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   
-<?php  include 'component/head.php'; ?>
+<?php  include_once  'component/head.php'; ?>
   
   <title>
     Nabil-Bilal
