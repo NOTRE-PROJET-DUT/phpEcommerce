@@ -11,6 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
 
   if ($admin->login($userName, $password) == TRUE) {
+    // Start the session
+    session_start();
+    $_SESSION["userNameAdmin"] = $userName;
+    $_SESSION["idAdmin"] = $admin->getAdmin($userName)['admin_id'];
+    
     header('Location: ./dashboard.php');
   } else {
     echo "no exist";
@@ -64,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                           Remember for 14 days
                         </label>
                       </div>
-                      <a href="./forgotPassword.php" class="text-xs font-weight-bold ms-auto">Forgot password</a>
+                      <a href="./forgetPassword.php" class="text-xs font-weight-bold ms-auto">Forgot password</a>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>

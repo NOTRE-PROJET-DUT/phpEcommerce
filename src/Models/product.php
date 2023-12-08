@@ -43,6 +43,26 @@ class Product {
             return [];
         }
     }
+
+
+    public function getAdminProducts($adminId,$offset = 0) {
+        $offset = $offset * 20;
+        $query = "SELECT * FROM products where admin_id = ? LIMIT 20 OFFSET ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ii", $adminId,$offset);
+        $stmt->execute();
+    
+        $result = $stmt->get_result();
+    
+        if ($result) {
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $products;
+        } else {
+            $stmt->close();
+            return [];
+        }
+    }
     
 
     public function getProductsByCategory($category, $offset = 0) {

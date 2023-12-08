@@ -22,12 +22,7 @@
         } else {
             echo "No file selected.";
         }
-        if ($product->createProduct($admin=1,$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {
-          // Start the session
-          session_start();
-          $_SESSION["userName"] = $userName;
-          $_SESSION["role"] = "admin";
-          
+        if ($product->createProduct($admin=$_SESSION["idAdmin"],$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {          
           header('Location: ./createProduct.php');
         } else {
           echo "no exist";

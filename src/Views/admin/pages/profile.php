@@ -3,14 +3,14 @@
 include '../../../Models/admin.php';
 $admin = new Admin();
 
-$adminData =  $admin->getAdmin("test");
+$adminData =  $admin->getAdmin("admin1");
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
   $email = $_POST["email"];
   $password = $_POST["password"];
 
-  if ($admin->updateAdmin($userName="admin1", $password,$email,$phone="0",$address="0") == TRUE) {
+  if ($admin->updateAdmin($userName=$_SESSION["userNameAdmin"], $password,$email,$phone="0",$address="0") == TRUE) {
     header('Location: ./profile.php');
   } else {
     echo "no exist";
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="row">
           <div class="col-auto">
             <div class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-              <img src="../assets/img/team-2.jpg" alt="profile_image" class="w-100">
+              <img src="<?php echo $adminData["image_url"]; ?>" alt="profile_image" class="w-100">
             </div>
           </div>
           <div class="col-auto my-auto">
@@ -52,10 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </p>
             </div>
           </div>
-          <!-- <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
-            <a href="javascript:;" class="btn btn-sm btn-white">Cancel</a>
-            <a href="javascript:;" class="btn btn-sm btn-dark">Save</a>
-          </div> -->
         </div>
       </div>
     </div>
@@ -107,16 +103,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
             </div>
             <div class="card-body p-3">
-              <p class="text-sm mb-4">
-                Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
-              </p>
-              <ul class="list-group">
-                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm"><span class="text-secondary">First Name:</span> &nbsp; Noah</li>
-                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Last Name:</span> &nbsp; Mclaren</li>
-                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Mobile:</span> &nbsp; +(44) 123 1234 123</li>
-                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Function:</span> &nbsp; Manager - Organization</li>
-                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Location:</span> &nbsp; USA</li>
-                <!-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
+                <p class="text-sm mb-4">
+                  <?php echo $adminData["description"]; ?>
+                </p>
+                <ul class="list-group">
+                  <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm"><span class="text-secondary">First Name:</span> &nbsp; <?php echo $adminData["first_name"]; ?></li>
+                  <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Last Name:</span> &nbsp; <?php echo $adminData["last_name"]; ?></li>
+                  <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Mobile:</span> &nbsp; <?php echo $adminData["phone_number"]; ?></li>
+                  <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">country:</span> &nbsp; <?php echo $adminData["country"]; ?></li>
+                  <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Location:</span> &nbsp; <?php echo $adminData["city"] . " " . $adminData["address"]; ?></li>
+                  <!-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
                   <span class="text-secondary">Social:</span> &nbsp;
                   <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
                     <i class="fab fa-linkedin fa-lg"></i>
@@ -128,8 +124,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <i class="fab fa-slack fa-lg"></i>
                   </a>
                 </li> -->
-              </ul>
-            </div>
+                </ul>
+              </div>
           </div>
         </div>
 
@@ -159,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 include '../../../Models/product.php';
                 $listProduct = new Product();
-                $products = $listProduct->getProducts();
+                $products = $listProduct->getAdminProducts($adminData["admin_id"]);
                 foreach ($products as $product) : ?>
                   <div class="col-12 col-xl-4 mb-4">
                     <a href="##">

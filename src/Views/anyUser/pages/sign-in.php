@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                   Don't have an account?
-                  <a href="../pages/forgotPassword.php" class="text-primary text-gradient font-weight-bold">forgot password</a>
+                  <a href="../pages/forgetPassword.php" class="text-primary text-gradient font-weight-bold">forgot password</a>
                   <a href="../pages/sign-up.php" class="text-primary text-gradient font-weight-bold">, Sign up</a>
                 </p>
               </div>
