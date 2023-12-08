@@ -33,7 +33,7 @@
 <html lang="en">
 
 <head>
-    <?php include '../component/head.php'; ?>
+    <?php include 'component/head.php'; ?>
     <title>
         SHOP
     </title>

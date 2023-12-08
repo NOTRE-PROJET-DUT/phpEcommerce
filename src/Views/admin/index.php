@@ -1,6 +1,6 @@
 <?php
 
-require_once 'route.php';
+require_once '../route.php';
 
 
 class App
@@ -28,7 +28,7 @@ class App
         $this->server->addRoute('GET', '/', function () {
 
 
-            require __DIR__ . '/dashboard.php';
+            require __DIR__ . '/pages/dashboard.php';
         });
     }
 }

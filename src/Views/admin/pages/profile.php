@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include '../component/head.php'; ?>
+  <?php include 'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -31,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="g-sidenav-show bg-gray-100">
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
     <!-- Navigation-->
-    <?php include '../component/nav.php'; ?>
+    <?php include 'component/nav.php'; ?>
 
-    <div class="pt-7 pb-6 bg-cover" style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
+    <div class="pt-7 pb-6 bg-cover" style="background-image: url('assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
     <div class="container">
       <div class="card card-body py-2 bg-transparent shadow-none">
         <div class="row">
@@ -181,15 +181,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
       </div>
-      <?php include '../component/footer.php'; ?>
+      <?php include 'component/footer.php'; ?>
     </div>
   </div>
 
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <!-- <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <!-- <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+  <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
 </body>
 
 </html>

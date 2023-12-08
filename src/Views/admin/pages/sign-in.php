@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include '../component/head.php'; ?>
+  <?php include 'component/head.php'; ?>
 
 
   <title>
@@ -75,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign in</button>
                       <!-- <button type="button" class="btn btn-white btn-icon w-100 mb-3">
                         <span class="btn-inner--icon me-1">
-                          <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo" />
+                          <img class="w-5" src="assets/img/logos/google-logo.svg" alt="google-logo" />
                         </span>
                         <span class="btn-inner--text">Sign in with Google</span>
                       </button> -->
@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="col-md-6">
               <div class="position-absolute w-40 top-0 end-0 h-100 d-md-block d-none">
-                <div class="oblique-image position-absolute fixed-top ms-auto h-100 z-index-0 bg-cover ms-n8" style="background-image:url('../assets/img/image-sign-in.jpg')">
+                <div class="oblique-image position-absolute fixed-top ms-auto h-100 z-index-0 bg-cover ms-n8" style="background-image:url('assets/img/image-sign-in.jpg')">
                   <div class="blur p-2 text-center border border-white border-radius-md position-absolute fixed-bottom m-2">
                     <h6 class="text-dark text-sm mt-5">Copyright © 2022 Corporate UI Design System by Creative Tim.</h6>
                   </div>
@@ -105,10 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
   </main>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -121,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+  <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
 </body>
 
 </html>

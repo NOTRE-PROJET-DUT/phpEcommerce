@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include '../component/head.php'; ?>
+  <?php include 'component/head.php'; ?>
   <title>
     SHOP
   </title>
@@ -31,12 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <!-- Navigation-->
-    <?php include '../component/nav.php'; ?>
+    <?php include 'component/nav.php'; ?>
     <div class="container-fluid py-4 px-5">
       <div class="row">
         <div class="col-12">
           <div class="card card-background card-background-after-none align-items-start mt-4 mb-5">
-            <div class="full-background" style="background-image: url('../assets/img/header-blue-purple.jpg')"></div>
+            <div class="full-background" style="background-image: url('assets/img/header-blue-purple.jpg')"></div>
             <div class="card-body text-start p-4 w-100">
               <h3 class="text-white mb-2">Collect your benefits 🔥</h3>
               <p class="mb-4 font-weight-semibold">
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </span>
                 <span class="btn-inner--text">Watch more</span>
               </button>
-              <img src="../assets/img/3d-cube.png" alt="3d-cube" class="position-absolute top-0 end-1 w-25 max-width-200 mt-n6 d-sm-block d-none" />
+              <img src="assets/img/3d-cube.png" alt="3d-cube" class="position-absolute top-0 end-1 w-25 max-width-200 mt-n6 d-sm-block d-none" />
             </div>
           </div>
         </div>
@@ -206,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <td class="align-middle">
                           <div class="d-flex">
                             <!-- <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="../assets/img/logos/visa.png" class="w-90 mx-auto" alt="visa">
+                            <img src="assets/img/logos/visa.png" class="w-90 mx-auto" alt="visa">
                           </div> -->
                             <div class="ms-2">
                               <p class="text-dark text-sm mb-0"><?php echo $orderItem["category"]; ?></p>
@@ -267,11 +267,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
       </div>
-      <?php include '../component/footer.php'; ?>
+      <?php include 'component/footer.php'; ?>
     </div>
   </main>
 
-  <script src="../assets/js/core/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/core/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

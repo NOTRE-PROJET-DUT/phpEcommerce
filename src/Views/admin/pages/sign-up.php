@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="en">
 
 <head>
-  <?php include '../component/head.php'; ?>
+  <?php include 'component/head.php'; ?>
 
 
   <title>
@@ -47,23 +47,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <div class="row">
             <div class="col-md-6">
               <div class="position-absolute w-40 top-0 start-0 h-100 d-md-block d-none">
-                <div class="oblique-image position-absolute d-flex fixed-top ms-auto h-100 z-index-0 bg-cover me-n8" style="background-image:url('../assets/img/image-sign-up.jpg')">
+                <div class="oblique-image position-absolute d-flex fixed-top ms-auto h-100 z-index-0 bg-cover me-n8" style="background-image:url('assets/img/image-sign-up.jpg')">
                   <div class="my-auto text-start max-width-350 ms-7">
                     <h1 class="mt-3 text-white font-weight-bolder">Start your <br> new shop.</h1>
                     <p class="text-white text-lg mt-4 mb-4">create new account in your project for free.</p>
                     <div class="d-flex align-items-center">
                       <div class="avatar-group d-flex">
                         <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" data-original-title="Jessica Rowland">
-                          <img alt="Image placeholder" src="../assets/img/team-3.jpg" class="">
+                          <img alt="Image placeholder" src="assets/img/team-3.jpg" class="">
                         </a>
                         <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" data-original-title="Audrey Love">
-                          <img alt="Image placeholder" src="../assets/img/team-4.jpg" class="rounded-circle">
+                          <img alt="Image placeholder" src="assets/img/team-4.jpg" class="rounded-circle">
                         </a>
                         <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" data-original-title="Michael Lewis">
-                          <img alt="Image placeholder" src="../assets/img/marie.jpg" class="rounded-circle">
+                          <img alt="Image placeholder" src="assets/img/marie.jpg" class="rounded-circle">
                         </a>
                         <a href="javascript:;" class="avatar avatar-sm rounded-circle" data-bs-toggle="tooltip" data-original-title="Audrey Love">
-                          <img alt="Image placeholder" src="../assets/img/team-1.jpg" class="rounded-circle">
+                          <img alt="Image placeholder" src="assets/img/team-1.jpg" class="rounded-circle">
                         </a>
                       </div>
                       <p class="font-weight-bold text-white text-sm mb-0 ms-2">Join 2+ users</p>
@@ -112,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
                       <!-- <button type="button" class="btn btn-white btn-icon w-100 mb-3">
                         <span class="btn-inner--icon me-1">
-                          <img class="w-5" src="../assets/img/logos/google-logo.svg" alt="google-logo" />
+                          <img class="w-5" src="assets/img/logos/google-logo.svg" alt="google-logo" />
                         </span>
                         <span class="btn-inner--text">Sign up with Google</span>
                       </button> -->
@@ -133,10 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </section>
   </main>
   <!--   Core JS Files   -->
-  <script src="../assets/js/core/popper.min.js"></script>
-  <script src="../assets/js/core/bootstrap.min.js"></script>
-  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="../assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
+  <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
 </body>
 
 </html>
