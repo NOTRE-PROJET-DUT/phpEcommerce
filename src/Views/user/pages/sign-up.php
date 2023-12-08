@@ -1,47 +1,45 @@
 <?php
 
 include '../../../Models/user.php';
-$user = new user();
+$user = new User();
 
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  // Retrieve values from the form
-  $email = $_POST["email"];
-  $npass = $_POST["npass"];
-  $cpass = $_POST["cpass"];
+    // Retrieve values from the form
+    $email = $_POST["email"];
+    $pass = $_POST["pass"];
+    $cpass = $_POST["cpass"];
+    $checkpass = $_POST["checkpass"];
+    // Compare passwords
+    if ($pass == $cpass) {
+      
 
-  // Compare passwords
-  if ($npass == $cpass) {
-
-
-    if ($user->updateUserPassword($email, $npass) === TRUE) {
-      header('Location: ./dashboard.php');
+        if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
+          header('Location: ./sign-in.php');
+        } else {
+          echo "no exist";
+        }
     } else {
-      echo "no exist";
+        echo "non valid password";
     }
-  } else {
-    echo "non valid password";
-  }
-} ?>
+    
+}?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-
-  <?php include 'component/head.php'; ?>
-
+  
+<?php  include 'component/head.php'; ?>
+  
   <title>
-    SHOP
+  Nabil-Bilal
   </title>
-
+  
 </head>
 
 <body class="sign-in-illustration">
 
-  </div>
-  </div>
-  </div>
   <section>
     <div class="page-header min-vh-100">
       <div class="container">
@@ -50,26 +48,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="card card-plain">
               <div class="card-header pb-0 text-left">
                 <h4 class="font-weight-bolder">Sign Up</h4>
-                <p class="mb-0">Enter New password </p>
+                <p class="mb-0">Enter your email and password to sign up</p>
               </div>
               <div class="card-body">
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+              <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                   <div class="mb-3">
-                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
-                  </div>
-                  <div class="mb-3">
-                    <input type="password" name="npass" class="form-control form-control-lg " placeholder="New Password " aria-label="Password" aria-describedby="password-addon" required>
+                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirmer Password" required>
+                     <input type="password" name="pass" class="form-control form-control-lg "placeholder="Password " aria-label="Password" aria-describedby="password-addon" required>
                   </div>
-
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                  <div class="mb-3">
+                    <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirm Password" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
+                  <div class="mb-3">
+                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label=""  required>
+                  </div>
+                  <!-- <div class="form-check form-switch">
+                      <input class="form-check-input" type="checkbox" id="rememberMe">
+                     <label class="form-check-label" for="rememberMe">Remember me</label>
+                  </div> -->
                   <div class="text-center">
-                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign in</button>
+                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up</button>
                   </div>
                 </form>
               </div>
@@ -85,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="position-relative bg-gradient-primary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center">
               <img src="assets/img/shapes/pattern-lines.svg" alt="pattern-lines" class="position-absolute opacity-4 start-0">
               <div class="position-relative">
-                <img class="max-width-500 w-100 position-relative z-index-2" src="assets/img/3d-cube.png">
+                <img class="max-width-500 w-100 position-relative z-index-2" src="assets/img/illustrations/chat.png">
               </div>
               <h4 class="mt-5 text-white font-weight-bolder">"Attention is the new currency"</h4>
               <p class="text-white">The more effortless the writing looks, the more effort the writer actually put into the process.</p>
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Control Center for Soft UI Kit: parallax effects, scripts for the example pages etc -->
   <!--  Google Maps Plugin    -->
   <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script> -->
-  <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
+  <script src="assets/js/soft-design-system.min.js?v=1.0.9" type="text/javascript"></script>
 </body>
 
 </html>

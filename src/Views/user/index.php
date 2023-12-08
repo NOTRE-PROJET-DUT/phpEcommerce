@@ -27,7 +27,7 @@ class App
         $this->server->addRoute('GET', '/', function () {
 
 
-            require __DIR__ . '/pages/dashboard.php';
+            require __DIR__ . '/pages/homePage.php';
         });
     }
 }
@@ -47,4 +47,5 @@ $action = $server->route($requestMethod, $requestPath);
 
 // Execute the matched action
 $action();
+
 
