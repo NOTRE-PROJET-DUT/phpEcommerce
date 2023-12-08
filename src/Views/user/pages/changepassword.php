@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
         if ($user->updateUserPassword($email, $npass)=== TRUE) {
-          header('Location: /php/phpEcommerce/src/Views/anyUser/pages/homePage.php');
+          header('Location: /');
         } else {
           echo "no exist";
         }
@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <div class="card-footer text-center pt-0 px-lg-2 px-1">
                 <p class="mb-4 text-sm mx-auto">
                   Don't have an account?
-                  <a href="../pages/sign-in.php" class="text-primary text-gradient font-weight-bold">Sign in</a>
+                  <a href="/sign-in" class="text-primary text-gradient font-weight-bold">Sign in</a>
                 </p>
               </div>
             </div>
