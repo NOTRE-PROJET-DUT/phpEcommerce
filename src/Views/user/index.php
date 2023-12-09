@@ -25,71 +25,21 @@ class App
 
     private function route()
     {
-        $this->server->addRoute('GET', '/', function () {
+        $routesGet = [
+            '/'               => fn() => include_once   'pages/homePage.php',
+            '/about-us'       => fn() => include_once   'pages/about-us.php',
+            '/sign-in'        => fn() => include_once   'pages/sign-in.php',
+            '/sign-up'        => fn() => include_once   'pages/sign-up.php',
+            '/cart'           => fn() => include_once   'pages/cart.php',
+            '/forgetPassword' => fn() => include_once   'pages/forgetPassword.php',
+            '/product'        => fn() => include_once   'pages/product.php',
+            '/profile'        => fn() => include_once   'pages/profile.php',
+            '/profileAdmin'   => fn() => include_once   'pages/profileAdmin.php',
+            '/contact-us'     => fn() => include_once   'pages/contact-us.php',
+            '/admin'          => fn() =>                 header('Location: http://localhost:8001/'),
+        ];
 
-
-            include_once __DIR__ . '/pages/homePage.php';
-        });
-        $this->server->addRoute('GET', '/about-us', function () {
-
-
-            include_once __DIR__ . '/pages/about-us.php';
-        });
-        $this->server->addRoute('GET', '/sign-in', function () {
-
-
-            include_once __DIR__ . '/pages/sign-in.php';
-        });
-        $this->server->addRoute('GET', '/sign-up', function () {
-
-
-            include_once __DIR__ . '/pages/sign-up.php';
-        });
-        $this->server->addRoute('GET', '/cart', function () {
-
-
-            include_once __DIR__ . '/pages/cart.php';
-        });
-        $this->server->addRoute('GET', '/forgetPassword', function () {
-
-
-            include_once __DIR__ . '/pages/forgetPassword.php';
-        });
-
-        // $this->server->addRoute('POST', '/product', function () {
-
-
-        //     include_once __DIR__ . '/pages/product.php';
-        // });
-        $this->server->addRoute('GET', '/product', function () {
-
-
-            include_once __DIR__ . '/pages/product.php';
-        });
-
-
-
-        $this->server->addRoute('GET', '/profile', function () {
-
-
-            include_once __DIR__ . '/pages/profile.php';
-        });
-        $this->server->addRoute('GET', '/profileAdmin', function () {
-
-
-            include_once __DIR__ . '/pages/profileAdmin.php';
-        });
-        $this->server->addRoute('GET', '/contact-us', function () {
-
-
-            include_once __DIR__ . '/pages/contact-us.php';
-        });
-        $this->server->addRoute('GET', '/admin', function () {
-
-            $redirectUrl = 'http://localhost:8001/';
-            header('Location: ' . $redirectUrl);
-            exit;
-        });
+        $this->server->addRoutes('GET',$routesGet);
     }
 }
 

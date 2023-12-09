@@ -7,45 +7,36 @@ class Router
     public function __construct(){
 
     }
-    public function addRoute($method, $path, $action):void
-    {
-        $this->routes[] = [
-            'method' => $method,
-            'path' => $path,
-            'action' => $action,
-        ];
-    }
 
-
-    public function addMiddlewareRoute($method, $path, $action, $middleware):void
-    {
-        $actionAfterMiddleware = 
-            function()use ($action,$middleware){ if ($middleware() === true) { $action(); } };
-
-        $this->routes[] = [
-            'method' => $method,
-            'path' => $path,
-            'action' => $actionAfterMiddleware,
-        ];
+    public function addRoutes($method,array $routes):void
+    {//["$routes" => "$routes"]
+        if (!isset($this->routes[$method]) && isset($method) && is_array($routes) && isset($routes)) {
+            $this->routes[$method] = $routes;
+        }
     }
 
     public function route($method, $path)
     {
-        foreach ($this->routes as $route) {
-            if ($route['method'] == $method && $this->matchPath($route['path'], $path)) {
-                return $route['action'];
-            }
-        }
-
+        if (isset($this->routes[$method]) && isset($this->routes[$method][$path])) {
+            return $this->routes[$method][$path];
+        } 
+        
         // Handle 404 Not Found
         return function () {
             echo "404 Not Found";
         };
     }
 
-    private function matchPath($routePath, $requestPath)
-    {
-        // Simple path matching for demonstration purposes
-        return $routePath == $requestPath;
-    }
+
+    // public function addMiddlewareRoute($method, $path, $action, $middleware):void
+    // {
+    //     $actionAfterMiddleware = 
+    //         function()use ($action,$middleware){ if ($middleware() === true) { $action(); } };
+
+    //     $this->routes[] = [
+    //         'method' => $method,
+    //         'path' => $path,
+    //         'action' => $actionAfterMiddleware,
+    //     ];
+    // }
 }

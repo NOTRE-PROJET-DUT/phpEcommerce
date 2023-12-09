@@ -1,6 +1,6 @@
 <?php
 
-require_once '../route.php';
+include_once '../route.php';
 include_once '../globalViewFunction.php';
 
 
@@ -25,45 +25,23 @@ class App
 
     private function route()
     {
-        $this->server->addRoute('GET', '/', function () {
-
-            require __DIR__ . '/pages/sign-in.php';
-        });
-        $this->server->addRoute('GET', '/sign-up', function () {
-
-
-            require __DIR__ . '/pages/sign-up.php';
-        });
-        $this->server->addRoute('GET', '/changePassword', function () {
-
-
-            require __DIR__ . '/pages/changepassword.php';
-        });
-        $this->server->addRoute('GET', '/createProduct', function () {
-
-
-            require __DIR__ . '/pages/createProduct.php';
-        });
-        $this->server->addRoute('GET', '/profile', function () {
-
-
-            require __DIR__ . '/pages/profile.php';
-        });
-        $this->server->addRoute('GET', '/dashboard', function () {
-
-
-            require __DIR__ . '/pages/dashboard.php';
-        });
-        $this->server->addRoute('GET', '/forgetPassword', function () {
-
-
-            require __DIR__ . '/pages/forgetPassword.php';
-        });
-        $this->server->addRoute('GET', '/tables', function () {
-
-
-            require __DIR__ . '/pages/tables.php';
-        });
+        $routesGet = [
+            '/'               => fn() => include_once  'pages/sign-in.php',
+            '/sign-up'        => fn() => include_once  'pages/sign-up.php',
+            '/changePassword' => fn() => include_once  'pages/changepassword.php',
+            '/createProduct'  => fn() => include_once  'pages/createProduct.php',
+            '/profile'        => fn() => include_once  'pages/profile.php',
+            '/dashboard'      => fn() => include_once  'pages/dashboard.php',
+            '/forgetPassword' => fn() => include_once  'pages/forgetPassword.php',
+            '/tables'         => fn() => include_once  'pages/tables.php',
+        ];
+        $routesPost = [
+            '/createProduct'  => fn() => include_once  'pages/createProduct.php',
+        ];
+        
+        $this->server->addRoutes('GET',$routesGet);
+        $this->server->addRoutes('POST',$routesPost);
+        
     }
 }
 
