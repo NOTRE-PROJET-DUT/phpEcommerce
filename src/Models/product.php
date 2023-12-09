@@ -17,7 +17,7 @@ class Product {
     
         $query = "INSERT INTO products (product_name, price, description, image_url, category, admin_id, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sdsssi", $productName, $price, $description, $imagePath, $category, $admin, $stockQuantity);
+        $stmt->bind_param("sdsssii", $productName, $price, $description, $imagePath, $category, $admin, $stockQuantity);
         $result = $stmt->execute();
         $stmt->close();
     
@@ -91,10 +91,10 @@ class Product {
     }
     
 
-    public function updateProduct($id, $productName, $price, $description, $stockQuantity) {
-        $query = "UPDATE products SET product_name = ?, price = ?, description = ?, stock_quantity = ? WHERE product_id = ?";
+    public function updateProduct($id, $productName, $price, $description, $imagePath, $category, $stockQuantity) {
+        $query = "UPDATE products SET product_name = ?, price = ?, description = ?,image_url=?,category =?, stock_quantity = ? WHERE product_id = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sdsii", $productName, $price, $description, $stockQuantity, $id);
+        $stmt->bind_param("sdsssii", $productName, $price, $description,$imagePath,$category, $stockQuantity, $id);
         $success = $stmt->execute();
         $stmt->close();
         return $success;
