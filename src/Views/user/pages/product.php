@@ -22,6 +22,9 @@ if (isset($_GET['idProduct'])) {
     <!-- Product section-->
     <section class="py-5 my-5">
         <div class="container px-4 px-lg-5 my-5">
+            <div class="card-header pb-0 text-left">
+                <a class="mb-0" href="/"><i class="fas fa-angle-left mt-1"></i> Go Back </a>
+            </div>
             <?php
             Model('product');
             $listProduct = new Product();
@@ -54,8 +57,6 @@ if (isset($_GET['idProduct'])) {
             <h2 class="fw-bolder mb-4">Related products</h2>
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                 <?php
-                // include_once  '../../../Models/product.php';
-                // $listProduct = new Product();
                 $products = $listProduct->getProductsByCategory($product['category']);
                 foreach ($products as $product) : ?>
                     <div class="col mb-5">
