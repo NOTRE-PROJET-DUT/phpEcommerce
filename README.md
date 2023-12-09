@@ -14,25 +14,25 @@ Follow these steps to install and run a Lapplication from a GitHub repository:
     https://github.com/NOTRE-PROJET-DUT/phpEcommerce
     ```
 
-1. **Install Dependencies:**
-    ```bash
-    composer install
-    ```
-1. **Run command:**
-    ```bash
-    composer bootstrap
-    ```
 1. **Start the Development Server:**
     ``` e.g. 
         use xampp
         use wamp 
         use ...
     ```
+1. **Run command:**
+    ```bash
+    php index.php
+    ```
+
 1. **Access the Application:**
 <br>
-    `
+    ```
     Open your web browser and navigate .
-    `
+    user  : localhost:8000 
+    admin : localhost:8001  
+    //you can change port number in file index.php
+    ```
 <br>
 <br>
 
