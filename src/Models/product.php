@@ -10,14 +10,14 @@ class Product {
     }
 
 
-    public function createProduct($admin, $productName, $price, $description, $imagePath, $category, $stockQuantity) {
+    public function createProduct($adminId, $productName, $price, $description, $imagePath, $category, $stockQuantity) {
         if (empty($productName) || !is_numeric($price) || empty($description) || empty($category) || !is_numeric($stockQuantity)) {
             return false;
         }
     
         $query = "INSERT INTO products (product_name, price, description, image_url, category, admin_id, stock_quantity) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sdsssii", $productName, $price, $description, $imagePath, $category, $admin, $stockQuantity);
+        $stmt->bind_param("sdsssii", $productName, $price, $description, $imagePath, $category, $adminId, $stockQuantity);
         $result = $stmt->execute();
         $stmt->close();
     
@@ -91,10 +91,10 @@ class Product {
     }
     
 
-    public function updateProduct($id, $productName, $price, $description, $imagePath, $category, $stockQuantity) {
+    public function updateProduct($idProduct, $productName, $price, $description, $imagePath, $category, $stockQuantity) {
         $query = "UPDATE products SET product_name = ?, price = ?, description = ?,image_url=?,category =?, stock_quantity = ? WHERE product_id = ?";
         $stmt = $this->db->prepare($query);
-        $stmt->bind_param("sdsssii", $productName, $price, $description,$imagePath,$category, $stockQuantity, $id);
+        $stmt->bind_param("sdsssii", $productName, $price, $description,$imagePath,$category, $stockQuantity, $idProduct);
         $success = $stmt->execute();
         $stmt->close();
         return $success;
