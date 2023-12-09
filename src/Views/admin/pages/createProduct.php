@@ -8,10 +8,10 @@
         $stock_quantity = $_POST["stock_quantity"];
         $description = $_POST["description"];
         $category = $_POST["category"];
-        $imageProduct = $_POST["imageProduct"];
+        // $imageProduct = $_POST["imageProduct"];
 
         if (isset($_FILES["image"])) {
-            $uploadDir = '../../../../storage/';
+            $uploadDir = '../../../storage/';
             $uploadFile = $uploadDir . basename($_FILES['image']['name']);
     
             // Move the uploaded file to the specified directory and if not work echo 
@@ -22,7 +22,7 @@
         } else {
             echo "No file selected.";
         }
-        if ($product->createProduct($admin=$_SESSION["idAdmin"],$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {          
+        if ($product->createProduct(1,$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {          
           header('Location: ./createProduct');
         } else {
           echo "no exist";
@@ -51,7 +51,7 @@
                                 <h4 class="font-weight-bolder">Create New Product </h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form method="POST" enctype="multipart/form-data" action="/createProduct">
                                     <div class="container px-4 px-lg-5 my-5">
                                         <div class="row gx-4 gx-lg-5 align-items-center">
                                             <div class="col-md-6">
@@ -79,8 +79,8 @@
                                     </div>
                                     <div class="mb-3">
                                         <select name="category" id="category" class="form-control form-control-lg" placeholder="category" aria-label="" required>
-                                            <option value="" disabled>category</option>
-                                            <option value="Books" selected>Books</option>
+                                            <option value="" disabled selected>category</option>
+                                            <option value="Books" >Books</option>
                                             <option value="Clothing">Clothing</option>
                                             <option value="Electronics">Electronics</option>
                                             <option value="Home and Garden">Home and Garden</option>
