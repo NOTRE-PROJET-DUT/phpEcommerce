@@ -61,13 +61,13 @@ class App
 
         //     include_once __DIR__ . '/pages/product.php';
         // });
-         $this->server->addRoute('GET', '/product', function () {
+        $this->server->addRoute('GET', '/product', function () {
 
 
             include_once __DIR__ . '/pages/product.php';
-         });
-        
-        
+        });
+
+
 
         $this->server->addRoute('GET', '/profile', function () {
 
@@ -83,6 +83,12 @@ class App
 
 
             include_once __DIR__ . '/pages/contact-us.php';
+        });
+        $this->server->addRoute('GET', '/admin', function () {
+
+            $redirectUrl = 'http://localhost:8001/';
+            header('Location: ' . $redirectUrl);
+            exit;
         });
     }
 }

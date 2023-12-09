@@ -1,15 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-  <?php  include_once  'component/head.php'; ?>
-  
+  <?php include_once  'component/head.php'; ?>
+
   <title>
-  Nabil-Bilal
+    Nabil-Bilal
   </title>
-  
+
 </head>
 
 <body class="about-us">
@@ -17,7 +16,7 @@
   <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
     <div class="container-fluid px-1">
       <a class="navbar-brand font-weight-bolder ms-lg-0 " href="/">
-      Nabil-Bilal
+        Nabil-Bilal
       </a>
       <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon mt-2">
@@ -28,7 +27,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="navbar-nav ms-xl-auto">
-          
+
           <li class="nav-item">
             <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/sign-in">
               <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class=" text-dark  me-1">
@@ -46,12 +45,12 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/contact-us" >
+            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/contact-us">
               <span class="ps-3">Contact Us</span>
             </a>
           </li>
         </ul>
-        
+
       </div>
     </div>
   </nav>
@@ -65,7 +64,7 @@
           <div class="col-lg-8 text-center mx-auto my-auto">
             <h1 class="text-white">Work with an amazing design</h1>
             <p class="lead mb-4 text-white opacity-8">We’re constantly trying to express ourselves and actualize our dreams. If you have the opportunity to play this game</p>
-            <button type="submit" class="btn bg-white text-dark">Create Account</button>
+            <a href="/admin" class="btn bg-white text-dark">Create Account</a>
             <h6 class="text-white mb-2 mt-5">Find us on</h6>
             <div class="d-flex justify-content-center">
               <a href="javascript:;"><i class="fab fa-facebook text-lg text-white me-4"></i></a>
@@ -245,11 +244,11 @@
               <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
                 <a href="javascript:;">
                   <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="assets/img/p1.png" alt="image">
+                    <img class="w-100 border-radius-md" height="200px" src="assets/img/p1.png" alt="image">
                   </div>
                 </a>
               </div>
-<!-- //nabil////////////////////   -->  
+              <!-- nabil  -->
               <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
                 <div class="card-body">
                   <h5 class="mb-0">Nabil Boussalham</h5>
@@ -265,15 +264,15 @@
             <div class="row">
               <div class="col-lg-4 col-md-6 col-12 pe-lg-0">
                 <a href="javascript:;">
-                  <div class="p-3 pe-md-0">
-                    <img class="w-100 border-radius-md" src="assets/img/p2.jpg" alt="image">
+                  <div class="p-3 pe-md-0 ">
+                    <img class="w-100 border-radius-md" height="200px" src="assets/img/p2.jpg" alt="image">
                   </div>
                 </a>
               </div>
+              <!-- bilal   -->
               <div class="col-lg-8 col-md-6 col-12 ps-lg-0 my-auto">
                 <div class="card-body">
-<!-- //bilal////////////////////   -->               
-                  <h5 class="mb-0">Bilal Maein</h5>
+                  <h5 class="mb-0">Bilal Marin</h5>
                   <h6 class="text-info">Programmer</h6>
                   <p>Etudiant en ESTSB 2eme ane en DUT.</p>
                 </div>
@@ -282,24 +281,16 @@
           </div>
         </div>
       </div>
- 
-    <div class="position-absolute w-100 bottom-0 mn-n1">
-      <svg width="100%" viewBox="0 -1 1920 166" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <title>wave-up</title>
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g transform="translate(0.000000, 5.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <g id="wave-up" transform="translate(0.000000, -5.000000)">
-              <path d="M0,70 C298.666667,105.333333 618.666667,95 960,39 C1301.33333,-17 1621.33333,-11.3333333 1920,56 L1920,165 L0,165 L0,70 Z" fill="#f8f9fa"></path>
-            </g>
-          </g>
-        </g>
-      </svg>
-    </div>
+      <br>
+      <br>
   </section>
   <!-- -------- END Features w/ pattern background & stats & rocket -------- -->
   <section class="pt-2 pb-6 bg-gray-100" id="count-stats">
+    <br>
+    <br>
+
     <div class="container">
-      
+
       <div class="row justify-content-center text-center">
         <div class="col-md-3">
           <h1 class="text-gradient text-info" id="state1" countTo="5234">0</h1>
@@ -332,7 +323,7 @@
           <div class="row">
             <div class="col-8">
               <div class="input-group">
-                <input type="text" class="form-control mb-sm-0" placeholder="Email Here...">
+                <input type="email" class="form-control mb-sm-0" placeholder="Email Here..." required>
               </div>
             </div>
             <div class="col-4 ps-0">
@@ -350,7 +341,7 @@
   </section>
   <!-- -------- END PRE-FOOTER 1 w/ SUBSCRIBE BUTTON AND IMAGE ------- -->
 
-  <?php  include_once  'component/footer.php'; ?>
+  <?php include_once  'component/footer.php'; ?>
 
   <!--   Core JS Files   -->
   <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
