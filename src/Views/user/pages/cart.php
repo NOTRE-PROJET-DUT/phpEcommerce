@@ -23,7 +23,7 @@
           <div class="d-flex justify-content-between align-items-center mb-4">
             <h3 class="fw-normal mb-0 text-black">Shopping Cart</h3>
             <div>
-              <p class="mb-0"><a href="./homePage.php" class="text-body">Go Back<i class="fas fa-angle-left mt-1"></i></a></p>
+              <p class="mb-0"><a href="/" class="text-body">Go Back<i class="fas fa-angle-left mt-1"></i></a></p>
             </div>
           </div>
 

@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($user->updateUserPassword($email, $npass) === TRUE) {
-      header('Location: ./dashboard.php');
+      header('Location: ./dashboard');
     } else {
       echo "no exist";
     }

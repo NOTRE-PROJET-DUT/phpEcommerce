@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST["Password"];
 
         if ($user->login($email,$pass) == TRUE) {
-          header('Location: ./homePage.php');
+          header('Location: ./');
         } else {
           echo "no exist";
         }

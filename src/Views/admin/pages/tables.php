@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $status = $_POST["status"];
 
   if ($orderItems->updateOrderStatus($order_item_id, $status) == true) {
-    header('Location: ./tables.php');
+    header('Location: ./tables');
   } else {
     echo "no exist";
   }

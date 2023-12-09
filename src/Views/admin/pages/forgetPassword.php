@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
   if ($user->forgetPassword($email, $checkpass) === TRUE) {
-    header('Location: ./changepassword.php');
+    header('Location: ./changepassword');
   } else {
     echo "no exist";
   }

@@ -18,9 +18,9 @@ if (isset($_GET['idProduct'])) {
 
 <body>
     <!-- Navigation-->
-    
+    <?php include_once  'component/nav.php'; ?>
     <!-- Product section-->
-    <section class="py-5">
+    <section class="py-5 my-5">
         <div class="container px-4 px-lg-5 my-5">
             <?php
             Model('product');
@@ -59,7 +59,7 @@ if (isset($_GET['idProduct'])) {
                 $products = $listProduct->getProductsByCategory($product['category']);
                 foreach ($products as $product) : ?>
                     <div class="col mb-5">
-                        <a href="product.php?idProduct=<?php echo $product['product_id']; ?>">
+                        <a href="/product?idProduct=<?php echo $product['product_id']; ?>">
                             <div class="card h-100">
                                 <!-- Product image-->
                                 <img class="card-img-top" src="<?php echo $product['image_url']; ?>" alt="..." />

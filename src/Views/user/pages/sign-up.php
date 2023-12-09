@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       
 
         if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
-          header('Location: ./sign-in.php');
+          header('Location: ./sign-in');
         } else {
           echo "no exist";
         }

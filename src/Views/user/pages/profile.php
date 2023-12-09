@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
 
   if ($user->updateUser($id=1 , $email,$password) == TRUE) {
-    header('Location: ./profile.php');
+    header('Location: ./profile');
   } else {
     echo "no exist";
   }

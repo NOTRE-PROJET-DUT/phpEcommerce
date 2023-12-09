@@ -23,7 +23,7 @@
             echo "No file selected.";
         }
         if ($product->createProduct($admin=$_SESSION["idAdmin"],$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {          
-          header('Location: ./createProduct.php');
+          header('Location: ./createProduct');
         } else {
           echo "no exist";
         }
@@ -47,7 +47,7 @@
                     <div class="col-xl-10 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
                         <div class="card card-plain">
                             <div class="card-header pb-0 text-left">
-                                <a class="mb-0" href="./dashboard.php"><i class="fas fa-angle-left mt-1"></i> Go Back </a>
+                                <a class="mb-0" href="/dashboard"><i class="fas fa-angle-left mt-1"></i> Go Back </a>
                                 <h4 class="font-weight-bolder">Create New Product </h4>
                             </div>
                             <div class="card-body">

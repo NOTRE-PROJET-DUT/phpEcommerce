@@ -3,7 +3,6 @@
 
 <head>
 
-    <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
     <?php include_once  'component/head.php'; ?>
 
     <title>
@@ -35,7 +34,7 @@
                 $products = $listProduct->getProducts();
                 foreach ($products as $product) : ?>
                     <div class="col mb-5">
-                        <a  href="product.php?idProduct=<?php echo $product['product_id']; ?>">
+                        <a  href="/product?idProduct=<?php echo $product['product_id']; ?>">
                             <div class="card h-100">
                                 <!-- Product image-->
                                 <img class="card-img-top" src="<?php echo $product['image_url']; ?>" alt="..." />
@@ -44,14 +43,6 @@
                                     <div class="text-center">
                                         <!-- Product name-->
                                         <h5 class="fw-bolder" ><?php echo $product['product_name']; ?></h5>
-                                        <!-- Product reviews-->
-                                        <!-- <div class="d-flex justify-content-center small text-warning mb-2">
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                            <div class="bi-star-fill"></div>
-                                        </div> -->
                                         <!-- Product price-->
                                         <h5><?php echo $product['price'] . " $"; ?></h5>
                                     </div>
