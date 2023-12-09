@@ -34,9 +34,11 @@ class App
             '/dashboard'      => fn() => include_once  'pages/dashboard.php',
             '/forgetPassword' => fn() => include_once  'pages/forgetPassword.php',
             '/tables'         => fn() => include_once  'pages/tables.php',
+            '/editProduct'  => fn() => include_once  'pages/editProduct.php',
         ];
         $routesPost = [
             '/createProduct'  => fn() => include_once  'pages/createProduct.php',
+            '/editProduct'  => fn() => include_once  'pages/editProduct.php',
         ];
         
         $this->server->addRoutes('GET',$routesGet);
