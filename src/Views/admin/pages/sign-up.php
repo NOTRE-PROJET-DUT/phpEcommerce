@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     if ($admin->createAccountAdmin($userName, $email, $pass, $secretCode) == TRUE) {
-      header('Location: ./sign-in');
+      header('Location: ./');
     } else {
       echo "no exist";
     }
@@ -122,7 +122,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-xs mx-auto">
                     Already have an account?
-                    <a href="/sign-in" class="text-dark font-weight-bold">Sign in</a>
+                    <a href="/" class="text-dark font-weight-bold">Sign in</a>
                   </p>
                 </div>
               </div>

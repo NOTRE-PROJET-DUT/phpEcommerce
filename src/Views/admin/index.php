@@ -27,8 +27,42 @@ class App
     {
         $this->server->addRoute('GET', '/', function () {
 
+            require __DIR__ . '/pages/sign-in.php';
+        });
+        $this->server->addRoute('GET', '/sign-up', function () {
+
+
+            require __DIR__ . '/pages/sign-up.php';
+        });
+        $this->server->addRoute('GET', '/changePassword', function () {
+
+
+            require __DIR__ . '/pages/changepassword.php';
+        });
+        $this->server->addRoute('GET', '/createProduct', function () {
+
+
+            require __DIR__ . '/pages/createProduct.php';
+        });
+        $this->server->addRoute('GET', '/profile', function () {
+
 
             require __DIR__ . '/pages/profile.php';
+        });
+        $this->server->addRoute('GET', '/dashboard', function () {
+
+
+            require __DIR__ . '/pages/dashboard.php';
+        });
+        $this->server->addRoute('GET', '/forgetPassword', function () {
+
+
+            require __DIR__ . '/pages/forgetPassword.php';
+        });
+        $this->server->addRoute('GET', '/tables', function () {
+
+
+            require __DIR__ . '/pages/tables.php';
         });
     }
 }
@@ -41,11 +75,28 @@ class App
 // Simulate a request
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $requestPath = $_SERVER['REQUEST_URI'];
+$urlParts = parse_url($requestPath);
+$requestPWithoutQuery = isset($urlParts['path']) ? $urlParts['path'] : '/';
 
 // Route the request
 $server = App::getServer();
-$action = $server->route($requestMethod, $requestPath);
+$action = $server->route($requestMethod, $requestPWithoutQuery);
 
 // Execute the matched action
 $action();
+
+
+
+
+
+// explain
+// parse_url($therequestPath);
+// Array
+// (
+//     [scheme] => https
+//     [host] => www.example.com
+//     [path] => /path/to/page
+//     [query] => name=John&age=25
+//     [fragment] => section
+// )
 
