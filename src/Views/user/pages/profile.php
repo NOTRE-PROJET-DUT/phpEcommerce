@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 
   <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-  <?php include_once component/head.php'; ?>
+  <?php include_once 'component/head.php'; ?>
 
   <title>
     Nabil-Bilal
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <!-- Navigation-->
-  <?php include_once component/nav.php'; ?>
+  <?php include_once 'component/nav.php'; ?>
   <!-- Header-->
 
 
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     <!-- Bootstrap core JS-->
-    <!-- <div class="row">
+     <div class="row">
       <div class="col-md-4">
         <h6 class="text-sm font-weight-semibold mb-1">Billing history</h6>
         <p class="text-sm">We’ll credit your account if you need to <br> downgrade during the billing cycle.</p>
@@ -330,7 +330,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
       </div>
-    </div> -->
+    </div> 
 
     <!-- cart -->
     <div class="row">
