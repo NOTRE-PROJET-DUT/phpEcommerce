@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 
   <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
-  <?php include_once  '/component/head.php'; ?>
+  <?php include_once component/head.php'; ?>
 
   <title>
     Nabil-Bilal
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
   <!-- Navigation-->
-  <?php include_once  '/component/nav.php'; ?>
+  <?php include_once component/nav.php'; ?>
   <!-- Header-->
 
 

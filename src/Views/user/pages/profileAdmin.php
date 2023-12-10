@@ -11,7 +11,7 @@ $adminData =  $admin->getAdmin("admin1");
 <html lang="en">
 
 <head>
-  <?php include_once  '../component/head.php'; ?>
+  <?php include_once  'component/head.php'; ?>
   <title>
     SHOP
   </title>

@@ -9,7 +9,7 @@ if (isset($_GET['idProduct'])) {
 <html lang="en">
 
 <head>
-    <?php include_once  '../component/head.php'; ?>
+    <?php include_once  'component/head.php'; ?>
 
     <title>
         product
@@ -18,7 +18,7 @@ if (isset($_GET['idProduct'])) {
 
 <body>
     <!-- Navigation-->
-    <?php include_once  '../component/nav.php'; ?>
+    <?php include_once  'component/nav.php'; ?>
     <!-- Product section-->
     <section class="py-5 my-5">
         <div class="container px-4 px-lg-5 my-5">
