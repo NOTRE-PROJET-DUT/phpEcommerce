@@ -1,3 +1,37 @@
+<?php
+
+Model('product');
+$products = new Product();
+$adminId = $_SESSION["admin_id"] ?? 1;
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  // Retrieve values from the form
+  $order_item_id = $_POST["order_item_id"];
+  $status = $_POST["status"];
+
+  if ($orderItems->updateOrderStatus($order_item_id, $status) == true) {
+    header('Location: ./tables');
+  } else {
+    echo "no exist";
+  }
+}
+
+
+$chartData = [
+  'labels' => [],
+  'data' => [],
+];
+$salesData = $products->getProductSalesData(1);
+foreach ($salesData as $row) {
+  $chartData['labels'][] = $row['month'];
+  $chartData['data'][] = $row['num_sales'];
+};
+
+// Convert the PHP array to a JSON string for JavaScript
+$chartDataJSON = json_encode($chartData);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -162,26 +196,18 @@
           <div class="swiper-button-next"></div>
         </div>
       </div>
-      <!-- <div class="row my-4">
+       <div class="row my-4">
         <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
           <div class="card shadow-xs border h-100">
             <div class="card-header pb-0">
               <h6 class="font-weight-semibold text-lg mb-0">Balances over time</h6>
               <p class="text-sm">Here you have details about the balance.</p>
-              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-white px-3 mb-0" for="btnradio1">12 months</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-white px-3 mb-0" for="btnradio2">30 days</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-white px-3 mb-0" for="btnradio3">7 days</label>
-              </div>
             </div>
             <div class="card-body py-3">
               <div class="chart mb-2">
                 <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
               </div>
-              <button class="btn btn-white mb-0 ms-auto">View report</button>
+              <button class="btn btn-white mb-0 ms-auto" >View report</button>
             </div>
           </div>
         </div>
@@ -190,8 +216,8 @@
             <div class="card-header border-bottom pb-0">
               <div class="d-sm-flex align-items-center mb-3">
                 <div>
-                  <h6 class="font-weight-semibold text-lg mb-0">Recent transactions</h6>
-                  <p class="text-sm mb-sm-0 mb-2">These are details about the last transactions</p>
+                  <h6 class="font-weight-semibold text-lg mb-0">YOUR PRODUCT</h6>
+                  <p class="text-sm mb-sm-0 mb-2">These are details about your Product</p>
                 </div>
                 <div class="ms-auto d-flex">
                   <button type="button" class="btn btn-sm btn-white mb-0 me-2">
@@ -208,14 +234,6 @@
                 </div>
               </div>
               <div class="pb-3 d-sm-flex align-items-center">
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                  <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable1" autocomplete="off" checked>
-                  <label class="btn btn-white px-3 mb-0" for="btnradiotable1">All</label>
-                  <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable2" autocomplete="off">
-                  <label class="btn btn-white px-3 mb-0" for="btnradiotable2">Monitored</label>
-                  <input type="radio" class="btn-check" name="btnradiotable" id="btnradiotable3" autocomplete="off">
-                  <label class="btn btn-white px-3 mb-0" for="btnradiotable3">Unmonitored</label>
-                </div>
                 <div class="input-group w-sm-25 ms-auto">
                   <span class="input-group-text text-body">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -231,166 +249,59 @@
                 <table class="table align-items-center justify-content-center mb-0">
                   <thead class="bg-gray-100">
                     <tr>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Transaction</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Amount</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Date</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Account</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Product Name</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Price</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Stock</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">category</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <img src="assets/img/small-logos/logo-spotify.svg" class="w-80" alt="spotify">
+                  <?php
+                    $productItems = $products->getAdminProducts(1);
+                    foreach ($productItems as $productItem) :
+                    ?>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                              <img src="<?php echo $productItem["image_url"]; ?>" class="w-80" alt="spotify">
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm"><?php echo $productItem["product_name"]; ?></h6>
+                            </div>
                           </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Spotify</h6>
-                          </div>
-                        </div>
+                        </td>
+                        <td>
+                          <p class="text-sm font-weight-normal mb-0"><?php echo $productItem["price"]; ?> $</p>
+                        </td>
+                        <td>
+                          <span class="text-sm font-weight-normal"><?php echo $productItem["stock_quantity"]; ?></span>
+                        </td>
+
+                        <td>
+                        <?php echo $productItem["category"]; ?>
+                        </td>
+                        <td class="align-middle">
+                          <a href="/editProduct?idProduct=<?php echo $productItem["product_id"]; ?>" class="btn btn-white btn-icon px-2 py-2" >
+                            <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
+                            </svg>
+                          </a>
+                        </td>
                       </td>
-                      <td>
-                        <p class="text-sm font-weight-normal mb-0">$2,500</p>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal">Wed 3:00pm</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="d-flex">
-                          <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="assets/img/logos/visa.png" class="w-90 mx-auto" alt="visa">
-                          </div>
-                          <div class="ms-2">
-                            <p class="text-dark text-sm mb-0">Visa 1234</p>
-                            <p class="text-secondary text-sm mb-0">Expiry 06/2026</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
-                          <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
-                          </svg>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <img src="assets/img/small-logos/logo-invision.svg" class="w-80" alt="invision">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Invision</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-normal mb-0">$5,000</p>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal">Wed 1:00pm</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="d-flex">
-                          <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="assets/img/logos/mastercard.png" class="w-90 mx-auto" alt="mastercard">
-                          </div>
-                          <div class="ms-2">
-                            <p class="text-dark text-sm mb-0">Mastercard 1234</p>
-                            <p class="text-secondary text-sm mb-0">Expiry 06/2026</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
-                          <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
-                          </svg>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <img src="assets/img/small-logos/logo-jira.svg" class="w-80" alt="jira">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Jira</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-normal mb-0">$3,400</p>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal">Mon 7:40pm</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="d-flex">
-                          <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="assets/img/logos/mastercard.png" class="w-90 mx-auto" alt="mastercard">
-                          </div>
-                          <div class="ms-2">
-                            <p class="text-dark text-sm mb-0">Mastercard 1234</p>
-                            <p class="text-secondary text-sm mb-0">Expiry 06/2026</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
-                          <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
-                          </svg>
-                        </a>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="d-flex px-2">
-                          <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                            <img src="assets/img/small-logos/logo-slack.svg" class="w-80" alt="slack">
-                          </div>
-                          <div class="my-auto">
-                            <h6 class="mb-0 text-sm">Slack</h6>
-                          </div>
-                        </div>
-                      </td>
-                      <td>
-                        <p class="text-sm font-weight-normal mb-0">$1,000</p>
-                      </td>
-                      <td>
-                        <span class="text-sm font-weight-normal">Wed 5:00pm</span>
-                      </td>
-                      <td class="align-middle">
-                        <div class="d-flex">
-                          <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="assets/img/logos/visa.png" class="w-90 mx-auto" alt="visa">
-                          </div>
-                          <div class="ms-2">
-                            <p class="text-dark text-sm mb-0">Visa 1234</p>
-                            <p class="text-secondary text-sm mb-0">Expiry 06/2026</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td class="align-middle">
-                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="tooltip" data-bs-title="Edit user">
-                          <svg width="14" height="14" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.2201 2.02495C10.8292 1.63482 10.196 1.63545 9.80585 2.02636C9.41572 2.41727 9.41635 3.05044 9.80726 3.44057L11.2201 2.02495ZM12.5572 6.18502C12.9481 6.57516 13.5813 6.57453 13.9714 6.18362C14.3615 5.79271 14.3609 5.15954 13.97 4.7694L12.5572 6.18502ZM11.6803 1.56839L12.3867 2.2762L12.3867 2.27619L11.6803 1.56839ZM14.4302 4.31284L15.1367 5.02065L15.1367 5.02064L14.4302 4.31284ZM3.72198 15V16C3.98686 16 4.24091 15.8949 4.42839 15.7078L3.72198 15ZM0.999756 15H-0.000244141C-0.000244141 15.5523 0.447471 16 0.999756 16L0.999756 15ZM0.999756 12.2279L0.293346 11.5201C0.105383 11.7077 -0.000244141 11.9624 -0.000244141 12.2279H0.999756ZM9.80726 3.44057L12.5572 6.18502L13.97 4.7694L11.2201 2.02495L9.80726 3.44057ZM12.3867 2.27619C12.7557 1.90794 13.3549 1.90794 13.7238 2.27619L15.1367 0.860593C13.9869 -0.286864 12.1236 -0.286864 10.9739 0.860593L12.3867 2.27619ZM13.7238 2.27619C14.0917 2.64337 14.0917 3.23787 13.7238 3.60504L15.1367 5.02064C16.2875 3.8721 16.2875 2.00913 15.1367 0.860593L13.7238 2.27619ZM13.7238 3.60504L3.01557 14.2922L4.42839 15.7078L15.1367 5.02065L13.7238 3.60504ZM3.72198 14H0.999756V16H3.72198V14ZM1.99976 15V12.2279H-0.000244141V15H1.99976ZM1.70617 12.9357L12.3867 2.2762L10.9739 0.86059L0.293346 11.5201L1.70617 12.9357Z" fill="#64748B" />
-                          </svg>
-                        </a>
-                      </td>
-                    </tr>
+                      <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
         </div>
-      </div> -->
-      <!-- <div class="row">
+      </div> 
+      <div class="row">
+        <?php 
+        $productTransactionData = $products->getProductTransactionData(1)[0];
+        ?>
         <div class="col-xl-3 col-sm-6 mb-xl-0">
           <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
@@ -404,12 +315,12 @@
                 <div class="col-12">
                   <div class="w-100">
                     <p class="text-sm text-secondary mb-1">Revenue</p>
-                    <h4 class="mb-2 font-weight-bold">$99,118.5</h4>
+                    <h4 class="mb-2 font-weight-bold"><?php echo $productTransactionData['Revenue']; ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>10.5%
+                        <i class="fa fa-chevron-up text-xs me-1"></i><?php echo $productTransactionData['RevenuePercentage']; ?>%
                       </span>
-                      <span class="text-sm ms-1">from $89,740.00</span>
+                      <!-- <span class="text-sm ms-1">from $89,740.00</span> -->
                     </div>
                   </div>
                 </div>
@@ -430,12 +341,12 @@
                 <div class="col-12">
                   <div class="w-100">
                     <p class="text-sm text-secondary mb-1">Transactions</p>
-                    <h4 class="mb-2 font-weight-bold">376</h4>
+                    <h4 class="mb-2 font-weight-bold"><?php echo $productTransactionData['NumTransactions']; ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>55%
+                        <i class="fa fa-chevron-up text-xs me-1"></i><?php echo $productTransactionData['NumTransactionsPercentage']; ?>%
                       </span>
-                      <span class="text-sm ms-1">from 243</span>
+                      <!-- <span class="text-sm ms-1">from 243</span> -->
                     </div>
                   </div>
                 </div>
@@ -455,12 +366,12 @@
                 <div class="col-12">
                   <div class="w-100">
                     <p class="text-sm text-secondary mb-1">Avg. Transaction</p>
-                    <h4 class="mb-2 font-weight-bold">$450.53</h4>
+                    <h4 class="mb-2 font-weight-bold"><?php echo $productTransactionData['AvgTransactionValue']; ?>$</h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>22%
+                        <i class="fa fa-chevron-up text-xs me-1"></i><?php echo $productTransactionData['AvgTransactionValuePercentage']; ?>%
                       </span>
-                      <span class="text-sm ms-1">from $369.30</span>
+                      <!-- <span class="text-sm ms-1">from $369.30</span> -->
                     </div>
                   </div>
                 </div>
@@ -480,12 +391,12 @@
                 <div class="col-12">
                   <div class="w-100">
                     <p class="text-sm text-secondary mb-1">Coupon Sales</p>
-                    <h4 class="mb-2 font-weight-bold">$23,364.55</h4>
+                    <h4 class="mb-2 font-weight-bold"><?php echo $productTransactionData['CouponSales']; ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>18%
+                        <i class="fa fa-chevron-up text-xs me-1"></i><?php echo $productTransactionData['CouponSalesPercentage']; ?>%
                       </span>
-                      <span class="text-sm ms-1">from $19,800.40</span>
+                      <!-- <span class="text-sm ms-1">from $19,800.40</span> -->
                     </div>
                   </div>
                 </div>
@@ -504,7 +415,7 @@
                   <p class="text-sm mb-sm-0 mb-2">Here you have details about the balance.</p>
                 </div>
                 <div class="ms-auto d-flex">
-                  <button type="button" class="btn btn-sm btn-white mb-0 me-2">
+                  <button type="button" class="btn btn-sm btn-white mb-0 me-2" onclick="exportChartToPDF()" >
                     View report
                   </button>
                 </div>
@@ -526,7 +437,7 @@
             </div>
           </div>
         </div>
-      </div> -->
+      </div> 
       <?php include_once  'component/footer.php'; ?>
     </div>
   </main>
@@ -536,7 +447,8 @@
   <script src="assets/js/plugins/smooth-scrollbar.min.js"></script> 
   <script src="assets/js/plugins/perfect-scrollbar.min.js"></script> -->
   <!-- <script src="assets/js/core/bootstrap.min.js"></script> -->
-  <!-- <script src="assets/js/plugins/chartjs.min.js"></script> -->
+  
+  <script src="assets/js/plugins/chartjs.min.js"></script>
   <script src="assets/js/plugins/swiper-bundle.min.js" type="text/javascript"></script>
   <script>
     if (document.getElementsByClassName('mySwiper')) {
@@ -552,32 +464,24 @@
     };
 
     </script> 
-    <!-- <script>
+    <script>
     var ctx = document.getElementById("chart-bars").getContext("2d");
 
+    const chartData = <?php echo $chartDataJSON; ?>;
     new Chart(ctx, {
       type: "bar",
       data: {
-        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+        labels: chartData.labels,
         datasets: [{
             label: "Sales",
             tension: 0.4,
             borderWidth: 0,
             borderSkipped: false,
             backgroundColor: "#2ca8ff",
-            data: [450, 200, 100, 220, 500, 100, 400, 230, 500, 200],
+            data: chartData.data ,
             maxBarThickness: 6
-          },
-          {
-            label: "Sales",
-            tension: 0.4,
-            borderWidth: 0,
-            borderSkipped: false,
-            backgroundColor: "#7c3aed",
-            data: [200, 300, 200, 420, 400, 200, 300, 430, 400, 300],
-            maxBarThickness: 6
-          },
-        ],
+          }
+        ]
       },
       options: {
         responsive: true,
@@ -594,10 +498,6 @@
             borderWidth: 1,
             usePointStyle: true
           }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
         },
         scales: {
           y: {
@@ -685,19 +585,7 @@
             maxBarThickness: 6
 
           },
-          {
-            label: "Trade",
-            tension: 0,
-            borderWidth: 2,
-            pointRadius: 3,
-            borderColor: "#832bf9",
-            pointBorderColor: '#832bf9',
-            pointBackgroundColor: '#832bf9',
-            backgroundColor: gradientStroke2,
-            fill: true,
-            data: [2797, 2182, 1069, 2098, 3309, 3881, 2059, 3239, 6215, 2185, 2115, 5430, 4648, 2444, 2161, 3018, 1153, 1068, 2192, 1152, 2129, 1396, 2067, 1215, 712, 2462, 1669, 2360, 2787, 861],
-            maxBarThickness: 6
-          },
+          
         ],
       },
       options: {
@@ -784,7 +672,15 @@
         },
       },
     });
-  </script> -->
+  </script> 
+
+<script>
+    function exportChartToPDF() {
+      // Trigger the browser's print feature
+      window.print();
+    }
+    
+  </script>
   <!-- <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
