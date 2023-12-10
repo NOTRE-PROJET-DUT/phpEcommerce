@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   
-<?php  include_once  'component/head.php'; ?>
+<?php  include_once  '../component/head.php'; ?>
   
   <title>
   Nabil-Bilal

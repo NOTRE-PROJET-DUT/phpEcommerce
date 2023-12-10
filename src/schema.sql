@@ -41,6 +41,16 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Table to store information about coupons
+CREATE TABLE coupons (
+    coupon_id INT PRIMARY KEY AUTO_INCREMENT,
+    coupon_code VARCHAR(50) UNIQUE NOT NULL,
+    coupon_type VARCHAR(20) NOT NULL CHECK (coupon_type IN ('Percentage','Fixed')), -- e.g., 'Percentage' or 'Fixed'
+    discount_value DECIMAL(10, 2) NOT NULL,
+    expiration_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Table to store information about products
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -51,8 +61,10 @@ CREATE TABLE products (
     stock_quantity INT NOT NULL,
     category VARCHAR(12) NOT NULL CHECK (category IN ('Electronics', 'Clothing', 'Books','Home and Garden','Toys and Games')),
     admin_id INT,
+    coupon_id int ,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (admin_id) REFERENCES admins(admin_id) 
+    FOREIGN KEY (admin_id) REFERENCES admins(admin_id) ,
+    FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id)
 );
 
 -- Table to store information about orders
@@ -75,4 +87,6 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(order_id),
     FOREIGN KEY (product_id) REFERENCES products(product_id)
 );
+
+
 

@@ -13,14 +13,16 @@
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="navbar-nav ms-xl-auto">
 
-        <!-- <li class="nav-item">
-            <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/sign-up">
-              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="opacity-6 me-1">
-                <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clip-rule="evenodd" />
-              </svg>
-              Sign Up
-            </a>
-          </li> -->
+        <li class="nav-item">
+          <div class="input-group">
+            <span class="input-group-text text-body bg-white  border-end-0 ">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+              </span>
+              <input type="text" class="form-control ps-0" placeholder="Search">
+          </li> </div>
+          
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/about-us">
             <span class="ps-3">About Us</span>
