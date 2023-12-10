@@ -228,7 +228,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                   <h1 class="modal-title fs-5" id="exampleModalLabel">Update State</h1>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <form role="form" method="POST" action="/tables">
                                   <div class="modal-body">
                                   <div class="mb-3">
                                         <select name="status" id="status" class="form-control form-control-lg" placeholder="status" aria-label="status" required>

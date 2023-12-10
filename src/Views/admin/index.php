@@ -39,6 +39,7 @@ class App
         $routesPost = [
             '/createProduct'  => fn() => include_once  'pages/createProduct.php',
             '/editProduct'  => fn() => include_once  'pages/editProduct.php',
+            '/tables'         => fn() => include_once  'pages/tables.php',
         ];
         
         $this->server->addRoutes('GET',$routesGet);
