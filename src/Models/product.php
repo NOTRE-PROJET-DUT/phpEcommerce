@@ -96,77 +96,64 @@ class Product
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    public function getProductRevenueData($adminId)
+    {
+        $sql = " SELECT 
+                    MONTH(o.order_date) AS month,
+                    SUM(oi.price * oi.quantity) AS total_sales_revenue
+                FROM 
+                    orders o
+                JOIN 
+                    order_items oi ON o.order_id = oi.order_id
+                JOIN 
+                    products p ON oi.product_id = p.product_id
+                WHERE 
+                    p.admin_id = ?
+                    AND YEAR(o.order_date) = YEAR(CURDATE())
+                GROUP BY 
+                    MONTH(o.order_date)
+                ORDER BY 
+                    month;
+                ";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $adminId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 
     public function getProductTransactionData($adminId)
     {
         // Set admin_id
-    $sql = "SET @admin_id = ?";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bind_param("i", $adminId);
-    $stmt->execute();
-    $stmt->close();
+        $sql = "SET @admin_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("i", $adminId);
+        $stmt->execute();
+        $stmt->close();
 
-    // Main query
-    $sql = "SELECT
-            SUM(oi.price * oi.quantity) / yearly_revenue * 100 AS RevenuePercentage,
-            COUNT(DISTINCT o.order_id) / yearly_transactions * 100 AS NumTransactionsPercentage,
-            AVG(oi.price * oi.quantity) / yearly_avg_value * 100 AS AvgTransactionValuePercentage,
-            SUM(
-                CASE WHEN c.coupon_type = 'Percentage' THEN oi.price * oi.quantity * (1 - c.discount_value / 100)
-                     WHEN c.coupon_type = 'Fixed' THEN oi.price * oi.quantity - c.discount_value
-                     ELSE 0
-                END
-            ) / yearly_coupon_sales * 100 AS CouponSalesPercentage,
-            Revenue,
-            NumTransactions,
-            AvgTransactionValue,
-            CouponSales
-        FROM
-            orders o
-        JOIN order_items oi ON
-            o.order_id = oi.order_id
-        LEFT JOIN products p ON
-            p.product_id = oi.product_id
-        LEFT JOIN coupons c ON
-            p.coupon_id = c.coupon_id
-        LEFT JOIN (
-            SELECT
-                o.order_id AS order_id,
+        // Main query
+        $sql = "SELECT
+                SUM(oi.price * oi.quantity) / yearly_totals.yearly_revenue * 100 AS RevenuePercentage,
+                COUNT(DISTINCT o.order_id) / yearly_totals.yearly_transactions * 100 AS NumTransactionsPercentage,
+                AVG(oi.price * oi.quantity) / yearly_totals.yearly_avg_value * 100 AS AvgTransactionValuePercentage,
+                (SUM(oi.price * oi.quantity) - SUM(
+                    CASE WHEN c.coupon_type = 'Percentage' THEN oi.price * oi.quantity * (1 - c.discount_value / 100)
+                         WHEN c.coupon_type = 'Fixed' THEN oi.price * oi.quantity - c.discount_value
+                         ELSE 0
+                    END
+                )) / yearly_totals.yearly_coupon_sales * 100 AS CouponSalesPercentage,
                 SUM(oi.price * oi.quantity) AS Revenue,
                 COUNT(DISTINCT o.order_id) AS NumTransactions,
                 AVG(oi.price * oi.quantity) AS AvgTransactionValue,
-                SUM(
+                (SUM(oi.price * oi.quantity) - SUM(
                     CASE WHEN c.coupon_type = 'Percentage' THEN oi.price * oi.quantity * (1 - c.discount_value / 100)
                          WHEN c.coupon_type = 'Fixed' THEN oi.price * oi.quantity - c.discount_value
                          ELSE 0
                     END
-                ) AS CouponSales
-            FROM
-                orders o
-            JOIN order_items oi ON
-                o.order_id = oi.order_id
-            LEFT JOIN products p ON
-                p.product_id = oi.product_id
-            LEFT JOIN coupons c ON
-                c.coupon_id = p.coupon_id
-            WHERE
-                p.admin_id = @admin_id AND MONTH(o.order_date) = MONTH(CURDATE()) AND YEAR(o.order_date) = YEAR(CURDATE())
-            GROUP BY
-                o.order_id
-        ) AS cm ON
-            cm.order_id = o.order_id
-        JOIN (
-            SELECT
-                -- Subquery to calculate yearly totals
-                SUM(oi.price * oi.quantity) AS yearly_revenue,
-                COUNT(DISTINCT o.order_id) AS yearly_transactions,
-                AVG(oi.price * oi.quantity) AS yearly_avg_value,
-                SUM(
-                    CASE WHEN c.coupon_type = 'Percentage' THEN oi.price * oi.quantity * (1 - c.discount_value / 100)
-                         WHEN c.coupon_type = 'Fixed' THEN oi.price * oi.quantity - c.discount_value
-                         ELSE 0
-                    END
-                ) AS yearly_coupon_sales
+                )) AS CouponSales
             FROM
                 orders o
             JOIN order_items oi ON
@@ -175,20 +162,45 @@ class Product
                 p.product_id = oi.product_id
             LEFT JOIN coupons c ON
                 p.coupon_id = c.coupon_id
+            LEFT JOIN (
+                SELECT
+                    YEAR(o.order_date) AS order_year,
+                    SUM(oi.price * oi.quantity) AS yearly_revenue,
+                    COUNT(DISTINCT o.order_id) AS yearly_transactions,
+                    AVG(oi.price * oi.quantity) AS yearly_avg_value,
+                    (SUM(oi.price * oi.quantity) - SUM(
+                        CASE WHEN c.coupon_type = 'Percentage' THEN oi.price * oi.quantity * (1 - c.discount_value / 100)
+                             WHEN c.coupon_type = 'Fixed' THEN oi.price * oi.quantity - c.discount_value
+                             ELSE 0
+                        END
+                    )) AS yearly_coupon_sales
+                FROM
+                    orders o
+                JOIN order_items oi ON
+                    o.order_id = oi.order_id
+                LEFT JOIN products p ON
+                    p.product_id = oi.product_id
+                LEFT JOIN coupons c ON
+                    p.coupon_id = c.coupon_id
+                WHERE
+                    p.admin_id = @admin_id
+                GROUP BY
+                    YEAR(o.order_date)
+            ) AS yearly_totals ON
+                YEAR(o.order_date) = yearly_totals.order_year
             WHERE
-                p.admin_id = @admin_id AND YEAR(o.order_date) = YEAR(CURDATE())
-        ) AS yearly_totals
-        GROUP BY
-            'Year';  
-        ";
+                p.admin_id = @admin_id
+            GROUP BY
+                YEAR(o.order_date);
+            ";
 
-    $result = mysqli_query($this->db, $sql);
+        $result = mysqli_query($this->db, $sql);
 
-    if (!$result) {
-        throw new mysqli_sql_exception(mysqli_error($this->db));
-    }
+        if (!$result) {
+            throw new mysqli_sql_exception(mysqli_error($this->db));
+        }
 
-    return mysqli_fetch_all($result, MYSQLI_ASSOC);
+        return mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
 

@@ -17,18 +17,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-$chartData = [
+$chartSalesData = [
   'labels' => [],
   'data' => [],
 ];
 $salesData = $products->getProductSalesData(1);
 foreach ($salesData as $row) {
-  $chartData['labels'][] = $row['month'];
-  $chartData['data'][] = $row['num_sales'];
+  $chartSalesData['labels'][] = $row['month'];
+  $chartSalesData['data'][] = $row['num_sales'];
 };
 
 // Convert the PHP array to a JSON string for JavaScript
-$chartDataJSON = json_encode($chartData);
+$chartDataJSON = json_encode($chartSalesData);
+
+//////----------------------
+
+$chartRevenueData = [
+  'labels' => [],
+  'data' => [],
+];
+$revenueData = $products->getProductRevenueData(1);
+foreach ($revenueData as $row) {
+  $chartRevenueData['labels'][] = substr(date("F", mktime(0, 0, 0, $row['month'], 1)),0,3);
+  $chartRevenueData['data'][] = $row['total_sales_revenue'];
+};
+
+// Convert the PHP array to a JSON string for JavaScript
+$chartRevenueDataJSON = json_encode($chartRevenueData);
 
 
 ?>
@@ -478,7 +493,7 @@ $chartDataJSON = json_encode($chartData);
             borderWidth: 0,
             borderSkipped: false,
             backgroundColor: "#2ca8ff",
-            data: chartData.data ,
+            data: chartData.data,
             maxBarThickness: 6
           }
         ]
@@ -558,6 +573,8 @@ $chartDataJSON = json_encode($chartData);
     gradientStroke2.addColorStop(0.7, 'rgba(119,77,211,0.1)');
     gradientStroke2.addColorStop(0, 'rgba(119,77,211,0)'); //purple colors
 
+
+    const chartRevenueData = <?php echo $chartRevenueDataJSON; ?>;
     new Chart(ctx2, {
       plugins: [{
         beforeInit(chart) {
@@ -570,9 +587,9 @@ $chartDataJSON = json_encode($chartData);
       }],
       type: "line",
       data: {
-        labels: ["Aug 18", "Aug 19", "Aug 20", "Aug 21", "Aug 22", "Aug 23", "Aug 24", "Aug 25", "Aug 26", "Aug 27", "Aug 28", "Aug 29", "Aug 30", "Aug 31", "Sept 01", "Sept 02", "Sept 03", "Aug 22", "Sept 04", "Sept 05", "Sept 06", "Sept 07", "Sept 08", "Sept 09"],
+        labels: chartRevenueData.labels,
         datasets: [{
-            label: "Volume",
+            label: "sales",
             tension: 0,
             borderWidth: 2,
             pointRadius: 3,
@@ -581,7 +598,7 @@ $chartDataJSON = json_encode($chartData);
             pointBackgroundColor: '#2ca8ff',
             backgroundColor: gradientStroke1,
             fill: true,
-            data: [2828, 1291, 3360, 3223, 1630, 980, 2059, 3092, 1831, 1842, 1902, 1478, 1123, 2444, 2636, 2593, 2885, 1764, 898, 1356, 2573, 3382, 2858, 4228],
+            data: chartRevenueData.data,
             maxBarThickness: 6
 
           },
