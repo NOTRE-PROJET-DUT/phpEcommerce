@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Start the session
     session_start();
     $_SESSION["userNameAdmin"] = $userName;
-    $_SESSION["idAdmin"] = $admin->getAdmin($userName)['admin_id'];
+    $_SESSION["Admin_id"] = $admin->getAdmin($userName)['admin_id'];
     
     header('Location: ./dashboard');
   } else {
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <p class="mb-0">Welcome back! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                  <form role="form" method="POST" action="/">
                     <label>userName</label>
                     <div class="mb-3">
                       <input type="text" name="userName" class="form-control" placeholder="Enter your userName" aria-label="userName" aria-describedby="name-addon" required>

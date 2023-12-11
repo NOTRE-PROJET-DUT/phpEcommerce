@@ -26,20 +26,24 @@ class App
     private function route()
     {
         $routesGet = [
-            '/'               => fn() => include_once  'pages/sign-in.php',
-            '/sign-up'        => fn() => include_once  'pages/sign-up.php',
-            '/changePassword' => fn() => include_once  'pages/changepassword.php',
-            '/createProduct'  => fn() => include_once  'pages/createProduct.php',
-            '/profile'        => fn() => include_once  'pages/profile.php',
-            '/dashboard'      => fn() => include_once  'pages/dashboard.php',
-            '/forgetPassword' => fn() => include_once  'pages/forgetPassword.php',
-            '/tables'         => fn() => include_once  'pages/tables.php',
-            '/editProduct'  => fn() => include_once  'pages/editProduct.php',
+            '/'               => fn() => View('sign-in'),
+            '/sign-up'        => fn() => View('sign-up'),
+            '/forgetPassword' => fn() => View('forgetPassword'),
+            '/changePassword' => fn() => View('changepassword'),
+            '/createProduct'  => fn() => handleMiddlewareAndView('createProduct','adminAuth'),
+            '/profile'        => fn() => handleMiddlewareAndView('profile','adminAuth'),
+            '/dashboard'      => fn() => handleMiddlewareAndView('dashboard','adminAuth'),
+            '/tables'         => fn() => handleMiddlewareAndView('tables','adminAuth'),
+            '/editProduct'    => fn() => handleMiddlewareAndView('editProduct','adminAuth'),
         ];
         $routesPost = [
-            '/createProduct'  => fn() => include_once  'pages/createProduct.php',
-            '/editProduct'  => fn() => include_once  'pages/editProduct.php',
-            '/tables'         => fn() => include_once  'pages/tables.php',
+            '/'               => fn() => View('sign-in'),
+            '/sign-up'        => fn() => View('sign-up'),
+            '/forgetPassword' => fn() => View('forgetPassword'),
+            '/changePassword' => fn() => View('changepassword'),
+            '/createProduct'  => fn() => handleMiddlewareAndView('createProduct','adminAuth'),
+            '/editProduct'    => fn() => handleMiddlewareAndView('editProduct','adminAuth'),
+            '/tables'         => fn() => handleMiddlewareAndView('tables','adminAuth'),
         ];
         
         $this->server->addRoutes('GET',$routesGet);

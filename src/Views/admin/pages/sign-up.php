@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <p class="mb-0">Nice to meet you! Please enter your details.</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                  <form role="form" method="POST" action="/sign-up">
                     <label>Email Address</label>
                     <div class="mb-3">
                       <input type="email" name="email" class="form-control" placeholder="Enter your email address" aria-label="Email" aria-describedby="email-addon" required>

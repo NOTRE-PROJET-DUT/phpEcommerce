@@ -25,7 +25,7 @@ class Admin {
 
     public function createAccountAdmin($username, $email, $password, $secretCode) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO admins (username, email, password, secretCode) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO admins (username, email, password, secret_Code) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("ssss", $username, $email, $hashedPassword, $secretCode);
         $query = $stmt->execute();
