@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg blur border-radius-sm top-0 z-index-3 shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
   <div class="container-fluid px-1">
     <a class="navbar-brand font-weight-bolder ms-lg-0 " href="/">
-      Nabil-Bilal
+      shop
     </a>
     <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon mt-2">
@@ -16,13 +16,14 @@
         <li class="nav-item">
           <div class="input-group">
             <span class="input-group-text text-body bg-white  border-end-0 ">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                </svg>
-              </span>
-              <input type="text" class="form-control ps-0" placeholder="Search">
-          </li> </div>
-          
+              <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </span>
+            <input type="text" class="form-control ps-0" placeholder="Search">
+        </li>
+
+
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center me-2 text-dark font-weight-bold" href="/about-us">
             <span class="ps-3">About Us</span>
@@ -48,3 +49,4 @@
     </div>
   </div>
 </nav>
+<script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
