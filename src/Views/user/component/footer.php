@@ -49,7 +49,7 @@
             <h6 class="text-gradient text-primary text-sm">Resources</h6>
             <ul class="flex-column ms-n3 nav">
               <li class="nav-item">
-                <a class="nav-link" href="https://www.creative-tim.com/affiliates/new" target="_blank">
+                <a class="nav-link" href="#" target="_blank">
                   Affiliate Program
                 </a>
               </li>
@@ -61,7 +61,7 @@
             <h6 class="text-gradient text-primary text-sm">Help & Support</h6>
             <ul class="flex-column ms-n3 nav">
               <li class="nav-item">
-                <a class="nav-link" href="https://www.creative-tim.com/contact-us" target="_blank">
+                <a class="nav-link" href="#" target="_blank">
                   Contact Us
                 </a>
               </li>
