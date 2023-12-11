@@ -11,7 +11,7 @@
       </span>
     </button>
     <div class="collapse navbar-collapse" id="navigation">
-      <ul class="navbar-nav ms-xl-auto">
+      <ul class="navbar-nav ms-xl-auto" style="list-style: none;">
 
         <li class="nav-item">
           <div class="input-group">
