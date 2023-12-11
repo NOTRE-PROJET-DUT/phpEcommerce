@@ -15,7 +15,7 @@
 
 <body style="background-color: #eee;">
 
-  <section class="h-100" >
+  <section class="h-100">
     <div class="container h-100 py-5">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-10">
@@ -44,7 +44,7 @@
 
           <div class="card">
             <div class="card-body">
-              <button type="button" id="ProceedPay" class="btn btn-warning btn-block btn-lg">Proceed to Pay</button>
+              <button type="button" id="ProceedPay" class="btn btn-warning btn-block btn-lg" onclick="GoToPayment()">Proceed to Pay</button>
             </div>
           </div>
 
@@ -56,18 +56,12 @@
 
   <script>
     let removeFromLocalStorage = function(itemId) {
-      // Retrieve data from local storage
       var data = JSON.parse(localStorage.getItem('cart')) || [];
-
-      // Find the index of the item with the specified ID
       var index = data.findIndex(function(item) {
         return item.id === itemId;
       });
-
-      // Remove the item if found
       if (index !== -1) {
         data.splice(index, 1);
-        // Save the updated data back to local storage
         localStorage.setItem('cart', JSON.stringify(data));
       }
       location.reload();
@@ -104,7 +98,7 @@
       productLead.textContent = item.name;
 
       var productDetails = document.createElement('p');
-      productDetails.innerHTML = '<span class="text-muted">Size: </span>M <span class="text-muted">Color: </span>Grey';
+      productDetails.innerHTML = '<span class="text-muted" >id: ' + item.id + '</span>';
 
       col2.appendChild(productLead);
       col2.appendChild(productDetails);
@@ -118,12 +112,11 @@
       minusButton.onclick = function() {
         var quantityInput = this.parentNode.querySelector('input[type=number]');
         quantityInput.stepDown();
-        updateProceedPayDisplay(item.price*quantityInput.value);
       };
       minusButton.innerHTML = '<i class="fas fa-minus"></i>';
 
       var quantityInput = document.createElement('input');
-      quantityInput.id = 'form1';
+      quantityInput.id = 'form'+item.id;
       quantityInput.min = '0';
       quantityInput.name = 'quantity';
       quantityInput.value = item.quantity;
@@ -135,7 +128,6 @@
       plusButton.onclick = function() {
         var quantityInput = this.parentNode.querySelector('input[type=number]');
         quantityInput.stepUp();
-        updateProceedPayDisplay(item.price*quantityInput.value);
       };
       plusButton.innerHTML = '<i class="fas fa-plus"></i>';
 
@@ -193,16 +185,28 @@
         cartContainer.appendChild(card);
         totalPrice += item.price * item.quantity;
       });
-      updateProceedPayDisplay(totalPrice);
 
     }
 
     // Call the function to display the cards
     displayCart();
 
+    function updateQuantityInLocalStorage() {
+      let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
 
-    function updateProceedPayDisplay(totalPrice) {
-      document.getElementById('ProceedPay').textContent = 'Proceed to Pay  ' + (totalPrice ? totalPrice.toFixed(3) : '');
+        for (let i = 0; i < cartItems.length; i++) {
+          let inputId = 'form' + cartItems[i].id;
+          cartItems[i].quantity = document.getElementById(inputId).value;
+        }
+        // Update the local storage
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+
+      }
+
+    function GoToPayment() {
+
+      updateQuantityInLocalStorage();
+      window.location.href = "/payment";
     }
   </script>
 
