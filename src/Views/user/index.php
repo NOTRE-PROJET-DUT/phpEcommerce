@@ -4,6 +4,8 @@ include_once '../route.php';
 include_once '../globalViewFunction.php';
 
 
+
+
 class App
 {
     private static ?App $instance = null; // Specify null as the default value
@@ -26,17 +28,18 @@ class App
     private function route()
     {
         $routesGet = [
-            '/'               => fn() => include_once   'pages/homePage.php',
-            '/about-us'       => fn() => include_once   'pages/about-us.php',
-            '/sign-in'        => fn() => include_once   'pages/sign-in.php',
-            '/sign-up'        => fn() => include_once   'pages/sign-up.php',
-            '/cart'           => fn() => include_once   'pages/cart.php',
-            '/forgetPassword' => fn() => include_once   'pages/forgetPassword.php',
-            '/product'        => fn() => include_once   'pages/product.php',
-            '/profile'        => fn() => include_once   'pages/profile.php',
-            '/profileAdmin'   => fn() => include_once   'pages/profileAdmin.php',
-            '/contact-us'     => fn() => include_once   'pages/contact-us.php',
-            '/admin'          => fn() =>                 header('Location: http://localhost:8001/'),
+            '/'               => fn() => View('homePage'),
+            '/about-us'       => fn() => View('about-us'),
+            '/sign-in'        => fn() => View('sign-in'),
+            '/sign-up'        => fn() => View('sign-up'),
+            '/cart'           => fn() => View('cart'),
+            '/forgetPassword' => fn() => View('forgetPassword'),
+            '/product'        => fn() => View('product'),
+            '/profileAdmin'   => fn() => View('profileAdmin'),
+            '/contact-us'     => fn() => View('contact-us'),
+            '/admin'          => fn() => header('Location: http://localhost:8001/'),
+
+            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
         ];
 
         $this->server->addRoutes('GET',$routesGet);
