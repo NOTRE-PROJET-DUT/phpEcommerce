@@ -71,7 +71,7 @@ class User
     
 
     public function getUserByEmail($email) {
-        $sql = "SELECT user_id FROM users WHERE email = ?";
+        $sql = "SELECT user_id FROM users WHERE email = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -80,7 +80,7 @@ class User
         $stmt->close();
     
         if ($user) {
-            return $user;
+            return $user[0];
         }
     }
     

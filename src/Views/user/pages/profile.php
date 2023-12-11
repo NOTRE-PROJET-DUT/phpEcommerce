@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
   $email = $_POST["email"];
   $password = $_POST["password"];
-
-  if ($user->updateUser($id=1 , $email,$password) == TRUE) {
+  session_start();
+  if ($user->updateUser($_SESSION['user_id'], $email,$password) == TRUE) {
     header('Location: ./profile');
   } else {
     echo "no exist";

@@ -11,6 +11,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pass = $_POST["Password"];
 
         if ($user->login($email,$pass) == TRUE) {
+          if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+          }
+          $_SESSION['user_id'] = (int)($user->getUserByEmail($email)['user_id']);
           header('Location: ./');
         } else {
           echo "no exist";
@@ -45,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter your email and password to sign in</p>
               </div>
               <div class="card-body">
-                <form role="form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form role="form" method="POST" action="/sign-in">
                   <div class="mb-3">
                     <input type="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" name="Email" required>
                   </div>

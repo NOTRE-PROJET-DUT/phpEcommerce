@@ -35,7 +35,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="d-flex" href="/cart">
+          <a class="d-flex m-2" href="/cart">
             <span class="badge rounded-pill bg-dark position-relative" type="submit">
               Cart
               <span class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">

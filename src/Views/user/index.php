@@ -43,6 +43,17 @@ class App
         ];
 
         $this->server->addRoutes('GET',$routesGet);
+
+        $routesPost = [
+            '/sign-in'        => fn() => View('sign-in'),
+            '/sign-up'        => fn() => View('sign-up'),
+            '/forgetPassword' => fn() => View('forgetPassword'),
+
+            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
+        ];
+
+        $this->server->addRoutes('POST',$routesPost);
+
     }
 }
 
