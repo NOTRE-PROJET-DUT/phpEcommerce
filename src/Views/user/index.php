@@ -39,8 +39,8 @@ class App
             '/contact-us'     => fn() => View('contact-us'),
             '/admin'          => fn() => header('Location: http://localhost:8001/'),
             
-            '/payment'        => fn() => View('payment'),
-            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
+            '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),
+            '/profile'        => fn() => View('profile'),
         ];
 
         $this->server->addRoutes('GET',$routesGet);
@@ -50,8 +50,8 @@ class App
             '/sign-up'        => fn() => View('sign-up'),
             '/forgetPassword' => fn() => View('forgetPassword'),
 
-            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
-            '/payment'        => fn() => View('payment'),
+            '/profile'        => fn() => View('profile'),
+            '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),
 
         ];
 
