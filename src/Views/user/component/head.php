@@ -13,3 +13,4 @@
   <link href="../assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="../assets/css/soft-design-system.min.css" rel="stylesheet" />
+  <link href="../assets/js/core/bootstrap.bundle.min.js" rel="stylesheet" />

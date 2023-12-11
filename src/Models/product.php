@@ -226,6 +226,46 @@ class Product
 
 
 
+    public function getMostPurchasedProducts()
+    {
+
+        $query="SELECT
+                    p.product_id,
+                    p.product_name,
+                    p.category,
+                    p.description,
+                    p.price,
+                    p.image_url,
+                    SUM(oi.quantity) AS total_quantity_sold
+                FROM
+                    products p
+                LEFT JOIN
+                    order_items oi ON p.product_id = oi.product_id
+                LEFT JOIN
+                    orders o ON oi.order_id = o.order_id
+                GROUP BY
+                    p.product_id, p.product_name, p.category, p.description, p.price, p.image_url
+                ORDER BY
+                    total_quantity_sold DESC
+                LIMIT 20;";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        if ($result) {
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $products;
+        } else {
+            $stmt->close();
+            return [];
+        }
+    }
+
+
+
     public function getProduct($id)
     {
         $query = "SELECT * FROM products WHERE product_id = ?";
