@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                   </div>
                   <div class="text-start position-absolute fixed-bottom ms-7">
-                    <h6 class="text-white text-sm mb-5">Copyright © 2022 Corporate UI Design System by Creative Tim.</h6>
+                    <h6 class="text-white text-sm mb-5">Copyright © 2022 shop Design System by Creative Tim.</h6>
                   </div>
                 </div>
               </div>

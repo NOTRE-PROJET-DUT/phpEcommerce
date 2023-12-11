@@ -7,7 +7,7 @@
                 © <script>
                   document.write(new Date().getFullYear())
                 </script>
-                Corporate UI by
+                shop by
                 <a href="#" class="text-secondary" target="_blank">Creative Tim</a>.
               </div>
             </div>

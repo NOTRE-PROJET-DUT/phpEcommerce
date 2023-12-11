@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php  include_once  'component/head.php'; ?>
   
   <title>
-  Nabil-Bilal
+  shop
   </title>
   
 </head>

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php include_once 'component/head.php'; ?>
 
   <title>
-    Nabil-Bilal
+    shop
   </title>
 
   <!-- Core theme CSS (includes Bootstrap)-->
@@ -401,7 +401,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Footer-->
   <footer class="py-2 bg-dark">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Nabil-Bilal 2023</p>
+      <p class="m-0 text-center text-white">Copyright &copy; shop 2023</p>
     </div>
   </footer>
   <script src="../assets/js/core/bootstrap.bundle.min.js"></script>
