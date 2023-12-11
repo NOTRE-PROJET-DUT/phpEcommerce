@@ -38,7 +38,8 @@ class App
             '/profileAdmin'   => fn() => View('profileAdmin'),
             '/contact-us'     => fn() => View('contact-us'),
             '/admin'          => fn() => header('Location: http://localhost:8001/'),
-
+            
+            '/payment'        => fn() => View('payment'),
             '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
         ];
 
@@ -50,6 +51,8 @@ class App
             '/forgetPassword' => fn() => View('forgetPassword'),
 
             '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
+            '/payment'        => fn() => View('payment'),
+
         ];
 
         $this->server->addRoutes('POST',$routesPost);

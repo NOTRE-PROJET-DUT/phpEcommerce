@@ -6,7 +6,7 @@
     <?php include_once  'component/head.php'; ?>
 
     <title>
-        Soft UI Design System by Creative Tim
+        shop 
     </title>
 
     <!-- Core theme CSS (includes Bootstrap)-->
