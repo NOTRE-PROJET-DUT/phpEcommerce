@@ -205,9 +205,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <td class="align-middle">
                           <div class="d-flex">
-                            <!-- <div class="border px-1 py-1 text-center d-flex align-items-center border-radius-sm my-auto">
-                            <img src="assets/img/logos/visa.png" class="w-90 mx-auto" alt="visa">
-                          </div> -->
+              
                             <div class="ms-2">
                               <p class="text-dark text-sm mb-0"><?php echo $orderItem["category"]; ?></p>
                               <p class="text-secondary text-sm mb-0"><?php echo 'ID : ' . $orderItem["product_id"]; ?></p>
