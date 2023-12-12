@@ -18,7 +18,7 @@ INSERT INTO users (
 );
 
 -- Inserting data into the coupons
-INSERT INTO coupons (coupon_code, coupon_type, discount_value, expiration_date) VALUES ('SAVE20', 'Percentage', 20.00, '2023-01-01');
+INSERT INTO coupons (coupon_code, coupon_type, discount_value, expiration_date) VALUES ('SAVE20', 'Percentage', 0.00, '2023-01-01');
 
 
 -- Inserting data into the products table

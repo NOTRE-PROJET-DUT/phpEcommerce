@@ -61,7 +61,7 @@ CREATE TABLE products (
     stock_quantity INT NOT NULL,
     category VARCHAR(12) NOT NULL CHECK (category IN ('Electronics', 'Clothing', 'Books','Home and Garden','Toys and Games')),
     admin_id INT,
-    coupon_id int ,
+   coupon_id INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (admin_id) REFERENCES admins(admin_id) ,
     FOREIGN KEY (coupon_id) REFERENCES coupons(coupon_id)
