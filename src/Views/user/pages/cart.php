@@ -3,7 +3,6 @@
 
 <head>
 
-  <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
   <?php include_once  'component/head.php'; ?>
 
   <title>
@@ -31,16 +30,6 @@
             <!-- inject code html using displayCart() -->
           </div>
 
-
-          <!-- <div class="card mb-4">
-            <div class="card-body p-4 d-flex flex-row">
-              <div class="form-outline flex-fill">
-                <input type="text" id="form1" class="form-control form-control-lg" />
-                <label class="form-label" for="form1">Discound code</label>
-              </div>
-              <button type="button" class="btn btn-outline-warning btn-lg ms-3">Apply</button>
-            </div>
-          </div> -->
 
           <div class="card">
             <div class="card-body">

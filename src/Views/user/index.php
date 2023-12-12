@@ -35,10 +35,10 @@ class App
             '/cart'           => fn() => View('cart'),
             '/forgetPassword' => fn() => View('forgetPassword'),
             '/product'        => fn() => View('product'),
-            '/search'        => fn() => View('search'),
+            '/search'         => fn() => View('search'),
             '/profileAdmin'   => fn() => View('profileAdmin'),
-            '/test'   => fn() => View('test'),
-            '/createOrder'   => fn() => View('createOrder'),
+            '/test'           => fn() => View('test'),
+            '/createOrder'    => fn() => View('createOrder'),
             '/contact-us'     => fn() => View('contact-us'),
             '/admin'          => fn() => header('Location: http://localhost:8001/'),
             
@@ -51,9 +51,11 @@ class App
         $routesPost = [
             '/sign-in'        => fn() => View('sign-in'),
             '/sign-up'        => fn() => View('sign-up'),
+            '/about-us'       => fn() => View('about-us'),
+            '/contact-us'     => fn() => View('contact-us'),
             '/forgetPassword' => fn() => View('forgetPassword'),
-            '/search'        => fn() => View('search'),
-            '/createOrder'   => fn() => View('createOrder'),
+            '/search'         => fn() => View('search'),
+            '/createOrder'    => fn() => View('createOrder'),
 
             '/profile'        => fn() => View('profile'),
             '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),
