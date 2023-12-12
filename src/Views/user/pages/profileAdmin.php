@@ -1,9 +1,11 @@
 <?php
+if (!isset($_GET['idAdmin']))exit;
 
+$idAdmin = $_GET['idAdmin'];
 Model('admin');
 $admin = new Admin();
 
-$adminData =  $admin->getAdmin("admin1");
+$adminData =  $admin->getAdminByID($idAdmin);
 
 ?>
 

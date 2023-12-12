@@ -1,9 +1,7 @@
 <?php
-$idProduct = 1;
-if (isset($_GET['idProduct'])) {
-    // Get the value of the 'data' parameter
+if (!isset($_GET['idProduct']))exit;
+
     $idProduct = $_GET['idProduct'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,10 +34,10 @@ if (isset($_GET['idProduct'])) {
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<?php echo $product['image_url']; ?>" alt="...imageProduct" /></div>
                 <div class="col-md-6">
-                    <div class="small mb-1"><?php echo $product['category']; ?></div>
+                    <div class="small mb-1"><a href="/profileAdmin?idAdmin=<?php echo $product['admin_id']; ?>">Page Shop create by @admin </a></div>
                     <h1 class="display-5 fw-bolder"><?php echo $product['product_name']; ?></h1>
                     <div class="fs-5 mb-5">
-                        <span class="text-decoration-line-through">$45.00</span>
+                        <div class="small mb-1"><?php echo $product['category']; ?></div>
                         <span><?php echo $product['price'] . " $"; ?></span>
                     </div>
                     <p class="lead"><?php echo $product['description']; ?></p>

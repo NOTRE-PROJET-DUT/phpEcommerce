@@ -13,6 +13,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 
         if ($user->forgetPassword($email,$checkpass) === TRUE) {
+          if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        $_SESSION['emailExist'] = $email;
           header('Location: ./changepassword');
         } else {
           echo "no exist";

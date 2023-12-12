@@ -24,24 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 
-  <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
   <?php include_once 'component/head.php'; ?>
 
   <title>
     shop
   </title>
 
-  <!-- Core theme CSS (includes Bootstrap)-->
 </head>
 
 <body>
   <!-- Navigation-->
   <?php include_once 'component/nav.php'; ?>
   <!-- Header-->
-
-
-
-
 
   <!-- Section-->
   <div class="pt-7 pb-6 bg-cover" style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
@@ -143,7 +137,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <?php
                   Model("order");
                   $orderItems = new Order();
-                  $itemsOrder = $orderItems->getproductOrder(4);
+                  if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
+                  $itemsOrder = $orderItems->getproductOrder($_SESSION['user_id']);
                   foreach ($itemsOrder as $orderItem) :
                   ?>
                     <tr>

@@ -182,20 +182,20 @@
 
     function updateQuantityInLocalStorage() {
       let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-
+      if (cartItems.length <= 0) {return false};
         for (let i = 0; i < cartItems.length; i++) {
           let inputId = 'form' + cartItems[i].id;
           cartItems[i].quantity = document.getElementById(inputId).value;
         }
         // Update the local storage
         localStorage.setItem('cart', JSON.stringify(cartItems));
-
+        return true;
       }
 
     function GoToPayment() {
 
-      updateQuantityInLocalStorage();
-      window.location.href = "/payment";
+      if(updateQuantityInLocalStorage())
+        window.location.href = "/payment";
     }
   </script>
 
