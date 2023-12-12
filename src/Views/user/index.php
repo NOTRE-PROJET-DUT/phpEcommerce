@@ -35,6 +35,7 @@ class App
             '/cart'           => fn() => View('cart'),
             '/forgetPassword' => fn() => View('forgetPassword'),
             '/product'        => fn() => View('product'),
+            '/search'        => fn() => View('search'),
             '/profileAdmin'   => fn() => View('profileAdmin'),
             '/contact-us'     => fn() => View('contact-us'),
             '/admin'          => fn() => header('Location: http://localhost:8001/'),
@@ -49,6 +50,7 @@ class App
             '/sign-in'        => fn() => View('sign-in'),
             '/sign-up'        => fn() => View('sign-up'),
             '/forgetPassword' => fn() => View('forgetPassword'),
+            '/search'        => fn() => View('search'),
 
             '/profile'        => fn() => View('profile'),
             '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),

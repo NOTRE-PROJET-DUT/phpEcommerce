@@ -14,13 +14,16 @@
             <ul class="navbar-nav ms-xl-auto">
 
                 <li class="nav-item">
+                <form action="/search" method="GET">
                     <div class="input-group">
                         <span class="input-group-text text-body bg-white  border-end-0 ">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                             </svg>
                         </span>
-                        <input type="text" class="form-control ps-0" placeholder="Search">
+                        <input type="text" name="nameProduct" class="form-control ps-0" placeholder="Search">
+                        </div>
+                    </form>
                 </li>
 
                 <li class="nav-item">

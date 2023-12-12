@@ -224,6 +224,25 @@ class Product
         }
     }
 
+    public function getProductsByName($name, $offset = 0)
+    {
+        $offset = $offset * 20;
+        $query = "SELECT * FROM products WHERE product_name LIKE ? LIMIT 20 OFFSET ?";
+        $stmt = $this->db->prepare($query);
+        $v =  "%$name%";
+        $stmt->bind_param("si",$v , $offset);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if ($result) {
+            $products = $result->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $products;
+        } else {
+            $stmt->close();
+            return [];
+        }
+    }
+
 
 
     public function getMostPurchasedProducts()
