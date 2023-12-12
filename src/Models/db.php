@@ -31,7 +31,7 @@ class db_connect {
     }
 
     // Private destructor to prevent closing the connection externally
-    private function __destruct()
+    public function __destruct()
     {
         $this->conn->close();
     }
