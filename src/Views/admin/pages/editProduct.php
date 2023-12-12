@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $category = $_POST["category"];
 
     if (isset($_FILES["image"]) && basename($_FILES["image"]["name"]) != "") {
-        $uploadDir = '../../../storage/';
+        $uploadDir = __DIR__.'/../../storage/';
         $uploadFile = $uploadDir . basename($_FILES['image']['name']);
 
         // Move the uploaded file to the specified directory and if not work echo 

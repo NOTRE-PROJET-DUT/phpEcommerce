@@ -112,18 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Mobile:</span> &nbsp; <?php echo $adminData["phone_number"]; ?></li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">country:</span> &nbsp; <?php echo $adminData["country"]; ?></li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Location:</span> &nbsp; <?php echo $adminData["city"] . " " . $adminData["address"]; ?></li>
-                  <!-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                  <span class="text-secondary">Social:</span> &nbsp;
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                  </a>
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-github fa-lg"></i>
-                  </a>
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-slack fa-lg"></i>
-                  </a>
-                </li> -->
+                
                 </ul>
               </div>
           </div>
@@ -185,24 +174,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <!-- <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script> -->
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Corporate UI Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/corporate-ui-dashboard.min.js?v=1.0.0"></script>
 </body>
 
 </html>

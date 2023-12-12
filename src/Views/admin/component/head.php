@@ -12,3 +12,4 @@
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="assets/css/corporate-ui-dashboard.css?v=1.0.0" rel="stylesheet" />
+  <script src="assets/js/core/bootstrap.bundle.min.js"></script>
