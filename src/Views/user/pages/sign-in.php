@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['user_id'] = (int)($user->getUserByEmail($email)['user_id']);
           header('Location: ./');
         } else {
-          echo "no exist";
+          echo "email or password not correct";
         }
    
 }

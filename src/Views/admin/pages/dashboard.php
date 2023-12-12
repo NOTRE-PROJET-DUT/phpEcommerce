@@ -264,7 +264,10 @@ $chartRevenueDataJSON = json_encode($chartRevenueData);
                   </thead>
                   <tbody>
                     <?php
-                    $productItems = $products->getAdminProducts(1);
+                    if (session_status() == PHP_SESSION_NONE) {
+                      session_start();
+                    }
+                    $productItems = $products->getAdminProducts($_SESSION['Admin_id']);
                     foreach ($productItems as $productItem) :
                     ?>
                       <tr>
@@ -306,7 +309,7 @@ $chartRevenueDataJSON = json_encode($chartRevenueData);
       </div>
       <div class="row">
         <?php
-        $productTransactionData = $products->getProductTransactionData(1)[0];
+        $productTransactionData = $products->getProductTransactionData($_SESSION['Admin_id'])[0];
         ?>
         <div class="col-xl-3 col-sm-6 mb-xl-0">
           <div class="card border shadow-xs mb-4">

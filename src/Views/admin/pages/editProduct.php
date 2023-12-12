@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $uploadFile = $product->getProduct($idProduct)["image_url"];
     }
     $path = "http://localhost:8005/".$basename;
-    if ($product->updateProduct(1, $name, $price, $description, $path, $category, $stock_quantity) == TRUE) {
+    if ($product->updateProduct($idProduct, $name, $price, $description, $path, $category, $stock_quantity) == TRUE) {
         header('Location: ./dashboard');
     } else {
         echo "no update";
