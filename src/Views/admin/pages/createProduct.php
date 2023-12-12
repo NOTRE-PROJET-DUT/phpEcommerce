@@ -12,7 +12,8 @@
 
         if (isset($_FILES["image"])) {
             $uploadDir = '../../../storage/';
-            $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+            $basename = basename($_FILES['image']['name']);
+            $uploadFile = $uploadDir . $basename;
     
             // Move the uploaded file to the specified directory and if not work echo 
             // an error message.
@@ -22,7 +23,8 @@
         } else {
             echo "No file selected.";
         }
-        if ($product->createProduct(1,$name,$price,$description,$uploadFile,$category,$stock_quantity) == TRUE) {          
+        $path = "http://localhost:8005/".$basename;
+        if ($product->createProduct(1,$name,$price,$description,$path,$category,$stock_quantity) == TRUE) {          
           header('Location: ./createProduct');
         } else {
           echo "no exist";
