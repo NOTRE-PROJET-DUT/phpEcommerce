@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($password === $confirmPassword) {
 
 
-    if ($admin->createAccountAdmin($userName, $email, $pass, $secretCode) == TRUE) {
+    if ($admin->createAccountAdmin($userName, $email, $password, $confirmPassword) == TRUE) {
       header('Location: ./');
     } else {
       echo "no exist";
