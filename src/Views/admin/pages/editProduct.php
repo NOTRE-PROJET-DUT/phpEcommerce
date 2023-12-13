@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (isset($_FILES["image"]) && basename($_FILES["image"]["name"]) != "") {
         $uploadDir = '../../../storage/';
-        $uploadFile = $uploadDir . basename($_FILES['image']['name']);
+        $basename = basename($_FILES['image']['name']);
+        $uploadFile = $uploadDir . $basename;
 
         // Move the uploaded file to the specified directory and if not work echo 
         // an error message.
@@ -31,7 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $uploadFile = $product->getProduct($idProduct)["image_url"];
     }
-    if ($product->updateProduct(1, $name, $price, $description, $uploadFile, $category, $stock_quantity) == TRUE) {
+    $path = "http://localhost:8005/".$basename;
+    if ($product->updateProduct($idProduct, $name, $price, $description, $path, $category, $stock_quantity) == TRUE) {
         header('Location: ./dashboard');
     } else {
         echo "no update";

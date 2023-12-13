@@ -35,15 +35,16 @@ class App
             '/cart'           => fn() => View('cart'),
             '/forgetPassword' => fn() => View('forgetPassword'),
             '/product'        => fn() => View('product'),
-            '/search'        => fn() => View('search'),
+            '/search'         => fn() => View('search'),
             '/profileAdmin'   => fn() => View('profileAdmin'),
-            '/test'   => fn() => View('test'),
-            '/createOrder'   => fn() => View('createOrder'),
             '/contact-us'     => fn() => View('contact-us'),
             '/admin'          => fn() => header('Location: http://localhost:8001/'),
             
+            
+            '/changePassword' => fn() => handleMiddlewareAndView('changepassword','changePasswordAuth'),
+            '/printFacture'   => fn() => handleMiddlewareAndView('printFacture','userAuth'),
             '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),
-            '/profile'        => fn() => View('profile'),
+            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
         ];
 
         $this->server->addRoutes('GET',$routesGet);
@@ -51,11 +52,14 @@ class App
         $routesPost = [
             '/sign-in'        => fn() => View('sign-in'),
             '/sign-up'        => fn() => View('sign-up'),
+            '/about-us'       => fn() => View('about-us'),
+            '/contact-us'     => fn() => View('contact-us'),
             '/forgetPassword' => fn() => View('forgetPassword'),
-            '/search'        => fn() => View('search'),
-            '/createOrder'   => fn() => View('createOrder'),
-
-            '/profile'        => fn() => View('profile'),
+            
+            
+            '/changePassword' => fn() => handleMiddlewareAndView('changepassword','changePasswordAuth'),
+            '/profile'        => fn() => handleMiddlewareAndView('profile','userAuth'),
+            '/createOrder'    => fn() => handleMiddlewareAndView('createOrder','userAuth'),
             '/payment'        => fn() => handleMiddlewareAndView('payment','userAuth'),
 
         ];

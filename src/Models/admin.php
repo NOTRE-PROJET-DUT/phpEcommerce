@@ -44,6 +44,17 @@ class Admin {
         $stmt->close();
         return $adminData;
     }
+
+    public function getAdminByID($id) {
+        $query = "SELECT * FROM admins WHERE admin_id LIKE ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $adminData = $result->fetch_assoc();
+        $stmt->close();
+        return $adminData;
+    }
     
 
     public function updateAdmin($username, $password, $email, $phone, $address) {

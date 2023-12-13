@@ -24,24 +24,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 
-  <!-- <link href="./../../../bootstrap/dist/css/bootstrap.css" rel="stylesheet" /> -->
   <?php include_once 'component/head.php'; ?>
 
   <title>
     shop
   </title>
 
-  <!-- Core theme CSS (includes Bootstrap)-->
 </head>
 
 <body>
   <!-- Navigation-->
   <?php include_once 'component/nav.php'; ?>
   <!-- Header-->
-
-
-
-
 
   <!-- Section-->
   <div class="pt-7 pb-6 bg-cover" style="background-image: url('../assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
@@ -99,18 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Email:</span> &nbsp; +(44) 123 1234 123</li>
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Function:</span> &nbsp; Manager - Organization</li>
               <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Location:</span> &nbsp; USA</li>
-              <!-- <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm">
-                  <span class="text-secondary">Social:</span> &nbsp;
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-linkedin fa-lg"></i>
-                  </a>
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-github fa-lg"></i>
-                  </a>
-                  <a class="btn btn-link text-dark mb-0 ps-1 pe-1 py-0" href="javascript:;">
-                    <i class="fab fa-slack fa-lg"></i>
-                  </a>
-                </li> -->
+
             </ul>
           </div>
         </div>
@@ -154,7 +137,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <?php
                   Model("order");
                   $orderItems = new Order();
-                  $itemsOrder = $orderItems->getproductOrder(4);
+                  if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
+                
+                  $itemsOrder = $orderItems->getproductOrder($_SESSION['user_id']);
                   foreach ($itemsOrder as $orderItem) :
                   ?>
                     <tr>
@@ -246,26 +233,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <p class="m-0 text-center text-white">Copyright &copy; shop 2023</p>
     </div>
   </footer>
-  <script src="../assets/js/core/bootstrap.bundle.min.js"></script>
 
-  <!-- <script>
-
-const exampleModal = document.getElementById('exampleModal')
-exampleModal.addEventListener('show.bs.modal', event => {
-  // Button that triggered the modal
-  const button = event.relatedTarget
-  // Extract info from data-bs-* attributes
-  const recipient = button.getAttribute('data-bs-whatever')
-  // If necessary, you could initiate an AJAX request here
-  // and then do the updating in a callback.
-  //
-  // Update the modal's content.
-  const modalTitle = exampleModal.querySelector('.modal-title')
-  const modalBodyInput = exampleModal.querySelector('.modal-body input')
-
-
-})
-</script> -->
 </body>
 
 </html>

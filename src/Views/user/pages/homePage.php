@@ -9,20 +9,12 @@
         shop 
     </title>
 
-    <!-- Core theme CSS (includes Bootstrap)-->
 </head>
 
 <body>
     <!-- Navigation-->
     <?php
-    if (session_status() == PHP_SESSION_NONE) {
-        session_start();
-    }
-    if (isset($_SESSION['user_id']) && !empty($_SESSION['user_id'])) {
-        include_once  'component/navAuth.php';
-    } else {
         include_once  'component/nav.php';
-    }
     ?>
     <!-- Header-->
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -235,20 +227,16 @@
             localStorage.setItem('cart', JSON.stringify(cart));
         }
     </script>
-    <link rel="stylesheet" href="../assets/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
 
     <!-- Swiper JS -->
-    <script src="../assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
     <script>
         if (document.getElementsByClassName('mySwiper')) {
             var swiper = new Swiper(".mySwiper", {
                 effect: "cards",
                 grabCursor: true,
                 initialSlide: 1,
-                // navigation: {
-                //   nextEl: '.swiper-button-next',
-                //   prevEl: '.swiper-button-prev',
-                // },
             });
         };
     </script>

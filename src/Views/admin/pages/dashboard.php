@@ -2,7 +2,10 @@
 
 Model('product');
 $products = new Product();
-$adminId = $_SESSION["admin_id"] ?? 1;
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$adminId = $_SESSION["admin_id"];
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
@@ -21,7 +24,7 @@ $chartSalesData = [
   'labels' => [],
   'data' => [],
 ];
-$salesData = $products->getProductSalesData(1);
+$salesData = $products->getProductSalesData($adminId);
 foreach ($salesData as $row) {
   $chartSalesData['labels'][] = $row['month'];
   $chartSalesData['data'][] = $row['num_sales'];
@@ -36,7 +39,7 @@ $chartRevenueData = [
   'labels' => [],
   'data' => [],
 ];
-$revenueData = $products->getProductRevenueData(1);
+$revenueData = $products->getProductRevenueData($adminId);
 foreach ($revenueData as $row) {
   $chartRevenueData['labels'][] = substr(date("F", mktime(0, 0, 0, $row['month'], 1)), 0, 3);
   $chartRevenueData['data'][] = $row['total_sales_revenue'];
@@ -264,7 +267,10 @@ $chartRevenueDataJSON = json_encode($chartRevenueData);
                   </thead>
                   <tbody>
                     <?php
-                    $productItems = $products->getAdminProducts(1);
+                    if (session_status() == PHP_SESSION_NONE) {
+                      session_start();
+                    }
+                    $productItems = $products->getAdminProducts($_SESSION['Admin_id']);
                     foreach ($productItems as $productItem) :
                     ?>
                       <tr>
@@ -306,7 +312,10 @@ $chartRevenueDataJSON = json_encode($chartRevenueData);
       </div>
       <div class="row">
         <?php
-        $productTransactionData = $products->getProductTransactionData(1)[0];
+        if (session_status() == PHP_SESSION_NONE) {
+          session_start();
+        }
+        $productTransactionData = $products->getProductTransactionData($_SESSION['Admin_id'])[0];
         ?>
         <div class="col-xl-3 col-sm-6 mb-xl-0">
           <div class="card border shadow-xs mb-4">

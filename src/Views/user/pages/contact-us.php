@@ -1,3 +1,18 @@
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+    $fullName = $_POST['fullName'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+    if (!isset($fullName) || !isset($email) || !isset($message)) {
+        echo 'Invalid input. Please check your details and try again.';
+        exit;
+    }
+    $contact = "fullName: $fullName, email: $email, message: $message";
+    file_put_contents('contact-us.log', $contact . PHP_EOL, FILE_APPEND);
+}
+?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
@@ -72,25 +87,25 @@
                   or contact using our contact form.
                 </p>
               </div>
-              <form id="contact-form" method="post" autocomplete="off">
+              <form id="contact-form" method="POST" autocomplete="off">
                 <div class="card-body pb-2">
                   <div class="row">
                     <div class="col-md-6">
                       <label>Full Name</label>
                       <div class="input-group mb-4">
-                        <input class="form-control" placeholder="Full Name" aria-label="Full Name" type="text">
+                        <input required class="form-control" name="fullName" placeholder="Full Name" aria-label="Full Name" type="text">
                       </div>
                     </div>
                     <div class="col-md-6 ps-md-2">
                       <label>Email</label>
                       <div class="input-group">
-                        <input type="email" class="form-control" placeholder="hello@creative-tim.com">
+                        <input type="email" required name="email" class="form-control" placeholder="test@test.test">
                       </div>
                     </div>
                   </div>
                   <div class="form-group mb-0 mt-md-0 mt-4">
                     <label>How can we help you?</label>
-                    <textarea name="message" class="form-control" id="message" rows="6" placeholder="Describe your problem in at least 250 characters"></textarea>
+                    <textarea name="message" required class="form-control" id="message" rows="6" placeholder="Describe your problem in at least 250 characters"></textarea>
                   </div>
                   <div class="row">
                     <div class="col-md-12 text-center">
@@ -109,16 +124,7 @@
 
   <?php  include_once  'component/footer.php'; ?>
 
-  <!--   Core JS Files   -->
-  <script src="assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.min.js"></script>
-  <!--  Plugin for Parallax, full documentation here: https://github.com/wagerfield/parallax  -->
-  <script src="assets/js/plugins/parallax.min.js"></script>
-  <!-- Control Center for Soft UI Kit: parallax effects, scripts for the example pages etc -->
-  <!--  Google Maps Plugin    -->
-  <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script> -->
-  <script src="assets/js/soft-design-system.min.js?v=1.0.9" type="text/javascript"></script>
+ 
 </body>
 
 </html>

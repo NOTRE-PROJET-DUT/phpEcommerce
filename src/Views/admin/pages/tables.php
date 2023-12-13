@@ -84,7 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <tbody>
 
                     <?php
-                    $itemsOrderDelivered = $orderItems->getOrderItemsDeliveredAdmin(1);
+                    if (session_status() == PHP_SESSION_NONE) {
+                      session_start();
+                    }
+                    $itemsOrderDelivered = $orderItems->getOrderItemsDeliveredAdmin($_SESSION['Admin_id']);
                     foreach ($itemsOrderDelivered as $orderItem) :
                     ?>
 
@@ -156,7 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   </thead>
                   <tbody>
                     <?php
-                    $itemsOrder = $orderItems->getOrderItemsAdmin(1);
+
+                    $itemsOrder = $orderItems->getOrderItemsAdmin($_SESSION['Admin_id']);
                     foreach ($itemsOrder as $orderItem) :
                     ?>
                       <tr>
@@ -269,7 +273,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </main>
 
-  <script src="assets/js/core/bootstrap.bundle.min.js"></script>
+  
 </body>
 
 </html>

