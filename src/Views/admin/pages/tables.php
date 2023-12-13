@@ -2,7 +2,10 @@
 
 Model('orderItems');
 $orderItems = new OrderItems();
-
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$adminId = $_SESSION["Admin_id"];
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
@@ -87,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (session_status() == PHP_SESSION_NONE) {
                       session_start();
                     }
-                    $itemsOrderDelivered = $orderItems->getOrderItemsDeliveredAdmin($_SESSION['Admin_id']);
+                    $itemsOrderDelivered = $orderItems->getOrderItemsDeliveredAdmin($adminId);
                     foreach ($itemsOrderDelivered as $orderItem) :
                     ?>
 
@@ -160,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <tbody>
                     <?php
 
-                    $itemsOrder = $orderItems->getOrderItemsAdmin($_SESSION['Admin_id']);
+                    $itemsOrder = $orderItems->getOrderItemsAdmin($adminId);
                     foreach ($itemsOrder as $orderItem) :
                     ?>
                       <tr>

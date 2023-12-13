@@ -9,6 +9,11 @@
         $description = $_POST["description"];
         $category = $_POST["category"];
         // $imageProduct = $_POST["imageProduct"];
+        $products = new Product();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$adminId = $_SESSION["Admin_id"];
 
         if (isset($_FILES["image"])) {
             $uploadDir = '../../../storage/';
@@ -24,7 +29,7 @@
             echo "No file selected.";
         }
         $path = "http://localhost:8005/".$basename;
-        if ($product->createProduct(1,$name,$price,$description,$path,$category,$stock_quantity) == TRUE) {          
+        if ($product->createProduct($adminId,$name,$price,$description,$path,$category,$stock_quantity) == TRUE) {          
           header('Location: ./createProduct');
         } else {
           echo "no exist";
