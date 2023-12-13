@@ -57,11 +57,11 @@ class Admin {
     }
     
 
-    public function updateAdmin($username, $password, $email, $phone, $address) {
+    public function updateAdmin($admin_id, $password, $email, $phone, $address) {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "UPDATE admins SET password = ?, email = ? WHERE username = ?";
+        $sql = "UPDATE admins SET password = ?, email = ? WHERE admin_id = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("sss", $hashedPassword, $email, $username);
+        $stmt->bind_param("sss", $hashedPassword, $email, $admin_id);
         $query = $stmt->execute();
         $stmt->close();
         return $query;

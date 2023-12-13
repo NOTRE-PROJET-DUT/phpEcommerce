@@ -2,17 +2,19 @@
 
 Model('admin');
 $admin = new Admin();
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+$id = $_SESSION["Admin_id"];
 
-$adminData =  $admin->getAdmin("admin1");
+$adminData =  $admin->getAdminByID($id);
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
   $email = $_POST["email"];
   $password = $_POST["password"];
-  if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-  }
-  if ($admin->updateAdmin($userName=$_SESSION["userNameAdmin"], $password,$email,$phone="0",$address="0") == TRUE) {
+
+  if ($admin->updateAdmin($id, $password,$email,$phone="0",$address="0") == TRUE) {
     header('Location: ./profile');
   } else {
     echo "no exist";
