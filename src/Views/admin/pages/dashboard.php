@@ -5,7 +5,7 @@ $products = new Product();
 if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
-$adminId = $_SESSION["admin_id"];
+$adminId = $_SESSION["Admin_id"];
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Retrieve values from the form
