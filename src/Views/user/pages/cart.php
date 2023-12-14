@@ -74,7 +74,7 @@
       var image = document.createElement('img');
       image.src = item.srcUrl;
       image.className = 'img-fluid rounded-3';
-      image.alt = 'Cotton T-shirt';
+      image.alt = 'Product';
 
       col1.appendChild(image);
 
