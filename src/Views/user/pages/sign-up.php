@@ -6,36 +6,43 @@ $user = new User();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
-    $email = $_POST["email"];
-    $pass = $_POST["pass"];
-    $cpass = $_POST["cpass"];
-    $checkpass = $_POST["checkpass"];
-    // Compare passwords
-    if ($pass == $cpass) {
-      
+  // Retrieve values from the form
+  $email = $_POST["email"];
+  $pass = $_POST["pass"];
+  $cpass = $_POST["cpass"];
+  $checkpass = $_POST["checkpass"];
+  // Compare passwords
+  if ($pass == $cpass) {
 
-        if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
-          header('Location: ./sign-in');
-        } else {
-          echo "user name or password not correct or this account exists";
-        }
+
+    if ($user->createAccountUser($email, $pass, $checkpass) === TRUE) {
+      header('Location: ./sign-in');
     } else {
-        echo "non valid password";
+      echo '<script>';
+      echo 'alert(" Sorry email or password not correct or this account exists");';
+      echo 'window.location.href = "/sign-up";';
+      echo '</script>';
+      exit;
     }
-    
-}?>
+  } else {
+    echo '<script>';
+    echo 'alert("non valid password");';
+    echo 'window.location.href = "/sign-up";';
+    echo '</script>';
+    exit;
+  }
+} ?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
 
 <head>
-  
-<?php  include_once  'component/head.php'; ?>
-  
+
+  <?php include_once  'component/head.php'; ?>
+
   <title>
-  shop
+    shop
   </title>
-  
+
 </head>
 
 <body class="sign-in-illustration">
@@ -51,25 +58,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <p class="mb-0">Enter your email and password to sign up</p>
               </div>
               <div class="card-body">
-              <form method="POST" action="/sign-up">
+                <form method="POST" action="/sign-up">
                   <div class="mb-3">
-                    <input type="email" name="email" class="form-control form-control-lg"placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
+                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                     <input type="password" name="pass" class="form-control form-control-lg "placeholder="Password " aria-label="Password" aria-describedby="password-addon" required>
+                    <input type="password" name="pass" class="form-control form-control-lg " placeholder="Password " aria-label="Password" aria-describedby="password-addon" required>
                   </div>
                   <div class="mb-3">
                     <input type="password" name="cpass" class="form-control form-control-lg" placeholder="Confirm Password" aria-label="Email" aria-describedby="email-addon" required>
                   </div>
                   <div class="mb-3">
-                    <input type="text" name="checkpass" class="form-control form-control-lg"placeholder="Date of your Birth" aria-label=""  required>
+                    <input type="text" name="checkpass" class="form-control form-control-lg" placeholder="Date of your Birth" aria-label="" required>
                   </div>
                   <!-- <div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe">
                      <label class="form-check-label" for="rememberMe">Remember me</label>
                   </div> -->
                   <div class="text-center">
-                      <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up</button>
+                    <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up</button>
                   </div>
                 </form>
               </div>

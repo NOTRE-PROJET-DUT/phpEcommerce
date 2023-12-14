@@ -6,20 +6,23 @@ $user = new User();
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Retrieve values from the form
-    $email = $_POST["Email"];
-    $pass = $_POST["Password"];
+  // Retrieve values from the form
+  $email = $_POST["Email"];
+  $pass = $_POST["Password"];
 
-        if ($user->login($email,$pass) == TRUE) {
-          if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-          }
-          $_SESSION['user_id'] = (int)($user->getUserByEmail($email)['user_id']);
-          header('Location: ./');
-        } else {
-          echo "email or password not correct";
-        }
-   
+  if ($user->login($email, $pass) == TRUE) {
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
+    $_SESSION['user_id'] = (int)($user->getUserByEmail($email)['user_id']);
+    header('Location: ./');
+  } else {
+    echo '<script>';
+    echo 'alert(" Sorry email or password not correct");';
+    echo 'window.location.href = "/sign-in";';
+    echo '</script>';
+    exit;
+  }
 }
 
 ?>
@@ -28,16 +31,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
 
-<?php  include_once  'component/head.php'; ?>
-  
+  <?php include_once  'component/head.php'; ?>
+
   <title>
-  shop
+    shop
   </title>
-  
+
 </head>
 
 <body class="sign-in-illustration">
-  
+
   <section>
     <div class="page-header min-vh-100">
       <div class="container">

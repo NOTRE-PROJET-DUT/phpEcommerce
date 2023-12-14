@@ -230,7 +230,7 @@
     <link rel="stylesheet" href="assets/css/swiper-bundle.min.css" />
 
     <!-- Swiper JS -->
-    <script src="assets/js/plugins/swiper-bundle.min.js"></script>
+    <script src="assets/js/core/swiper-bundle.min.js"></script>
     <script>
         if (document.getElementsByClassName('mySwiper')) {
             var swiper = new Swiper(".mySwiper", {

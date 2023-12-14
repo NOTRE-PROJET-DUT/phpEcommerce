@@ -19,10 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($admin->createAccountAdmin($userName, $email, $password, $confirmPassword) == TRUE) {
       header('Location: ./');
     } else {
-      echo "user name or password not correct or this account exists";
+      echo '<script>';
+      echo 'alert(" Sorry user name or password not correct or this account exists");';
+      echo 'window.location.href = "/sign-up";';
+      echo '</script>';
+      exit;
     }
   } else {
-    echo "non valid input data";
+    echo '<script>';
+    echo 'alert("non valid input data ");';
+    echo 'window.location.href = "/sign-up";';
+    echo '</script>';
+    exit;
   }
 } ?>
 
@@ -110,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-dark w-100 mt-4 mb-3">Sign up</button>
-                      
+
                     </div>
                   </form>
                 </div>
