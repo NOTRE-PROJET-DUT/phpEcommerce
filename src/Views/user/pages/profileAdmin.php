@@ -87,7 +87,7 @@ $adminData =  $admin->getAdminByID($idAdmin);
                   $products = $listProduct->getAdminProducts($adminData["admin_id"]);
                   foreach ($products as $product) : ?>
                     <div class="col-12 col-xl-4 mb-4">
-                      <a href="##">
+                      <a href="/product?idProduct=<?php echo $product['product_id']; ?>">
                         <div class="card h-100">
                           <!-- Product image-->
                           <img class="card-img-top" src="<?php echo $product['image_url']; ?>" alt="..." />
