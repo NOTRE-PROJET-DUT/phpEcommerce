@@ -14,7 +14,7 @@ class Admin
 
     public function login($userName, $password)
     {
-        if (!isset($username, $email, $password, $confirmPassword)) {
+        if (!isset($userName, $password)) {
             return false;
         }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
