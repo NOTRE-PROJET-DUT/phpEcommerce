@@ -17,14 +17,19 @@ class Admin
         if (!isset($userName, $password)) {
             return false;
         }
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $sql = "SELECT * FROM admins WHERE username = ? AND password = ?";
+        if (!$this->isUsernameExists($userName)) {
+            return false; // Return false to indicate that the email or username already exists
+        }
+
+        $sql = "SELECT * FROM admins WHERE username = ?";
         $stmt = $this->db->prepare($sql);
-        $stmt->bind_param("ss", $userName, $hashedPassword);
+        $stmt->bind_param("s", $userName);
         $stmt->execute();
         $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
         $stmt->close();
-        return $result;
+
+        return ($user && password_verify($password, $user['password']));
     }
 
 
@@ -60,7 +65,7 @@ class Admin
 
     public function createAccountAdmin($username, $email, $password, $secretCode)
     {
-        if (!isset($username, $email, $password, $confirmPassword)) {
+        if (!isset($username, $email, $password, $secretCode)) {
             return false;
         }
         if ($this->isEmailExists($email) || $this->isUsernameExists($username)) {
