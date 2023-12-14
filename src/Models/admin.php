@@ -117,7 +117,16 @@ class Admin
         return $query;
     }
 
-
+    public function updateAdminPassword($id, $email, $password)
+    {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        $sql = "UPDATE admins SET email = ?, password = ? WHERE admin_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("ssi", $email, $hashedPassword, $id);
+        $query = $stmt->execute();
+        $stmt->close();
+        return $query;
+    }
 
     public function deleteAdmin($username)
     {

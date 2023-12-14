@@ -1,7 +1,7 @@
 <?php
 
-Model('user');
-$user = new user();
+Model('admin');
+$admin = new Admin();
 
 
 // Check if the form is submitted
@@ -13,9 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   // Compare passwords
   if ($npass == $cpass) {
+      if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
 
-
-    if ($user->updateUserPassword($email, $npass) === TRUE) {
+    if ($admin->updateAdminPassword($_SESSION['Admin_id'],$email, $npass) === TRUE) {
       header('Location: ./dashboard');
     } else {
       echo "no exist";
