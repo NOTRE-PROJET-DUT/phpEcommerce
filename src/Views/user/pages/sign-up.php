@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($user->createAccountUser($email,$pass,$checkpass) === TRUE) {
           header('Location: ./sign-in');
         } else {
-          echo "email is exist";
+          echo "user name or password not correct or this account exists";
         }
     } else {
         echo "non valid password";

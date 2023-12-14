@@ -1,16 +1,22 @@
 <?php
 
-include_once __DIR__. '/db.php';
+include_once __DIR__ . '/db.php';
 
-class Admin {
+class Admin
+{
 
     private $db;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = db_connect::getConnection();
     }
 
-    public function login($userName, $password) {
+    public function login($userName, $password)
+    {
+        if (!isset($userName, $password)) {
+            return false;
+        }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "SELECT * FROM admins WHERE username = ? AND password = ?";
         $stmt = $this->db->prepare($sql);
@@ -20,10 +26,46 @@ class Admin {
         $stmt->close();
         return $result;
     }
-    
-    
 
-    public function createAccountAdmin($username, $email, $password, $secretCode) {
+
+    // Function to check if the email already exists
+    private function isEmailExists($email)
+    {
+        $sql = "SELECT COUNT(*) FROM admins WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()['COUNT(*)'];
+
+        $stmt->close();
+
+        return $count > 0; // If count is greater than 0, the email already exists
+    }
+    // Function to check if the username already exists
+    private function isUsernameExists($username)
+    {
+        $sql = "SELECT COUNT(*) FROM admins WHERE username = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()['COUNT(*)'];
+
+        $stmt->close();
+
+        return $count > 0; // If count is greater than 0, the username already exists
+    }
+
+
+    public function createAccountAdmin($username, $email, $password, $secretCode)
+    {
+        if (!isset($username, $email, $password, $confirmPassword)) {
+            return false;
+        }
+        if ($this->isEmailExists($email) || $this->isUsernameExists($username)) {
+            return false; // Return false to indicate that the email or username already exists
+        }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO admins (username, email, password, secret_Code) VALUES (?, ?, ?, ?)";
         $stmt = $this->db->prepare($sql);
@@ -32,9 +74,10 @@ class Admin {
         $stmt->close();
         return $query;
     }
-    
 
-    public function getAdmin($username) {
+
+    public function getAdmin($username)
+    {
         $query = "SELECT * FROM admins WHERE username LIKE ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("s", $username);
@@ -45,7 +88,8 @@ class Admin {
         return $adminData;
     }
 
-    public function getAdminByID($id) {
+    public function getAdminByID($id)
+    {
         $query = "SELECT * FROM admins WHERE admin_id LIKE ?";
         $stmt = $this->db->prepare($query);
         $stmt->bind_param("i", $id);
@@ -55,9 +99,10 @@ class Admin {
         $stmt->close();
         return $adminData;
     }
-    
 
-    public function updateAdmin($admin_id, $password, $email, $phone, $address) {
+
+    public function updateAdmin($admin_id, $password, $email, $phone, $address)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "UPDATE admins SET password = ?, email = ? WHERE admin_id = ?";
         $stmt = $this->db->prepare($sql);
@@ -66,10 +111,11 @@ class Admin {
         $stmt->close();
         return $query;
     }
-    
 
 
-    public function deleteAdmin($username) {
+
+    public function deleteAdmin($username)
+    {
         $sql = "DELETE FROM admins WHERE username = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $username);
@@ -77,5 +123,4 @@ class Admin {
         $stmt->close();
         return $query;
     }
-    
 }

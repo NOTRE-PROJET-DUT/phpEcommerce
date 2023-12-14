@@ -12,7 +12,11 @@ class User
         $this->db = db_connect::getConnection();
     }
 
-    public function login($email, $password) {
+    public function login($email, $password)
+    {
+        if (!isset($email, $password)) {
+            return false;
+        }
         $sql = "SELECT * FROM users WHERE email = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -20,31 +24,51 @@ class User
         $result = $stmt->get_result();
         $user = $result->fetch_assoc();
         $stmt->close();
-    
+
         return ($user && password_verify($password, $user['password']));
     }
-    
-    
-    public function forgetPassword($email, $checkpass) {
+
+
+    public function forgetPassword($email, $checkpass)
+    {
         $stmt = $this->db->prepare("SELECT secret_code FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-    
+
         $passwordsMatch = false;
-    
+
         if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
             $passwordsMatch = ($row['secret_code'] === $checkpass);
         }
-    
+
         $stmt->close();
-    
+
         return $passwordsMatch;
     }
-    
-    
-    public function createAccountUser($email, $password, $secretCode) {
+
+    private function isEmailExists($email)
+    {
+        $sql = "SELECT COUNT(*) FROM admins WHERE email = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()['COUNT(*)'];
+
+        $stmt->close();
+
+        return $count > 0; // If count is greater than 0, the email already exists
+    }
+    public function createAccountUser($email, $password, $secretCode)
+    {
+        if (!isset($email, $password, $secretCode)) {
+            return false;
+        }
+        if ($this->isEmailExists($email)) {
+            return false; // Return false to indicate that the email already exists
+        }
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO users (secret_code, email, password) VALUES (?, ?, ?)";
         $stmt = $this->db->prepare($sql);
@@ -53,9 +77,10 @@ class User
         $stmt->close();
         return $query;
     }
-    
 
-    public function getUser($id) {
+
+    public function getUser($id)
+    {
         $sql = "SELECT * FROM users WHERE user_id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -63,14 +88,15 @@ class User
         $result = $stmt->get_result();
         $user = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
-    
+
         if ($user) {
             return $user;
         }
     }
-    
 
-    public function getUserByEmail($email) {
+
+    public function getUserByEmail($email)
+    {
         $sql = "SELECT user_id FROM users WHERE email = ? LIMIT 1";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -78,16 +104,17 @@ class User
         $result = $stmt->get_result();
         $user = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
-    
+
         if ($user) {
             return $user[0];
         }
     }
-    
 
 
-    
-    public function updateUser($id, $email, $password) {
+
+
+    public function updateUser($id, $email, $password)
+    {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "UPDATE users SET email = ?, password = ? WHERE user_id = ?";
         $stmt = $this->db->prepare($sql);
@@ -96,15 +123,16 @@ class User
         $stmt->close();
         return $query;
     }
-    
 
-    public function updateUserPassword($email, $newpassword) {
+
+    public function updateUserPassword($email, $newpassword)
+    {
         $userData = $this->getUserByEmail($email);
-    
+
         if (!empty($userData)) {
             // Assuming 'user_id' is the key for the user ID in the result array
             $id = $userData[0]['user_id'];
-    
+
             $hashedPassword = password_hash($newpassword, PASSWORD_DEFAULT);
             $sql = "UPDATE users SET password = ? WHERE user_id = ?";
             $stmt = $this->db->prepare($sql);
@@ -117,10 +145,11 @@ class User
             return false;
         }
     }
-    
 
-    
-    public function deleteUser($id) {
+
+
+    public function deleteUser($id)
+    {
         $sql = "DELETE FROM users WHERE user_id = ?";
         $stmt = $this->db->prepare($sql);
         $stmt->bind_param("i", $id);
@@ -128,5 +157,4 @@ class User
         $stmt->close();
         return $query;
     }
-    
 }

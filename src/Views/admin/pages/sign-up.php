@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($admin->createAccountAdmin($userName, $email, $password, $confirmPassword) == TRUE) {
       header('Location: ./');
     } else {
-      echo "no exist";
+      echo "user name or password not correct or this account exists";
     }
   } else {
     echo "non valid input data";
