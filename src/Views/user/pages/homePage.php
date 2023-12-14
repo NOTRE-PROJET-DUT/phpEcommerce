@@ -21,11 +21,10 @@
         <header class="bg-dark py-5">
             <div class="container-fluid py-4 px-5">
                 <div class="row">
-                    <div class="position-relative overflow-hidden">
+                    <div class="position-relative overflow-hidden m-auto">
                         <div class="swiper mySwiper mt-4 mb-2">
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
-                                    <div>
                                         <div class="card card-background shadow-none border-radius-xl card-background-after-none align-items-start mb-0">
                                             <div class="full-background bg-cover" style="background-image: url('assets/img/img-2.jpg')"></div>
                                             <div class="card-body text-start px-3 py-0 w-100">
@@ -42,7 +41,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="card card-background shadow-none border-radius-xl card-background-after-none align-items-start mb-0">
@@ -231,7 +229,7 @@
 
     <!-- Swiper JS -->
     <script src="assets/js/core/swiper-bundle.min.js"></script>
-    <script>
+    <!-- <script>
         if (document.getElementsByClassName('mySwiper')) {
             var swiper = new Swiper(".mySwiper", {
                 effect: "cards",
@@ -239,6 +237,30 @@
                 initialSlide: 1,
             });
         };
+    </script> -->
+    <script>
+        // Check if there are elements with the class 'mySwiper'
+var swiperElements = document.getElementsByClassName('mySwiper');
+
+if (swiperElements.length > 0) {
+    // Initialize the Swiper only if elements with the class 'mySwiper' are found
+    var swiper = new Swiper(".mySwiper", {
+        effect: "cards",
+        grabCursor: true,
+        initialSlide: 1,
+    });
+
+    // Set up an interval to automatically swipe to the next slide every 1 second
+    setInterval(function () {
+        swiper.slideNext(); // Go to the next slide
+
+        // Check if the next slide is the last one, and if so, loop back to the first slide
+        if (swiper.isEnd) {
+            swiper.slideTo(0); // Go to the first slide
+        }
+    }, 1200);
+}
+
     </script>
 
 </body>
