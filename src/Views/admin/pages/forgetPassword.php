@@ -1,7 +1,7 @@
 <?php
 
-Model('user');
-$user = new user();
+Model('admin');
+$admin = new Admin();
 
 
 // Check if the form is submitted
@@ -12,12 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-  if ($user->forgetPassword($email, $checkpass) === TRUE) {
+  if ($admin->forgetPassword($email, $checkpass) === TRUE) {
       if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
     $_SESSION['emailExistAdmin'] = $email;
-    header('Location: ./changepassword');
+    header('Location: ./changePassword');
   } else {
     echo "no exist";
   }

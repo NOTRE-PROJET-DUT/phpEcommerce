@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $userName = $_POST["userName"];
   $password = $_POST["password"];
 
-  if ($admin->login($userName, $password) === TRUE) {
+  if ($admin->login($userName, $password) == TRUE) {
     // Start the session
     session_start();
     $_SESSION["userNameAdmin"] = $userName;

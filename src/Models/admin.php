@@ -29,7 +29,7 @@ class Admin
         $user = $result->fetch_assoc();
         $stmt->close();
 
-        return ($user && password_verify($password, $user['password']));
+        return (password_verify($password, $user['password']));
     }
 
 
@@ -127,5 +127,25 @@ class Admin
         $query = $stmt->execute();
         $stmt->close();
         return $query;
+    }
+
+
+    public function forgetPassword($email, $checkpass)
+    {
+        $stmt = $this->db->prepare("SELECT secret_code FROM admins WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        $passwordsMatch = false;
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $passwordsMatch = ($row['secret_code'] == $checkpass);
+        }
+
+        $stmt->close();
+
+        return $passwordsMatch;
     }
 }
