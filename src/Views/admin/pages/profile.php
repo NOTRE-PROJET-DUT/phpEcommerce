@@ -40,6 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="pt-7 pb-6 bg-cover" style="background-image: url('assets/img/header-orange-purple.jpg'); background-position: bottom;"></div>
     <div class="container">
       <div class="card card-body py-2 bg-transparent shadow-none">
+        <?php 
+          if (isset($adminData) && isset($adminData["description"])){
+        ?>
         <div class="row">
           <div class="col-auto">
             <div class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
@@ -56,11 +59,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </p>
             </div>
           </div>
+        <?php } ?>
         </div>
       </div>
     </div>
+    
     <div class="container my-3 py-3">
       <div class="row">
+      <?php 
+          if (isset($adminData) && isset($adminData["description"])){
+        ?>
         <div class="col-12 col-xl-4 mb-4">
           <div class="card border shadow-xs h-100">
             <div class="card-header pb-0 p-3">
@@ -121,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               </div>
           </div>
         </div>
-
+        <?php } ?>
         <div class="col-xl-4 col-md-6 mb-xl-0 mb-4">
           <div class="card h-100 card-plain border border-dashed px-5">
             <div class="card-body d-flex flex-column justify-content-center text-center">
@@ -148,7 +156,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php
                 Model('product');
                 $listProduct = new Product();
-                $products = $listProduct->getAdminProducts($adminData["admin_id"]);
+                $products = $listProduct->getAdminProducts($id);
                 foreach ($products as $product) : ?>
                   <div class="col-12 col-xl-4 mb-4">
                     <a href="##">
@@ -176,6 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
       <?php include_once  'component/footer.php'; ?>
     </div>
+    
   </div>
 
 </body>

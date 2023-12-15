@@ -59,7 +59,7 @@ CREATE TABLE products (
     image_url TEXT,
     price DECIMAL(10, 2) NOT NULL,
     stock_quantity INT NOT NULL,
-    category VARCHAR(12) NOT NULL CHECK (category IN ('Electronics', 'Clothing', 'Books','Home and Garden','Toys and Games')),
+    category VARCHAR(18) NOT NULL CHECK (category IN ('Electronics', 'Clothing', 'Books','Home and Garden','Toys and Games')),
     admin_id INT,
    coupon_id INT DEFAULT 1,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
